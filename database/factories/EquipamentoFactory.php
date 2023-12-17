@@ -17,7 +17,9 @@ class EquipamentoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'dtAquisicao' => fake()->date(),
+            'problemasPass' => fake()->sentence(),
+            'preco' => fake()->randomNumber(3, true),
         ];
     }
 }

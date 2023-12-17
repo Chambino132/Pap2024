@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
+use App\Models\Personal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,14 @@ class MarcacoesFactory extends Factory
      */
     public function definition(): array
     {
+        $personal = Personal::inRandomOrder()->first();
+        $cliente = Cliente::inRandomOrder()->first();
         return [
-            //
+            'dia' => fake()->date(),
+            'hora' => fake()->time(),
+            'atividade' => fake()->sentence(3),
+            'personal_id' => $personal->id,
+            'cliente_id' => $cliente->id,
         ];
     }
 }

@@ -17,7 +17,9 @@ class PersonalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'dtNascimento' => fake()->date(),
+            'telefone' => fake()->phoneNumber(),
+            'morada' => fake()->address(),
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cliente;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,9 @@ return new class extends Migration
     {
         Schema::create('presencas', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Cliente::class)->constrained();
+            $table->date('dia');
+            $table->time('hora');
             $table->timestamps();
         });
     }

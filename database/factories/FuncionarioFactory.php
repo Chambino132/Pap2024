@@ -17,7 +17,8 @@ class FuncionarioFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'telefone' => fake()->phoneNumber(),
+            'morada' => fake()->address(),
         ];
     }
 }

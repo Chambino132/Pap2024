@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('equipamentos', function (Blueprint $table) {
             $table->id();
+            $table->date('dtAquisicao');
+            $table->string('problemasPass');
+            $table->double('preco');
             $table->timestamps();
         });
     }

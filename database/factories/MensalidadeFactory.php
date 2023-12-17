@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class MensalidadeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'preco' => fake()->randomNumber(2, true),
+            'dias' => fake()->randomNumber(1,true),
         ];
     }
 }

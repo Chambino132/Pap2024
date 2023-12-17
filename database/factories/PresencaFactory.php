@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class PresencaFactory extends Factory
      */
     public function definition(): array
     {
+        
         return [
-            //
+            'dia' => fake()->date(),
+            'hora' => fake()->time(),
         ];
     }
 }
