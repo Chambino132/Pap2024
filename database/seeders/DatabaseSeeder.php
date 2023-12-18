@@ -4,13 +4,16 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Atividade;
 use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Funcionario;
 use App\Models\Marcacoes;
 use App\Models\Mensalidade;
+use App\Models\Pagamento;
 use App\Models\Personal;
 use App\Models\Presenca;
+use App\Models\Problema;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
 use GuzzleHttp\Client;
@@ -27,7 +30,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory(5)
             ->has(Cliente::factory()
-                ->has(Presenca::factory(3)))
+                ->has(Presenca::factory(3))
+                ->has(Pagamento::factory(3)))
             ->create();
 
         
@@ -40,10 +44,12 @@ class DatabaseSeeder extends Seeder
             ->has(Personal::factory())
             ->create();
 
-        Marcacoes::factory(10)
+        Atividade::factory(5)
+            ->has(Marcacoes::factory())
             ->create();
-        
+
         Equipamento::factory(5)
+            ->has(Problema::factory(3))
             ->create();
     }
 }

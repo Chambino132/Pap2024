@@ -42,4 +42,8 @@ class Cliente extends Model
        return $this->hasMany(Presenca::class);
     } 
 
+    function pagamentos(): HasMany {
+        return $this->hasMany(Pagamento::class);
+    }
+
 }

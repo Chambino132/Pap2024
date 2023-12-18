@@ -28,4 +28,8 @@ class Marcacoes extends Model
         return $this->belongsTo(Personal::class);
     }
 
+    function atividade(): BelongsTo {
+        return $this->belongsTo(Atividade::class);
+    }
+
 }
