@@ -8,7 +8,7 @@ use App\Models\Atividade;
 use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Funcionario;
-use App\Models\Marcacoes;
+use App\Models\Marcacao;
 use App\Models\Mensalidade;
 use App\Models\Pagamento;
 use App\Models\Personal;
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Atividade::factory(5)
-            ->has(Marcacoes::factory())
+            ->has(Marcacao::factory())
             ->create();
 
         Equipamento::factory(5)

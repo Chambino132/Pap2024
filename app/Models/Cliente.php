@@ -22,9 +22,9 @@ class Cliente extends Model
     ];
 
 
-    function marcacoes() : HasMany 
+    function marcacaos() : HasMany 
     {
-        return $this->hasMany(Marcacoes::class);    
+        return $this->hasMany(Marcacao::class);
     }
 
     function mensalidade() : BelongsTo 
