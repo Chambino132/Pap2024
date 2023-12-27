@@ -16,8 +16,11 @@ class ProblemaFactory extends Factory
      */
     public function definition(): array
     {
+        $estado = ['Resolvido', 'Por Resolver'];
+
         return [
-            'problema' => fake()->sentence()
+            'problema' => fake()->sentence(),
+            'estado' => $estado[fake()->numberBetween(0,1)],
         ];
     }
 }

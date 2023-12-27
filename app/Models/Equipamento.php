@@ -12,8 +12,8 @@ class Equipamento extends Model
 
     protected $fillable = [
         'dtAquisicao',
-        'problemasPass',
         'preco',
+        'equipamento',
     ];
 
     function problemas(): HasMany {

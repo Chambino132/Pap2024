@@ -18,8 +18,8 @@ class EquipamentoFactory extends Factory
     {
         return [
             'dtAquisicao' => fake()->date(),
-            'problemasPass' => fake()->sentence(),
             'preco' => fake()->randomNumber(3, true),
+            'equipamento' => fake()->sentence(3, true),
         ];
     }
 }

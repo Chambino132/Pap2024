@@ -13,6 +13,7 @@ class Problema extends Model
     protected $fillable = [
         'problema',
         'equipamento_id',
+        'estado',
     ];
 
     function equipamento(): BelongsTo {
