@@ -6,26 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Marcacoes extends Model
+class Reclamacao extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'dia',
-        'hora',
-        'atividade',
-        'cliente_id',
-        'personal_id',
+        'titulo',
+        'descricao',
+        'user_id',
     ];
 
-    function cliente(): BelongsTo
+    function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-    function personal(): BelongsTo
-    {
-        return $this->belongsTo(Personal::class);
-    }
-
 }

@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Equipamento extends Model
+class Atividade extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'dtAquisicao',
-        'problemasPass',
-        'preco',
+        'Atividade',
     ];
 
-    function problemas(): HasMany {
-        return $this->hasMany(Problema::class);
+    function marcacaos() : HasMany {
+        return $this->hasMany(Marcacao::class);
     }
-
 }

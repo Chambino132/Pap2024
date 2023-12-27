@@ -4,13 +4,17 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Atividade;
 use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Funcionario;
-use App\Models\Marcacoes;
+use App\Models\Marcacao;
 use App\Models\Mensalidade;
+use App\Models\Pagamento;
 use App\Models\Personal;
 use App\Models\Presenca;
+use App\Models\Problema;
+use App\Models\Reclamacao;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
 use GuzzleHttp\Client;
@@ -26,24 +30,30 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         User::factory(5)
+            ->has(Reclamacao::factory())
             ->has(Cliente::factory()
-                ->has(Presenca::factory(3)))
+                ->has(Presenca::factory(3))
+                ->has(Pagamento::factory(3)))
             ->create();
 
         
 
         User::factory(5)
             ->has(Funcionario::factory())
+            ->has(Reclamacao::factory())
             ->create();
 
         User::factory(5)
             ->has(Personal::factory())
+            ->has(Reclamacao::factory())
             ->create();
 
-        Marcacoes::factory(10)
+        Atividade::factory(5)
+            ->has(Marcacao::factory())
             ->create();
-        
+
         Equipamento::factory(5)
+            ->has(Problema::factory(3))
             ->create();
     }
 }

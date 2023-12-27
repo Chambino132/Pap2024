@@ -23,8 +23,8 @@ class Personal extends Model
         return $this->belongsTo(User::class);
     }
 
-    function marcacoes() : HasMany 
+    function marcacaos() : HasMany 
     {
-        return $this->hasMany(Marcacoes::class);    
+        return $this->hasMany(Marcacao::class);    
     }
 }
