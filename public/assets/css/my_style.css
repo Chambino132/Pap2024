@@ -1,0 +1,23 @@
+.big{
+    font-size: larger;
+}
+
+.tit{
+    text-align: center;
+    font-weight: bold;
+}
+
+.subtit{
+    text-align: center;
+    margin-top: 0;
+}
+
+.noti{
+    display: inline;
+    margin: 10px;
+    width: 50%;
+}
+
+span{
+    color: #428bca;
+}
