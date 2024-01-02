@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Routes da pagina publica
+
 Route::get('/', function () {
     return view('publica.entrada');
 })->name('entrada');
@@ -39,5 +41,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Routes das dashboards
+
+Route::get('/users', function () {
+    return view('Funcionario.users.index');
+})->middleware(['auth', 'verified'])->name('users');
+
+Route::get('/equipamento', function () {
+    return view('Funcionario.equipamento.index');
+})->middleware(['auth', 'verified'])->name('equipamento');
+
+Route::get('/entradas', function () {
+    return view('Funcionario.entradas.index');
+})->middleware(['auth', 'verified'])->name('entradas');
 
 require __DIR__ . '/auth.php';

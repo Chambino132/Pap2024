@@ -36,8 +36,6 @@ class DatabaseSeeder extends Seeder
                 ->has(Pagamento::factory(3)))
             ->create();
 
-        
-
         User::factory(5)
             ->has(Funcionario::factory())
             ->has(Reclamacao::factory())
@@ -55,5 +53,8 @@ class DatabaseSeeder extends Seeder
         Equipamento::factory(5)
             ->has(Problema::factory(3))
             ->create();
+
+        //User PorConfirmar
+        User::factory(5)->create();
     }
 }
