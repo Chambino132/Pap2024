@@ -16,19 +16,21 @@ class Marcacao extends Model
         'atividade_id',
         'cliente_id',
         'personal_id',
+        'estado',
     ];
 
-    function cliente(): BelongsTo
+    public function cliente(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    function personal(): BelongsTo
+    public function personal(): BelongsTo
     {
         return $this->belongsTo(Personal::class);
     }
 
-    function atividade(): BelongsTo {
+    public function atividade(): BelongsTo
+    {
         return $this->belongsTo(Atividade::class);
     }
 }
