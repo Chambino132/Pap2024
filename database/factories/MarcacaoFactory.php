@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Atividade;
-use App\Models\Cliente;
-use App\Models\Personal;
+use App\Models\{Atividade, Cliente, Personal};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,15 +17,19 @@ class MarcacaoFactory extends Factory
      */
     public function definition(): array
     {
-        $personal = Personal::inRandomOrder()->first();
-        $cliente = Cliente::inRandomOrder()->first();
+        $personal  = Personal::inRandomOrder()->first();
+        $cliente   = Cliente::inRandomOrder()->first();
         $atividade = Atividade::inRandomOrder()->first();
+
+        $estado = ['aceite', 'recusado', 'cancelado', 'pendente'];
+
         return [
-            'dia' => fake()->date(),
-            'hora' => fake()->time(),
+            'dia'          => fake()->date(),
+            'hora'         => fake()->time(),
             'atividade_id' => $atividade->id,
-            'personal_id' => $personal->id,
-            'cliente_id' => $cliente->id,
+            'personal_id'  => $personal->id,
+            'cliente_id'   => $cliente->id,
+            'estado'       => $estado[fake()->numberBetween(0, 3)],
         ];
     }
 }
