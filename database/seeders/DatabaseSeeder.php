@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Mensalidade::factory(7)
+        Mensalidade::factory(4)
             ->create();
 
         User::factory(5)

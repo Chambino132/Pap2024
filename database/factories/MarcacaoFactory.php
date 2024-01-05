@@ -22,6 +22,7 @@ class MarcacaoFactory extends Factory
         $personal = Personal::inRandomOrder()->first();
         $cliente = Cliente::inRandomOrder()->first();
         $atividade = Atividade::inRandomOrder()->first();
+
         return [
             'dia' => fake()->date(),
             'hora' => fake()->time(),

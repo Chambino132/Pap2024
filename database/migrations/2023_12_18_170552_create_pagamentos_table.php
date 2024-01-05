@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
-            $table->enum('mes_pago', ['1','2','3','4','5','6','7','8','9','10','11','12']);
+            $table->date('mes_pago');
             $table->date('data_pag');
             $table->foreignIdFor(Cliente::class)->constrained();
             $table->timestamps();
