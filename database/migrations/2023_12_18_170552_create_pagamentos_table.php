@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
-            $table->date('mes_pago');
+            $table->string('mes_pago');
             $table->date('data_pag');
             $table->foreignIdFor(Cliente::class)->constrained();
             $table->timestamps();

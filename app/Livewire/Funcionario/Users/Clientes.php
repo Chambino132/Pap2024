@@ -5,6 +5,7 @@ namespace App\Livewire\Funcionario\Users;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 class Clientes extends Component
 {
@@ -18,5 +19,11 @@ class Clientes extends Component
     public function render()
     {
         return view('livewire.funcionario.users.clientes');
+    }
+
+    #[On('cliente::created')]
+    public function refresh() : void 
+    {
+        $this->dispatch('$refresh');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Livewire\Funcionario\Users;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 class Personal extends Component
 {
@@ -18,4 +19,11 @@ class Personal extends Component
     {
         return view('livewire.funcionario.users.personal');
     }
+
+    #[On('personal::created')]
+    public function refresh() : void 
+    {
+        $this->refresh();
+    }
+
 }

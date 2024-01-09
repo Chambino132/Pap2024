@@ -1,5 +1,5 @@
 <div>
-    @if ($alterar == true)
+    @if ($alterar == false)
         <div>
             <div class="py-2">
                 <div class="mx-auto max-w-7x1 sm:px-6 lg:px-8">
@@ -55,8 +55,9 @@
 
                     <form wire:submit='guardar'>
                         <div class="pt-2 pb-5">
-                            <select id="userNC_id" name="userNC_id"
+                            <select wire:model='user_id' id="user_id" name="user_id"
                                 class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>{{__('Selecione uma Opção')}}</option>
                                 @foreach ($usersNC as $userNC)
                                     <option value="{{ $userNC->id }}">{{ $userNC->name }}</option>
                                 @endforeach
@@ -76,45 +77,44 @@
                         
                         @if ($tipo == 'Cliente')
                             <div class="pb-5">
-                                <x-input-label for="nif" :value="__('NIF')" />
-                                <x-text-input id="nif" name="nif" type="text" class="block w-full mt-1" :value="old('nif')" />
-                                <x-input-error class="mt-2" :messages="$errors->get('nif')" />
-                            </div>
-                            <div class="pb-5">
                                 <x-input-label for="mensalidade_id" :value="__('Mensalidades')" />
-                                <select id="mensalidade_id" name="mensalidade_id"
+                                <select  wire:model='mensalidade_id' id="mensalidade_id" name="mensalidade_id"
                                     class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected>{{__('Selecione uma Opção')}}</option>
                                     @foreach ($mensalidades as $mensalidade)                   
-                                        <option value="{{$mensalidade->id}}">{{ $mensalidade->Dias }}</option>
+                                        <option value="{{$mensalidade->id}}">{{ $mensalidade->Dias }} Dias/semana</option>
                                     @endforeach
                                 </select>
+
                             </div>
                         @endif
                         
                         <div class="pb-5">
+                            <x-input-label for="NIF" :value="__('NIF')" />
+                            <x-text-input  wire:model='NIF' id="NIF" name="NIF" type="text" class="block w-full mt-1" :value="old('NIF')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('NIF')" />
+                        </div>
+                        <div class="pb-5">
                             <x-input-label for="dtNascimento" :value="__('Data de Nascimento')" />
-                            <x-text-input id="dtNascimento" name="dtNascimento" type="text" class="block w-full mt-1" :value="old('dtNascimento')" />
+                            <x-text-input wire:model='dtNascimento' id="dtNascimento" name="dtNascimento" type="date" class="block w-full mt-1" :value="old('dtNascimento')" />
                             <x-input-error class="mt-2" :messages="$errors->get('dtNascimento')" />
                         </div>
                         <div class="pb-5">
                             <x-input-label for="telefone" :value="__('Telefone')" />
-                            <x-text-input id="telefone" name="telefone" type="text" class="block w-full mt-1" :value="old('telefone')" />
+                            <x-text-input wire:model='telefone' id="telefone" name="telefone" type="text" class="block w-full mt-1" :value="old('telefone')" />
                             <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
                         </div>
                         <div class="pb-5">
                             <x-input-label for="morada" :value="__('Morada')" />
-                            <x-text-input id="morada" name="morada" type="text" class="block w-full mt-1" :value="old('morada')" />
+                            <x-text-input wire:model='morada' id="morada" name="morada" type="text" class="block w-full mt-1" :value="old('morada')" />
                             <x-input-error class="mt-2" :messages="$errors->get('morada')" />
                         </div>
 
-                        
-
                         <div class="flex">
-                            <x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
+                            <x-primary-button wire:click="$dispatch('$refresh')" type="submit">{{ __('Associar') }}</x-primary-button>
                     </form>
 
-                    <x-secondary-button wire:click="desassociar">{{ __('Cancelar') }}</x-secondary-button>
+                    <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button>
                 </div>
 
             </div>
