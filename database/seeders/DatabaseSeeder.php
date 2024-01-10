@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Mensalidade::factory(7)
+        Mensalidade::factory(4)
             ->create();
 
         User::factory(5)
@@ -35,8 +35,6 @@ class DatabaseSeeder extends Seeder
                 ->has(Presenca::factory(3))
                 ->has(Pagamento::factory(3)))
             ->create();
-
-        
 
         User::factory(5)
             ->has(Funcionario::factory())
@@ -55,5 +53,8 @@ class DatabaseSeeder extends Seeder
         Equipamento::factory(5)
             ->has(Problema::factory(3))
             ->create();
+
+        //User PorConfirmar
+        User::factory(5)->create();
     }
 }

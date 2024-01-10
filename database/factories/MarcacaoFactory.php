@@ -21,7 +21,9 @@ class MarcacaoFactory extends Factory
         $cliente   = Cliente::inRandomOrder()->first();
         $atividade = Atividade::inRandomOrder()->first();
 
+
         $estado = ['aceite', 'recusado', 'cancelado', 'pendente'];
+
 
         return [
             'dia'          => fake()->date(),
