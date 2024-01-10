@@ -1,14 +1,11 @@
 <?php
 
-use App\Models\Atividade;
-use App\Models\Cliente;
-use App\Models\Personal;
+use App\Models\{Atividade, Cliente, Personal};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Atividade::class)->constrained();
             $table->foreignIdFor(Personal::class)->constrained();
             $table->foreignIdFor(Cliente::class)->constrained();
+            $table->enum('estado', ['aceite', 'recusado', 'cancelado', 'pendente'])->default('pendente');
             $table->timestamps();
         });
     }

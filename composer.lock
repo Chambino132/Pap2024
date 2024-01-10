@@ -1820,6 +1820,7 @@
         },
         {
             "name": "livewire/livewire",
+
             "version": "v3.3.5",
             "source": {
                 "type": "git",
@@ -1849,6 +1850,7 @@
                 "orchestra/testbench-dusk": "^8.0|^9.0",
                 "phpunit/phpunit": "^10.4",
                 "psy/psysh": "^0.11.22|^0.12"
+           
             },
             "type": "library",
             "extra": {
@@ -1882,7 +1884,9 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
+
                 "source": "https://github.com/livewire/livewire/tree/v3.3.5"
+
             },
             "funding": [
                 {
@@ -1890,6 +1894,7 @@
                     "type": "github"
                 }
             ],
+
             "time": "2024-01-02T14:29:17+00:00"
         },
         {

@@ -1,13 +1,11 @@
 <?php
 
-use App\Models\Mensalidade;
-use App\Models\User;
+use App\Models\{Mensalidade, User};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,6 +18,7 @@ return new class extends Migration
             $table->string('NIF');
             $table->string('telefone');
             $table->string('Morada');
+            $table->date('ultMes');
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

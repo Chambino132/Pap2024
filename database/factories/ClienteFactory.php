@@ -20,11 +20,12 @@ class ClienteFactory extends Factory
         $mensalidade = Mensalidade::inRandomOrder()->first();
 
         return [
-            'dtNascimento' => fake()->date(),
-            'NIF' => fake()->randomNumber(9, true),
-            'telefone' => fake()->phoneNumber(),
-            'morada' => fake()->address(),
+            'dtNascimento'   => fake()->date(),
+            'NIF'            => fake()->randomNumber(9, true),
+            'telefone'       => fake()->phoneNumber(),
+            'morada'         => fake()->address(),
             'mensalidade_id' => $mensalidade->id,
+            'ultMes'         => fake()->date(),
         ];
     }
 }
