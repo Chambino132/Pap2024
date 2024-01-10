@@ -56,5 +56,8 @@ class DatabaseSeeder extends Seeder
 
         //User PorConfirmar
         User::factory(5)->create();
+
+        //User Admin
+        User::factory(5)->create();
     }
 }
