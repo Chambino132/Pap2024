@@ -15,6 +15,8 @@ class Personal extends Component
     {
         $this->usersP = User::Where('utype', 'Personal')->get();
     }
+
+    
     public function render()
     {
         return view('livewire.funcionario.users.personal');
@@ -23,7 +25,7 @@ class Personal extends Component
     #[On('personal::created')]
     public function refresh() : void 
     {
-        $this->refresh();
+        $this->usersP = User::Where('utype', 'Personal')->get();
     }
 
 }

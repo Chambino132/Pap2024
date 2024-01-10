@@ -16,6 +16,7 @@ class Clientes extends Component
         $this->usersC = User::Where('utype',"Cliente")->get();
     }
 
+   
     public function render()
     {
         return view('livewire.funcionario.users.clientes');
@@ -24,6 +25,6 @@ class Clientes extends Component
     #[On('cliente::created')]
     public function refresh() : void 
     {
-        $this->dispatch('$refresh');
+        $this->usersC = User::Where('utype',"Cliente")->get();
     }
 }

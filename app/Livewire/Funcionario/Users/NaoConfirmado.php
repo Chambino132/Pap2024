@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
 use App\Models\Cliente;
 use App\Models\Mensalidade;
 use App\Models\User;
+use App\Models\Personal;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\On;
@@ -81,27 +83,31 @@ class NaoConfirmado extends Component
         {
             Cliente::create($this->validate());
             
-            $user = User::find($this->user_id);
+            $user = User::findOrFail($this->user_id);
 
             $user->utype = "Cliente";
 
             $user->save();
             
-            $this->dispatch('refresh')->to(Clientes::class);
+            $this->dispatch('cliente::created')->to(Clientes::class);
         }
         else
         {
+            Personal::create($this->validate());
+            
             $user = User::findOrFail($this->user_id);
 
+            $user->utype = "Personal";
 
-            $user->update(['utype' => 'Personal']);
-            Personal::create($this->validate());
+            $user->save();
+            
 
-            $this->dispatch('personal::created');
+
+            $this->dispatch('personal::created')->to(UsersPersonal::class);
         }
 
+        $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
         $this->cancelar();
-        $this->dispatch(' refresh');
         
     }
 }
