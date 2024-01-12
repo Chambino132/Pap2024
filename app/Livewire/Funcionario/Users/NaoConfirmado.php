@@ -102,7 +102,6 @@ class NaoConfirmado extends Component
             $user->save();
             
 
-
             $this->dispatch('personal::created')->to(UsersPersonal::class);
         }
 
