@@ -18,6 +18,178 @@
     width: 50%;
 }
 
-span{
-    color: #428bca;
-}
+/* Pricing Section - Home Page
+------------------------------*/
+.pricing {
+    padding: 60px 0 120px 0;
+  }
+
+  .pricing .pricing-item {
+    box-shadow: 0 3px 20px -2px rgba(33, 37, 41, 0.1);
+    padding: 60px 40px;
+    height: 100%;
+    position: relative;
+    border-radius: 15px;
+  }
+  
+  .pricing h3 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .pricing .icon {
+    margin: 30px auto 20px auto;
+    width: 70px;
+    height: 70px;
+    background:  #e84545;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    transform-style: preserve-3d;
+  }
+  
+  .pricing .icon i {
+    color: #ffffff;
+    font-size: 28px;
+    transition: ease-in-out 0.3s;
+    line-height: 0;
+  }
+  
+  .pricing .icon::before {
+    position: absolute;
+    content: "";
+    height: 86px;
+    width: 86px;
+    border-radius: 50%;
+    background: rgba(232, 69, 69, 0.2);
+    transition: all 0.3s ease-out 0s;
+    transform: translateZ(-1px);
+  }
+  
+  .pricing .icon::after {
+    position: absolute;
+    content: "";
+    height: 102px;
+    width: 102px;
+    border-radius: 50%;
+    background: rgba(232, 69, 69, 0.1);
+    transition: all 0.3s ease-out 0s;
+    transform: translateZ(-2px);
+  }
+  
+  .pricing h4 {
+    font-size: 48px;
+    color:  #e84545;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  .pricing h4 sup {
+    font-size: 28px;
+  }
+  
+  .pricing h4 span {
+    color: rgba(33, 37, 41, 0.5);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .pricing ul {
+    padding: 20px 0;
+    list-style: none;
+    color: rgba(33, 37, 41, 0.8);
+    text-align: left;
+    line-height: 20px;
+  }
+  
+  .pricing ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .pricing ul i {
+    color: #059652;
+    font-size: 24px;
+    padding-right: 3px;
+  }
+  
+  .pricing ul .na {
+    color: rgba(33, 37, 41, 0.3);
+  }
+  
+  .pricing ul .na i {
+    color: rgba(33, 37, 41, 0.3);
+  }
+  
+  .pricing ul .na span {
+    text-decoration: line-through;
+  }
+  
+  .pricing .buy-btn {
+    color: rgba(33, 37, 41, 0.8);
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 4px;
+    border: 1px solid rgba(33, 37, 41, 0.2);
+    transition: none;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    transition: 0.3s;
+  }
+  
+  .pricing .buy-btn:hover {
+    background-color:  #e84545;
+    color: #ffffff;
+  }
+  
+  .pricing .featured {
+    z-index: 10;
+    border: 3px solid  #e84545;
+  }
+  
+  .pricing .featured .buy-btn {
+    background-color:  #e84545;
+    color: #ffffff;
+  }
+  
+  .pricing .featured .buy-btn:hover {
+    background-color: rgba(232, 69, 69, 0.9);
+  }
+  
+  .pricing .section-title h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 8px 20px;
+    margin: 0;
+    background: #f5f9fc;
+    color: #de231a;
+    display: inline-block;
+    text-transform: uppercase;
+    border-radius: 50px;
+  }
+
+  .section-title h3 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  h3 span{
+    font-size: larger;
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+

@@ -3,49 +3,32 @@
 <section>
 
     <div class="section-title">
-        <h3><span>Noticias</span></h3>
-        <h5>Tudo Novo Sobre <span>PepaGym</span></h5>
+        <h2><span>Noticias</span></h2>
+        <h3>Tudo Novo Sobre <span>PepaGym</span></h3>
       </div>
-
-    <div class="d-inline-flex ">
-        <div class="card noti">
-            <img src="my_images/Guest.jpg" class="card-img-top" alt="...">
-        
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+<div class="container">
+      @foreach ($noticias as $noticia)
+          @if ($loop->first)
+            <div class="d-flex">
+          @endif
+          <div class="card noti" style="width: 33%">
+                <img src="{{$noticia->imagem}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{$noticia->titulo}}</h5>
+                    <h6 class="text-decoration-underline">{{$noticia->data}}</h6>
+                    </div>
+                <p class="card-text">{{$noticia->descricao}}</p>
+                </div>
         </div>
-        <div class="card noti">
-            <img src="..." class="card-img-top" alt="...">
-        
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        @if (fmod($loop->iteration, 3) == 0)
             </div>
-        </div>
-    </div>
-    <div class="d-inline-flex ">
-        <div class="card noti">
-            <img src="..." class="card-img-top" alt="...">
-        
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="d-flex">
+        @elseif ($loop->last)
             </div>
-        </div>
-        <div class="card noti">
-            <img src="..." class="card-img-top" alt="...">
-        
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
+        @endif
+          
+      @endforeach
+</div>
 </section>
 @endsection

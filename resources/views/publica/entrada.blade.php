@@ -23,7 +23,7 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">O Seu Conforto Em Primeiro Lugar</h2>
-              <p class="mx-5 animated fadeInUp big">O conforto e a saude dos nossos clientes é a nossa prioridade número 1! Temos uma arquitetura agradevel para todos se sentirem o mais confortaveis possivel.</p>
+              <p class="mx-5 animated fadeInUp big">O conforto e a saude dos nossos clientes é a nossa prioridade número 1! Temos uma arquitetura agradável para todos se sentirem o mais confortaveis possivel.</p>
             </div>
           </div>
         </div>
@@ -33,7 +33,8 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
-              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponivel para resolver todos os seus problemas, responder às suas duvidas e manterem-no seguro durante os seus treinos. Não só nós, como a comunidade agradavel que montamos no nosso estabelecimento prezervaram pela sua saude!</p>
+              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponivel para resolver todos os seus problemas, responder às suas duvidas e manterem-no seguro durante os seus treinos.</p>
+              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradavel que montamos no nosso espaço cuidaram da sua saude!</p>
             </div>
           </div>
         </div>
@@ -60,7 +61,7 @@
 
           <div class="py-5 col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
             <h3>Tudo sobre PepaGym</h3>
-            <p>PepaGym é um ginásio de Coruche que apesar de não ter um espaço grande como outros, é perfeito para os seus treinos e saude, com diversos equipamentos novos e cuidados, trabalhadores que adoram o que fazem e uma comunidade amigável. Podemos não ser o maior ginásio, mas somos o ginásio que vocês precisam!</p>
+            <p>PepaGym é um ginásio de Coruche que apesar de não ter um espaço grande como outros, é perfeito para os seus treinos e saude, com diversos equipamentos novos e cuidados, trabalhadores que adoram o que fazem e uma comunidade amigável. Podemos não ser o maior ginásio, mas somos o ginásio para si!</p>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>

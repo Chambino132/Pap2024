@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{ProfileController, ViewController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +22,9 @@ Route::get('/sobre', function () {
     return view('publica.sobre');
 })->name('sobre');
 
-Route::get('/noticias', function () {
-    return view('publica.noticias');
-})->name('noticias');
+Route::get('/noticias', [ViewController::class, 'noticias'])->name('noticias');
 
-Route::get('/galeria', function () {
-    return view('publica.galeria');
-})->name('galeria');
+Route::get('/galeria', [ViewController::class, 'galeria'])->name('galeria');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -50,7 +50,9 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                <x-theme-toggle/>
             </div>
+            
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
