@@ -72,7 +72,7 @@
                                 <option value="Personal">{{ __('Personal') }}</option>
                             </select>
                         </div>
-
+                        
                         <hr style="border:1px solid red" class="mb-3">
                         
                         @if ($tipo == 'Cliente')
@@ -116,7 +116,6 @@
 
                     <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button>
                 </div>
-
             </div>
         </div>
     @endif

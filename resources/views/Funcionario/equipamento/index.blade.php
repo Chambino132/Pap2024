@@ -7,5 +7,5 @@
 
     <livewire:funcionario.equipamento.base>
     
-     
+    @livewireScripts
 </x-app-layout>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('problema');
             $table->foreignIdFor(Equipamento::class)->constrained();
-            $table->enum('estado', ['Resolvido', 'Por Resolver'])->default('Por Resolver');
+            $table->enum('estado', ['Resolvido', 'Em Progresso', 'Por Resolver'])->default('Por Resolver');
             $table->timestamps();
         });
     }

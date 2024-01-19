@@ -9,7 +9,6 @@ use LivewireUI\Modal\ModalComponent;
 
 class ProblemasModal extends ModalComponent
 {
-    
     public Equipamento $maquina;
 
     public function render()
