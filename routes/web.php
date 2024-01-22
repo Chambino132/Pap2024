@@ -59,4 +59,8 @@ Route::get('/entradas', function () {
     return view('Funcionario.entradas.index');
 })->middleware(['auth', 'verified'])->name('entradas');
 
+Route::get('/sugestoes', function(){
+    return view('sugestoes.index');
+})->middleware(['adminFun', 'verified'])->name('sugestoes');
+
 require __DIR__ . '/auth.php';
