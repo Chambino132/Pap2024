@@ -7,6 +7,9 @@ use App\Models\Problema;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use NunoMaduro\Collision\Exceptions\TestException;
+
+use function Laravel\Prompts\confirm;
 
 class Base extends Component
 {
@@ -16,6 +19,7 @@ class Base extends Component
     public bool $altProblema = false;
     public bool $addP = false;
     public ?Equipamento $mID;
+    public ?Equipamento $mIDd;
     public ?string $tipo;
     public string $SelProblema;
     public Problema $Tempproblema;
@@ -32,6 +36,13 @@ class Base extends Component
     public function mount()
     {
         $this->maquinas = Equipamento::all();
+    }
+
+    #[On('equipamento::delete')]
+    public function refresh()
+    {
+        $this->maquinas = Equipamento::all();
+        return redirect(request()->header('Referer'));
     }
 
     public function rules()
