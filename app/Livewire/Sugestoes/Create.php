@@ -20,18 +20,7 @@ class Create extends Component
         'user_id' => 'required',
     ];
 
-    public function abrir() : void 
-    {
-        if($this->sugestao == true)
-        {
-            $this->sugestao = false;
-        }
-        else
-        {
-            $this->sugestao = true;    
-        }
-            
-    }
+    
 
     public function guardar()
     {

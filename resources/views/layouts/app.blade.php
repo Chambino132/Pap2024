@@ -51,7 +51,7 @@
                 {{ $slot }}
             </main>
             <div class="fixed bottom-0 right-5">
-                <livewire:sugestoes.create>
+                <livewire:chat.chat>
             </div>
         </div>
         @livewire('wire-elements-modal')
