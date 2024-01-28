@@ -16,6 +16,7 @@ class Personal extends Model
         'telefone',
         'morada',
         'user_id',
+        'atividade_id'
     ];
 
     function user(): BelongsTo
@@ -26,5 +27,10 @@ class Personal extends Model
     function marcacaos() : HasMany 
     {
         return $this->hasMany(Marcacao::class);    
+    }
+
+    function atividade(): BelongsTo
+    {
+        return $this->belongsTo(Atividade::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Personal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +17,8 @@ class AtividadeFactory extends Factory
      */
     public function definition(): array
     {
+        
+
         return [
             'atividade' => fake()->sentence(),
         ];
