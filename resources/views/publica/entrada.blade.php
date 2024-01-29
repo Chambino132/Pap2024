@@ -12,7 +12,7 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Bem vindo à PepaGym</h2>
-              <p class="animated fadeInUp big">Um ginásio de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
+              <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
           </div>
@@ -23,7 +23,7 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">O Seu Conforto Em Primeiro Lugar</h2>
-              <p class="mx-5 animated fadeInUp big">O conforto e a saude dos nossos clientes é a nossa prioridade número 1! Temos uma arquitetura agradável para todos se sentirem o mais confortaveis possivel.</p>
+              <p class="mx-5 animated fadeInUp big">O conforto e a saúde dos nossos clientes é a nossa prioridade número 1! Temos uma arquitetura agradável para todos se sentirem o mais confortavel possivel.</p>
             </div>
           </div>
         </div>
@@ -33,8 +33,8 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
-              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponivel para resolver todos os seus problemas, responder às suas duvidas e manterem-no seguro durante os seus treinos.</p>
-              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradavel que montamos no nosso espaço cuidaram da sua saude!</p>
+              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas duvidas e perzervar a sua segurança durante os seus treinos.</p>
+              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradavel que mantemos no nosso espaço que cuidaram de si!</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
 
           <div class="py-5 col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
             <h3>Tudo sobre PepaGym</h3>
-            <p>PepaGym é um ginásio de Coruche que apesar de não ter um espaço grande como outros, é perfeito para os seus treinos e saude, com diversos equipamentos novos e cuidados, trabalhadores que adoram o que fazem e uma comunidade amigável. Podemos não ser o maior ginásio, mas somos o ginásio para si!</p>
+            <p>PepaGym é um ginásio situado em Coruche que apesar de não ter um espaço grande como outros, é perfeito para os seus treinos e saúde, com diversos equipamentos novos e cuidados, colaboradores que adoram o que fazem, uma comunidade amigável. Podemos não ser o maior ginásio, mas somos o ginásio ideal para si!</p>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>
@@ -78,7 +78,7 @@
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
               <h4 class="title"><a href="">Estabelicimento</a></h4>
-              <p class="description">Temos dos mais variados equipamentos para contribuir no seu treino, além disso temos aulas em conjunto, acesso e Personal Trainers. Além dos treinos comuns temos acesso a aulas de dança.</p>
+              <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
             </div>
 
           </div>
@@ -109,7 +109,7 @@
 
           <div class="text-center col-lg-3 col-6">
             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Trabalhadores</p>
+            <p>Colaboradores</p>
           </div>
 
         </div>
