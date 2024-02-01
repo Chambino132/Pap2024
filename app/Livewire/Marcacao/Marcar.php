@@ -36,7 +36,7 @@ class Marcar extends Component
         'hora.required' => 'É Obrigatorio Selecionar um hora',
         'hora.after' => 'Tem de Selecionar uma hora em que o Ginasio esteja aberto',
         'hora.before' => 'Tem de Selecionar uma hora em que o Ginasio esteja aberto',
-        'personal_id' => 'Tem que Selecionar um Responsavel pela atividade',
+        'personal_id.required' => 'Tem que Selecionar um Responsavel pela atividade',
     ];
 
 
@@ -54,8 +54,8 @@ class Marcar extends Component
     function marcar(): void
     {
         Marcacao::create($this->validate());
-        $this->reset();
-        $this->montar();
+        $this->reset(['dia','hora', 'personal_id']);
+        $this->redirectRoute('marcacoes');
     }
 
     function montar(): void

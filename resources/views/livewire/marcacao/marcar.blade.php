@@ -30,7 +30,6 @@
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('personal_id')" />
         </div>
-        @if ($he)
         <div class="flex justify-between">
             <div class="w-1/2 pb-5 mt-3 ml-10 mr-28 mpt-2">
                <x-input-label for="dia" :value="__('Dia')" />
@@ -43,7 +42,6 @@
                <x-input-error class="mt-2" :messages="$errors->get('hora')" />
            </div>
        </div>
-        @endif
         
         <div class="flex justify-end mr-28">
             <x-primary-button>Marcar</x-primary-button>

@@ -61,6 +61,6 @@ Route::get('/entradas', function () {
 
 Route::get('/marcacoes', function (){
     return view('marcacoes.cliente');
-})->middleware(['cliente'])->name('marcacoes');
+})->name('marcacoes');
 
 require __DIR__ . '/auth.php';
