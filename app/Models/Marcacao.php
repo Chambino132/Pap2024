@@ -13,7 +13,6 @@ class Marcacao extends Model
     protected $fillable = [
         'dia',
         'hora',
-        'atividade_id',
         'cliente_id',
         'personal_id',
         'estado',
@@ -29,8 +28,5 @@ class Marcacao extends Model
         return $this->belongsTo(Personal::class);
     }
 
-    public function atividade(): BelongsTo
-    {
-        return $this->belongsTo(Atividade::class);
-    }
+    
 }

@@ -41,13 +41,12 @@ class DatabaseSeeder extends Seeder
             ->has(Reclamacao::factory())
             ->create();
 
+        Atividade::factory(5)
+            ->create();
+
         User::factory(5)
             ->has(Personal::factory())
             ->has(Reclamacao::factory())
-            ->create();
-
-        Atividade::factory(5)
-            ->has(Marcacao::factory())
             ->create();
 
         Equipamento::factory(5)
@@ -59,5 +58,7 @@ class DatabaseSeeder extends Seeder
 
         //User Admin
         User::factory(5)->create();
+        
+        Marcacao::factory(10)->create();
     }
 }

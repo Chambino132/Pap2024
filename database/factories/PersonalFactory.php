@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Atividade;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,13 @@ class PersonalFactory extends Factory
      */
     public function definition(): array
     {
+        $atividade  = Atividade::inRandomOrder()->first();
+
         return [
             'dtNascimento' => fake()->date(),
             'telefone' => fake()->phoneNumber(),
             'morada' => fake()->address(),
+            'atividade_id' => $atividade->id,
         ];
     }
 }

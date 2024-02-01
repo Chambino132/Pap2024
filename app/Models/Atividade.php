@@ -14,7 +14,7 @@ class Atividade extends Model
         'Atividade',
     ];
 
-    function marcacaos() : HasMany {
-        return $this->hasMany(Marcacao::class);
+    function personals(): HasMany {
+        return $this->hasMany(Personal::class);
     }
 }
