@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class MensagemFactory extends Factory
      */
     public function definition(): array
     {
+        $estados = ['Entrege', 'Lida'];
+        $user = User::inRandomOrder()->first();
+
         return [
             'mensagem' => fake()->sentence(),
+            'estado' => $estados[fake()->numberBetween(0,1 )],
+            'user_id' => $user->id,
         ];
     }
 }
