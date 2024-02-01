@@ -90,6 +90,7 @@ class NaoConfirmado extends Component
             $user->save();
             
             $this->dispatch('cliente::created')->to(Clientes::class);
+                  
         }
         else
         {
@@ -107,6 +108,6 @@ class NaoConfirmado extends Component
 
         $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
         $this->cancelar();
-        
+        $this->dispatch('notify', "User associado com sucesso!");      
     }
 }
