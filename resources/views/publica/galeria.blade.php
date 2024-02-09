@@ -8,10 +8,10 @@
 
   <div class="container">
     @foreach ($fotos as $foto)
-        @if ($loop->first)
+        {{-- @if ($loop->first)
         <div class="d-flex">
-        @endif
-        <div class="col-xl-3 col-lg-4 col-md-6 me-3">
+        @endif --}}
+        <div class="col-xl-3 col-lg-4 col-md-6 me-3 imagem">
           <div class="member">
             <img src="{{$foto->imagem}}" class="img-fluid" alt="">
             <div class="member-info">
@@ -21,13 +21,13 @@
             </div>
           </div>
       </div>
-      @if (fmod($loop->iteration, 4) == 0)
+      {{-- @if (fmod($loop->iteration, 4) == 0)
         </div>
         <div class="d-flex">
       @elseif ($loop->last)
         </div>
-      @endif
+      @endif --}}
     @endforeach
-  </div>
+  </div> 
 </section>
 @endsection

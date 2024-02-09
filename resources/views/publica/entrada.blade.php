@@ -66,7 +66,7 @@
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>
               <h4 class="title"><a href="">Inauguração</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">PepaGym está desde Maio de 2009 a forncecer um local de treino para os seus clientes</p>
             </div>
 
             <div class="icon-box">

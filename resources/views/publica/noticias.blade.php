@@ -7,11 +7,12 @@
         <h3>Tudo Novo Sobre <span>PepaGym</span></h3>
       </div>
 <div class="container">
+    
       @foreach ($noticias as $noticia)
-          @if ($loop->first)
+          {{-- @if ($loop->first)
             <div class="d-flex">
-          @endif
-          <div class="card noti" style="width: 33%">
+          @endif --}}
+          <div class="card noti">
                 <img src="{{$noticia->imagem}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -21,14 +22,15 @@
                 <p class="card-text">{{$noticia->descricao}}</p>
                 </div>
         </div>
-        @if (fmod($loop->iteration, 3) == 0)
+        {{-- @if (fmod($loop->iteration, 3) == 0)
             </div>
             <div class="d-flex">
         @elseif ($loop->last)
             </div>
-        @endif
+        @endif --}}
           
       @endforeach
+    
 </div>
 </section>
 @endsection

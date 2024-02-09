@@ -63,9 +63,9 @@
           @endif
 
           @if (Route::currentRouteName() == 'noticias')
-            <li><a class="nav-link active" href="{{route('noticias')}}">Noticias</a></li>
+            <li><a class="nav-link active" href="{{route('noticias')}}">Notícias</a></li>
           @else
-            <li><a class="nav-link" href="{{route('noticias')}}">Noticias</a></li>
+            <li><a class="nav-link" href="{{route('noticias')}}">Notícias</a></li>
           @endif
 
           @if (Route::currentRouteName() == 'galeria')
@@ -106,9 +106,9 @@
               <div class="col-lg-3 col-md-6 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Home</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Início</a></li>
                   <li><i class="bx bx-chevron-right"></i> <a href="{{route('sobre')}}">Sobre nós</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Noticias</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Notícias</a></li>
                   <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeria')}}">Galeria</a></li>
                 </ul>
               </div>

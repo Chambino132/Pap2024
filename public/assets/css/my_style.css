@@ -10,13 +10,67 @@
 .subtit{
     text-align: center;
     margin-top: 0;
+
 }
 
+
+@media (min-width: 1200px) {
 .noti{
-    display: inline;
+    display: inline-flex;
     margin: 10px;
-    width: 50%;
+    width: 31%;
 }
+}
+
+@media (max-width: 1200px) and (min-width: 991px){
+  .noti{
+    display: inline-flex;
+    margin: 10px;
+    width: 45%;
+  }
+}
+
+@media (max-width: 991px) {
+  .noti {
+    display: inline-flex;
+    margin: 10px;
+    width:fit-content;
+  }
+
+}
+
+@media (min-width: 1600px) {
+  .imagem{
+      display: inline-flex;
+      width: 23%;
+  }
+  }
+
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .imagem{
+      display: inline-flex;
+      width: 30%;
+  }
+  }
+  
+  @media (max-width: 1200px) and (min-width: 991px){
+    .imagem{
+      display: inline-flex;
+      width:40%;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .imagem {
+      display: inline-flex;
+      
+      width:fit-content;
+    }
+  
+  }
+
+
 
 /* Pricing Section - Home Page
 ------------------------------*/
