@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\{ProfileController, ViewController};
+
+use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Routes da pagina publica
 
 Route::get('/', function () {
     return view('publica.entrada');
@@ -34,6 +37,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/informacoes', function () {
+        return view('cliente.index');
+    })->name('clieInform');
 });
+
+// Routes das dashboards
+
+Route::get('/users', function () {
+    return view('Funcionario.users.index');
+})->middleware(['auth', 'verified'])->name('users');
+
+Route::get('/equipamento', function () {
+    return view('Funcionario.equipamento.index');
+})->middleware(['auth', 'verified'])->name('equipamento');
+
+Route::get('/entradas', function () {
+    return view('Funcionario.entradas.index');
+})->middleware(['auth', 'verified'])->name('entradas');
+
+
+Route::get('/marcacoes', function (){
+    return view('marcacoes.cliente');
+})->name('marcacoes');
+
 
 require __DIR__ . '/auth.php';
