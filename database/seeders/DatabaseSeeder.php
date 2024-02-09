@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+
+use App\Models\{Fotos, Noticia, User};
+
 use App\Models\Atividade;
 use App\Models\Cliente;
 use App\Models\Equipamento;
@@ -26,6 +29,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Noticia::factory(11)->create();
+        Fotos::factory(11)->create();
+
         Mensalidade::factory(4)
             ->create();
 

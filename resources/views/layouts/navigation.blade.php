@@ -76,7 +76,9 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                <x-theme-toggle/>
             </div>
+            
 
             <!-- Hamburger -->
             <div class="flex items-center -mr-2 sm:hidden">
