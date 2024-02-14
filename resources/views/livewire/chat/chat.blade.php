@@ -14,9 +14,14 @@
     </div>
     
     @if ($OpChat == true)
-    <div wire:scroll class="bg-white overflow-auto-scroll dark:bg-gray-800 h-96 w-96">
+    <div wire:scroll class="bg-white overflow-y-scroll dark:bg-gray-800 h-96 w-96">
         
       @if ($OpCon == false)
+      <div wire:click='NovConv' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-red-400 to-red-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-auto bi bi-chat-right-text " viewBox="0 0 16 16">
+        <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+        <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+      </svg></div>
         @forelse ($chats as $chat)
         <div wire:click='OpenCon({{$chat->id}})' class="hover:bg-slate-200 dark:hover:bg-gray-900">
           <div class="px-2 pt-1 pb-2">
@@ -38,6 +43,7 @@
         </div>
         <hr> 
       @endforelse
+    
       <div class="hover:bg-slate-200 dark:hover:bg-gray-900">
         <div wire:click='NovConv' class="flex justify-center p-2">
           <h1 class="text-lg"><strong>Criar Mensagem Nova</strong></h1>
@@ -45,11 +51,7 @@
         </div>
       </div>
       <hr> 
-      <div wire:click='NovConv' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-red-400 to-red-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-auto bi bi-chat-right-text " viewBox="0 0 16 16">
-        <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
-        <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
-      </svg></div>
+      
       @else
         @if ($OpNew)
         <form wire:submit='Criar'>
@@ -76,6 +78,7 @@
             <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
           </svg></div>
         @else
+          
             <div class="flex justify-between w-auto h-12 px-2 rounded-b-lg bg-gradient-to-r from-red-400 to-red-600">
               @foreach ($chat->users as $user)
                 @if ($user->id != Auth::user()->id)
@@ -90,22 +93,21 @@
                 </svg></div>
             </div> 
 
-            
-            @forelse ($chat->mensagems as $mensagem)
-                @if ($mensagem->user->id == Auth::user()->id)
-                    <div class="w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white">
-                @else
-                <div class="w-8/12 h-auto p-2 my-2 border border-gray-300 rounded-lg shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
-                @endif
-                {{$mensagem->mensagem}}
-              </div>
-            @empty
-                
-            @endforelse
-          
+            @if ($chat->mensagems)
+              @foreach ($chat->mensagems as $mensagem)
+                  @if ($mensagem->user->id == Auth::user()->id)
+                      <div class="w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white  ">
+                  @else
+                  <div class="w-8/12 h-auto p-2 my-2 border border-gray-300 rounded-lg shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                  @endif
+                  {{$mensagem->mensagem}}
+                </div>
+                  
+              @endforeach
+            @endif
 
             <div class="absolute bottom-0 w-11/12 ml-4"> 
-              <form> 
+              <form wire:submit='enviar'> 
                 <textarea wire:model='mensagem' class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="mensagem" ></textarea> 
 
                 <button type="submit" class="flex justify-center w-full h-8 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9">

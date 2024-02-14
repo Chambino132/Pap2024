@@ -4,10 +4,11 @@ namespace App\Livewire\Chat;
 
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Mensagem;
+use Livewire\Attributes\On;
 use App\Models\Chat as ModelChat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
-use Livewire\Attributes\On;
 
 class Chat extends Component
 {
@@ -22,10 +23,17 @@ class Chat extends Component
     public bool $OpCon = false;
     public bool $OpNew = false;
     public bool $searching = false;
+
+    public ?string $mensagem;
+    public ?int $user_id;
+    public ?int $chat_id;
     public string $pesquisa = '';
 
     protected $rules = [
-        'pesquisa' => 'required|exists:users,name',
+        'pesquisa' => 'sometimes|exists:users,name',
+        'mensagem' => 'required|string|max:255',
+        'user_id' => 'required',
+        'chat_id' => 'required',
     ];
 
     protected $messages = [
@@ -93,6 +101,18 @@ class Chat extends Component
        
 
     }
+
+    public function enviar():void
+    {
+        $this->user_id = Auth::user()->id;
+        $this->chat_id = $this->chat->id;
+        Mensagem::create($this->validate());
+
+        $this->reset(['mensagem']);
+    }
+
+
+
 
     public function teste() 
     {
