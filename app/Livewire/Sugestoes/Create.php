@@ -40,7 +40,7 @@ class Create extends Component
         Reclamacao::create($this->validate());
 
         $this->reset();
-        session()->flash('sucesso', 'A Sua Review Foi Submetida Com Sucesso');
+        $this->dispatch('notify', "A sua review foi submetida com sucesso!");
     }
 
     public function render()

@@ -25,6 +25,8 @@ class Base extends Component
     public Problema $Tempproblema;
     public string $altguard;
 
+    public string $message = "Guardado com sucesso!";
+
     public ?string $dtAquisicao;
     public ?int $preco;
     public ?string $equipamento;
@@ -110,15 +112,16 @@ class Base extends Component
     public function guardarE()
     {
         $this->mID->update($this->validate());
-        
         $this->cancelar();
+        $this->dispatch('notify', "Equipamento alterado com sucesso!");
     }
+
 
     public function guardarP()
     {
         $this->Tempproblema->update($this->validate());
-
         $this->cancelar();
+        $this->dispatch('notify', "Problema alterado com sucesso!");
     }
 
     public function Salvar()
@@ -126,12 +129,14 @@ class Base extends Component
         Equipamento::create($this->validate());
 
         $this->cancelar();
+        $this->dispatch('notify', "Equipamento adicionado com sucesso!");
     }
 
     public function salvarP()
     {
         Problema::create($this->validate());
         $this->cancelar();
+        $this->dispatch('notify', "Problema adicionado com sucesso!");
     }
 
     public function retroceder()

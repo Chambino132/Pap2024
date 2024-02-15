@@ -206,6 +206,7 @@
                             <div class="pt-3"><x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
                         </form>
                         <x-secondary-button wire:click="cancelarP">{{ __('Cancelar') }}</x-secondary-button>
+                        
                     </div>
                 </div>
             </div>
