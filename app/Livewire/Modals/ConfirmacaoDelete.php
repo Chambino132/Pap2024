@@ -26,7 +26,6 @@ class ConfirmacaoDelete extends ModalComponent
             $this->maquina->delete();
             $this->closeModal();
             $this->dispatch('equipamento::delete');
-            $this->dispatch('notify', "Importante! Equipamento deletado com sucesso!");
         }
         else
         {

@@ -90,7 +90,7 @@ class NaoConfirmado extends Component
             $user->save();
             
             $this->dispatch('cliente::created')->to(Clientes::class);
-                  
+            $this->dispatch('notify', "O user: $user->name foi associado como cliente");
         }
         else
         {
@@ -102,12 +102,11 @@ class NaoConfirmado extends Component
 
             $user->save();
             
-
             $this->dispatch('personal::created')->to(UsersPersonal::class);
+            $this->dispatch('notify', "O user: $user->name foi associado como Personal Trainer");
         }
 
         $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
-        $this->cancelar();
-        $this->dispatch('notify', "User associado com sucesso!");      
+        $this->cancelar();   
     }
 }
