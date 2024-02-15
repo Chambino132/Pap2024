@@ -30,6 +30,7 @@ class ConfirmacaoDelete extends ModalComponent
         else
         {
             $this->closeModal();
+            $this->dispatch('notify', 'Não pode deletar um equipamento que ainda tenha problemas!');
         }
     }
 }

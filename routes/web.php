@@ -56,10 +56,13 @@ Route::get('/entradas', function () {
     return view('Funcionario.entradas.index');
 })->middleware(['auth', 'verified'])->name('entradas');
 
-
 Route::get('/marcacoes', function (){
     return view('marcacoes.cliente');
 })->name('marcacoes');
+
+Route::get('/sugestao', function(){
+    return view('sugestoes.index');
+})->name('sugestao');
 
 
 require __DIR__ . '/auth.php';
