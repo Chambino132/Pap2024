@@ -19,7 +19,6 @@ use App\Models\Presenca;
 use App\Models\Problema;
 use App\Models\Reclamacao;
 use Illuminate\Database\Seeder;
-use \App\Models\User;
 use GuzzleHttp\Client;
 
 class DatabaseSeeder extends Seeder

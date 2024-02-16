@@ -19,6 +19,6 @@ class ConfirmacaoDeleteprob extends ModalComponent
     {
         $this->problema->delete();
         $this->closeModal();
-        $this->dispatch('equipamento::delete');
+        $this->dispatch('problema::delete');
     }
 }

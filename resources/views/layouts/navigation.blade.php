@@ -16,27 +16,35 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                        {{ __('Users') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('equipamento')" :active="request()->routeIs('equipamento')">
-                        {{ __('Equipamento') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('entradas')" :active="request()->routeIs('entradas')">
-                        {{ __('Entrada') }}
-                    </x-nav-link>
-                </div>
+                
+                @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('equipamento')" :active="request()->routeIs('equipamento')">
+                            {{ __('Equipamento') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('entradas')" :active="request()->routeIs('entradas')">
+                            {{ __('Entrada') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
+                            {{ __('Sugestões')}}
+                        </x-nav-link>
+                    </div>
+                @endif
                 @if (Auth::user()->utype == "Cliente" || Auth::user()->utype == "Personal")
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('marcacoes')" :active="request()->routeIs('marcacoes')">
-                        {{ __('Marcações') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('marcacoes')" :active="request()->routeIs('marcacoes')">
+                            {{ __('Marcações') }}
+                        </x-nav-link>
+                    </div>
                 @endif
 
             </div>
