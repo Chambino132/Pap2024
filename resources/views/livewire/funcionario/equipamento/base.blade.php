@@ -1,4 +1,5 @@
 <div>
+
     <div class="py-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
@@ -120,17 +121,16 @@
                             </div>
                     @elseif($tipo == "Problema")
                         @if ($altProblema == false)
-                            
-                                <div class="pb-5">
-                                    <x-input-label for="SelProblema" :value="__('Problema no Equipamento')" />
-                                    <select wire:model='SelProblema' id="SelProblema" name="SelProblema"
-                                        class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:change="$dispatch('SelProblema::changed')">   
-                                            <option selected> {{__('Selecione uma Opção')}}</option>         
-                                        @foreach ($mID->problemas as $problema)
-                                            <option value="{{$problema->id}}">{{$problema->problema}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                            <div class="pb-5">
+                                <x-input-label for="SelProblema" :value="__('Problema no Equipamento')" />
+                                <select wire:model='SelProblema' id="SelProblema" name="SelProblema"
+                                    class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:change="$dispatch('SelProblema::changed')">   
+                                        <option selected> {{__('Selecione uma Opção')}}</option>         
+                                    @foreach ($mID->problemas as $problema)
+                                        <option value="{{$problema->id}}">{{$problema->problema}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @else
                         <form wire:submit='guardarP'>
                             <x-input-label for="problema" :value="__('Problema do Equipamento')"/>
@@ -168,9 +168,10 @@
                     @if ($tipo == "Problema" || $tipo == "Equipamento")
                         <div><x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
                         </form>
+                        <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
+                    @else
+                        <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
                     @endif
-                    
-                    <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
                 </div>
             </div>
         </div>

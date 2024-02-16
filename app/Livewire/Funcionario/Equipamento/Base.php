@@ -2,14 +2,15 @@
 
 namespace App\Livewire\Funcionario\Equipamento;
 
-use App\Models\Equipamento;
-use App\Models\Problema;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use App\Models\Problema;
+use App\Models\Equipamento;
 use Livewire\Attributes\On;
-use NunoMaduro\Collision\Exceptions\TestException;
-
 use function Laravel\Prompts\confirm;
+use Illuminate\Support\Facades\Session;
+
+use Illuminate\Database\Eloquent\Collection;
+use NunoMaduro\Collision\Exceptions\TestException;
 
 class Base extends Component
 {
@@ -38,12 +39,24 @@ class Base extends Component
     public function mount()
     {
         $this->maquinas = Equipamento::all();
+        if(session('sucesso'))
+        {
+            $this->dispatch('notify', Session::get('sucesso'));
+        }
     }
 
     #[On('equipamento::delete')]
     public function refresh()
     {
         $this->maquinas = Equipamento::all();
+        session() ->flash('sucesso', 'O Equipamento foi Deletado com sucesso!');
+        return redirect(request()->header('Referer'));
+    }
+
+    #[On('problema::delete')]
+    public function probDelete()
+    {
+        session()->flash('sucesso', 'O Problema foi Deletado com sucesso!');
         return redirect(request()->header('Referer'));
     }
 
