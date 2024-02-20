@@ -14,7 +14,7 @@
     </div>
     
     @if ($OpChat == true)
-    <div wire:scroll class="bg-white overflow-y-scroll dark:bg-gray-800 h-96 w-96">
+    <div class="bg-white dark:bg-gray-800 h-96 w-96 ">
         
       @if ($OpCon == false)
       <div wire:click='NovConv' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-red-400 to-red-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
@@ -22,6 +22,7 @@
         <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
         <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
       </svg></div>
+      <div id="conversas" class="overflow-y-scroll h-96 scrolls">
         @forelse ($chats as $chat)
         <div wire:click='OpenCon({{$chat->id}})' class="hover:bg-slate-200 dark:hover:bg-gray-900">
           <div class="px-2 pt-1 pb-2">
@@ -51,7 +52,7 @@
         </div>
       </div>
       <hr> 
-      
+    </div>
       @else
         @if ($OpNew)
         <form wire:submit='Criar'>
@@ -92,7 +93,9 @@
                   <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
                 </svg></div>
             </div> 
-
+          <div wire:poll='checkMens' class="overflow-y-scroll h-56 scroll-auto" id="mensagens" x-ref="scrollToBottom"
+          x-data="{ scroll: () => { $el.scrollTo(0, $el.scrollHeight); }}" 
+          x-init="scroll()">
             @if ($chat->mensagems)
               @foreach ($chat->mensagems as $mensagem)
                   @if ($mensagem->user->id == Auth::user()->id)
@@ -102,13 +105,12 @@
                   @endif
                   {{$mensagem->mensagem}}
                 </div>
-                  
               @endforeach
             @endif
-
-            <div class="absolute bottom-0 w-11/12 ml-4"> 
-              <form wire:submit='enviar'> 
-                <textarea wire:model='mensagem' class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="mensagem" ></textarea> 
+          </div>
+            <div class="bottom-0 w-11/12 ml-4"> 
+              <form wire:submit='enviar' id="enviar" name="enviar"> 
+                <textarea  wire:model='mensagem' placeholder="Escreva aqui a sua Mensagem" class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="sendbutton" id="sendButton" ></textarea> 
 
                 <button type="submit" class="flex justify-center w-full h-8 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="my-auto bi bi-arrow-right-circle" viewBox="0 0 16 16">
@@ -127,3 +129,13 @@
       </div>
     @endif
 </div>
+
+@push('js')
+  <script>
+
+      Livewire.on('scrollDown', function () {
+        alert('scroll to bottom');
+      });
+  </script>
+@endpush
+

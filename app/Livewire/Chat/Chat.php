@@ -10,12 +10,15 @@ use App\Models\Chat as ModelChat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 
+use function Laravel\Prompts\alert;
+
 class Chat extends Component
 {
     public Collection $allChats;
     public Collection $chats;
     public ModelChat $chat;
     public Collection $users;
+    public Collection $usersiC;
     public User $destinario;
 
 
@@ -46,7 +49,10 @@ class Chat extends Component
     public function search()
     {
         $this->users = new Collection();
+        $this->usersiC = new Collection();
         $this->searching = true;
+        $added = false;
+        $count = 0;
         $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')->get();
 
         
@@ -54,22 +60,37 @@ class Chat extends Component
             {
                 $chatId = $chat->id;
 
-                $userNiC = User::whereDoesntHave('chats', function($query) use ($chatId)
+                $useriC = User::whereHas('chats', function($query) use ($chatId)
                 {
-                    $query->where('chat_id', $chatId);
-                })->get();
+                    $query->where('chat_id', $chatId)->where('user_id','!=' ,Auth::user()->id);
+                })->get()->first();
+
+                $this->usersiC->add($useriC);
             }
         foreach($Serusers as $user)
         {
-            foreach($userNiC as $notIChat)
+            if($user->id != Auth::user()->id)
             {
-                if($user->id != Auth::user()->id && $notIChat == $user)
-                {
-
-                    $this->users->add($user);
-                }
+                $this->users->add($user);
             }
         }
+
+        
+        foreach($this->users as $user)
+        {
+
+            foreach($this->usersiC as $InChat)
+            {
+                
+                if($user == $InChat)
+                {
+                    $this->users->forget($count);
+                }
+            }
+            $count++;
+        }
+
+        
     }
 
     public function abrir() : void 
@@ -102,21 +123,27 @@ class Chat extends Component
 
     }
 
-    public function enviar():void
+    public function enviar()
     {
         $this->user_id = Auth::user()->id;
         $this->chat_id = $this->chat->id;
         Mensagem::create($this->validate());
 
         $this->reset(['mensagem']);
+
     }
 
 
 
+    public function checkMens():void
+    {
+        $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
+    } 
 
+    
     public function teste() 
     {
-        dd($this->chats);
+        dd($this->chat);
     }
 
     public function OpenCon(ModelChat $chat): void
@@ -128,17 +155,33 @@ class Chat extends Component
 
     public function Criar() : void
     {
+
         $this->validateOnly('pesquisa');
 
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();
 
-        $this->chat = new ModelChat();
-        $this->chat->save();
-        $this->chat->users()->syncWithoutDetaching([$this->destinario->id, Auth::user()->id]);
+        $proceed = true;
+        foreach($this->usersiC as $user)
+        {
+            if($user->name == $this->destinario->name)
+            {
+                $proceed = false;
+            }
+        }
 
-        $this->OpNew = false;
-        $this->reset(['pesquisa']);
-        $this->resetValidation();
+        if($proceed)
+        {
+
+            
+
+            $this->chat = new ModelChat();
+            $this->chat->save();
+            $this->chat->users()->syncWithoutDetaching([$this->destinario->id, Auth::user()->id]);
+
+            $this->OpNew = false;
+            $this->reset(['pesquisa']);
+            $this->resetValidation();
+        }
     } 
 
     public function montar() : void
