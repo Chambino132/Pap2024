@@ -85,8 +85,19 @@
                                         <option value="{{$mensalidade->id}}">{{ $mensalidade->Dias }} Dias/semana</option>
                                     @endforeach
                                 </select>
-
                             </div>
+                        @elseif ($tipo == "Personal")
+                            <div class="pb-5">
+                                <x-input-label for="atividade_id" :value="__('Atividades')" />
+                                <select  wire:model='atividade_id' id="atividade_id" name="atividade_id"
+                                    class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>{{__('Selecione uma Opção')}}</option>
+                                    @foreach ($atividades as $atividade)                   
+                                        <option value="{{$atividade->id}}">{{ $atividade->atividade }}</option>
+                                    @endforeach
+                                </select>
+                            </div>                   
+                                     
                         @endif
                         
                         <div class="pb-5">

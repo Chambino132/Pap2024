@@ -38,22 +38,22 @@
   ======================================================== -->
 </head>
 
-<body>
+<body >
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">PepaGym</a></h1>
+      <h1 class="logo"><a href="{{route('entrada')}}">PepaGym</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
           @if (Route::currentRouteName() == 'entrada')
-            <li><a class="nav-link active" href="{{route('entrada')}}">Home</a></li> 
+            <li><a class="nav-link active" href="{{route('entrada')}}">Inicio</a></li> 
           @else
-            <li><a class="nav-link" href="{{route('entrada')}}">Home</a></li>
+            <li><a class="nav-link" href="{{route('entrada')}}">Inicio</a></li>
           @endif
 
           @if (Route::currentRouteName() == 'sobre')
@@ -63,9 +63,9 @@
           @endif
 
           @if (Route::currentRouteName() == 'noticias')
-            <li><a class="nav-link active" href="{{route('noticias')}}">Noticias</a></li>
+            <li><a class="nav-link active" href="{{route('noticias')}}">Notícias</a></li>
           @else
-            <li><a class="nav-link" href="{{route('noticias')}}">Noticias</a></li>
+            <li><a class="nav-link" href="{{route('noticias')}}">Notícias</a></li>
           @endif
 
           @if (Route::currentRouteName() == 'galeria')
@@ -101,14 +101,15 @@
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-xl-10">
-            <div class="row">
+            <div class="row justify-content-between">
 
               <div class="col-lg-3 col-md-6 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Home</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Início</a></li>
                   <li><i class="bx bx-chevron-right"></i> <a href="{{route('sobre')}}">Sobre nós</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Noticias</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Notícias</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeria')}}">Galeria</a></li>
                 </ul>
               </div>
 
@@ -128,7 +129,7 @@
                   Rua Joana Isabel Matos Lima Dias<br>
                   Coruche, Santarém<br>
                   2100-175 <br><br>
-                  <strong>Phone:</strong> +351 938 603 356<br>
+                  <strong>Telefone:</strong> +351 938 603 356<br>
                 </p>
 
               </div>

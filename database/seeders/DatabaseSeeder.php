@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+
+use App\Models\{Fotos, Noticia, User};
+
 use App\Models\Atividade;
 use App\Models\Chat;
 use App\Models\ChatUser;
@@ -19,7 +22,7 @@ use App\Models\Presenca;
 use App\Models\Problema;
 use App\Models\Reclamacao;
 use Illuminate\Database\Seeder;
-use \App\Models\User;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,6 +31,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Noticia::factory(11)->create();
+        Fotos::factory(11)->create();
+
         Mensalidade::factory(4)
             ->create();
 
@@ -43,13 +50,12 @@ class DatabaseSeeder extends Seeder
             ->has(Reclamacao::factory())
             ->create();
 
+        Atividade::factory(5)
+            ->create();
+
         User::factory(5)
             ->has(Personal::factory())
             ->has(Reclamacao::factory())
-            ->create();
-
-        Atividade::factory(5)
-            ->has(Marcacao::factory())
             ->create();
 
         Equipamento::factory(5)
@@ -62,9 +68,14 @@ class DatabaseSeeder extends Seeder
         //User Admin
         User::factory(5)->create();
 
+
         Chat::factory(10)
             ->has(Mensagem::factory(2))
             ->create();
+
+
+        
+        Marcacao::factory(10)->create();
 
     }
 }

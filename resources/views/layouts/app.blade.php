@@ -24,10 +24,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body x-data="{darkMode: false}" :class="{'dark': darkMode === true }" class="font-sans antialiased ">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
-
+            
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -47,20 +47,29 @@
                                     </div>
                                 </div>
                             @endif
+
                         </div>
 
                     </div>
                 </header>
             @endif
-
+            
             <!-- Page Content -->
             <main>
+                <x-notifications />
                 {{ $slot }}
             </main>
             <div class="fixed bottom-0 right-5">
                 <livewire:chat.chat>
             </div>
+
+            <div class="absolute top-5 right-7 sm:right-28">
+                <x-theme-toggle></x-theme-toggle>
+            </div>
+
         </div>
+        
+
         @livewire('wire-elements-modal')
         @livewireScripts
     </body>

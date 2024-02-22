@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Atividade;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,6 +19,7 @@ return new class extends Migration
             $table->string('telefone');
             $table->string('morada');
             $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(Atividade::class)->constrained();
             $table->timestamps();
         });
     }

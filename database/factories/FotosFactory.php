@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Personal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Atividade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fotos>
  */
-class AtividadeFactory extends Factory
+class FotosFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +16,9 @@ class AtividadeFactory extends Factory
      */
     public function definition(): array
     {
-        
-
         return [
-            'atividade' => fake()->sentence(),
+            'imagem' => fake()->imageUrl(),
+            'titulo' => fake()->word(),
         ];
     }
 }
