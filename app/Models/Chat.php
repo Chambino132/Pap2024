@@ -11,6 +11,10 @@ class Chat extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'lastMensagem',
+    ];
+
     function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);

@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Mensagem;
 use Livewire\Attributes\On;
 use App\Models\Chat as ModelChat;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -19,6 +20,7 @@ class Chat extends Component
     public ModelChat $chat;
     public Collection $users;
     public Collection $usersiC;
+    public Collection $unsorted;
     public User $destinario;
 
 
@@ -93,6 +95,7 @@ class Chat extends Component
         
     }
 
+    
     public function abrir() : void 
     {
         if($this->OpChat == true)
@@ -123,21 +126,35 @@ class Chat extends Component
 
     }
 
+
     public function enviar()
     {
+        $now = Carbon::now();
         $this->user_id = Auth::user()->id;
         $this->chat_id = $this->chat->id;
         Mensagem::create($this->validate());
+        $this->chat->update(['lastMensagem' => $now]);
+        
+        $this->reset(['mensagem', 'OpChat']);
+        
 
-        $this->reset(['mensagem']);
+        $this->dispatch('NewMessage');
+    }
 
+    #[On('NewMessage')]
+    public function KeepOpen() : void 
+    {
+        $this->OpChat = true;
     }
 
 
 
     public function checkMens():void
     {
-        $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
+        if($this->OpCon)
+        {
+            $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
+        }
     } 
 
     
@@ -189,7 +206,7 @@ class Chat extends Component
         $hisChat = false;
         $hasOne = false;
         $this->chats = new Collection();
-
+        $this->unsorted = new Collection();
         $this->allChats = ModelChat::all();
 
         foreach($this->allChats as $chat)
@@ -205,9 +222,11 @@ class Chat extends Component
 
             if($hisChat == true)
             {
-                $this->chats->prepend($chat);
+                $this->unsorted->prepend($chat);
             }
         }
+        
+        $this->chats = $this->unsorted->sortByDesc('lastMensagem');
     }
 
 

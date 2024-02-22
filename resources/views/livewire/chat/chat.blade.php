@@ -28,7 +28,10 @@
           <div class="px-2 pt-1 pb-2">
             @foreach ($chat->users as $user)   
                 @if ($user->id != Auth::user()->id)
+                <div class="flex justify-between ">
                   <h1 class="text-lg"><strong>{{$user->name}}</strong></h1>
+                  <p class="mt-1">{{$chat->lastMensagem}}</p>
+                </div>
                 @endif
             @endforeach
             @if ($chat->mensagems->count() != 0)
@@ -93,13 +96,13 @@
                   <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
                 </svg></div>
             </div> 
-          <div wire:poll='checkMens' class="overflow-y-scroll h-56 scroll-auto" id="mensagens" x-ref="scrollToBottom"
+          <div wire:poll='checkMens' class="h-56 overflow-y-scroll scroll-auto" id="mensagens" x-ref="scrollToBottom"
           x-data="{ scroll: () => { $el.scrollTo(0, $el.scrollHeight); }}" 
           x-init="scroll()">
             @if ($chat->mensagems)
               @foreach ($chat->mensagems as $mensagem)
                   @if ($mensagem->user->id == Auth::user()->id)
-                      <div class="w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white  ">
+                      <div class="w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white ">
                   @else
                   <div class="w-8/12 h-auto p-2 my-2 border border-gray-300 rounded-lg shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
                   @endif
@@ -109,8 +112,9 @@
             @endif
           </div>
             <div class="bottom-0 w-11/12 ml-4"> 
-              <form wire:submit='enviar' id="enviar" name="enviar"> 
-                <textarea  wire:model='mensagem' placeholder="Escreva aqui a sua Mensagem" class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="sendbutton" id="sendButton" ></textarea> 
+              <form  wire:submit='enviar' id="enviar" name="enviar"> 
+ 
+                  <textarea wire:keydown.enter='enviar' wire:model='mensagem' placeholder="Escreva aqui a sua Mensagem" class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="mensagem" id="mensagem"></textarea>
 
                 <button type="submit" class="flex justify-center w-full h-8 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="my-auto bi bi-arrow-right-circle" viewBox="0 0 16 16">
