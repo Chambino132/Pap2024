@@ -4,56 +4,103 @@
             {{ __('As suas Marcações') }}
         </h2>
     </header>
-    <table class="w-full border border-spacing-2 border-slate-500">
-        <thead>
-            <th class="px-3 py-2">Data</th>
-            <th class="px-3 py-2">Hora</th>
-            @if (Auth::user()->utype == "Cliente")
-            <th class="px-3 py-2">Responsavel</th>
-            @elseif (Auth::user()->utype == "Personal")
-            <th class="px-3 py-2">Cliente</th>
-            @endif
-            <th class="px-3 py-2">Atividade</th>
-            <th class="px-3 py-2">Estado</th>
-            <th class="px-3 py-2">Ações</th>
-        </thead>
-        <tbody>
-            @forelse ($marcacoes as $marcacao)
-            <tr>
-                <td class="px-3 py-2 border border-slate-700">{{ $marcacao->dia }}</td>
-                <td class="px-3 py-2 border border-slate-700">{{ $marcacao->hora }}</td>
-                @if (Auth::user()->utype == "Cliente")
-                <td class="px-3 py-2 border border-slate-700">{{ $marcacao->personal->user->name }}</td>
-                @elseif (Auth::user()->utype == "Personal")
-                <td class="px-3 py-2 border border-slate-700">{{ $marcacao->cliente->name }}</td>
-                @endif
-                <td class="px-3 py-2 border border-slate-700">{{ $marcacao->personal->atividade->atividade }}</td>
-                <td class="px-3 py-2 border border-slate-700">
-                @if ($EstadoChan == false)
-                {{ $marcacao->estado}}
-                @elseif ($loop->iteration == $iteration)
-                <select wire:model='estado' id="estado" name="estado" wire:change="StoreEstado({{$marcacao->id}})"
-                class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                <option selected value="pendente">pendente</option>
-                <option value="aceite">aceitar</option>
-                <option value="recusado">recusar</option>
-            </select>
-                @else
-                {{ $marcacao->estado}}
-                @endif
-                </td>
-                
-                <td class="px-3 py-2 border border-slate-700 flex justify-center">
-                    <button wire:click='Cancelar({{$marcacao->id}})' class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3">Cancelar</button>
-                    @if ($marcacao->estado == "pendente" && Auth::user()->utype == "Personal")
-                    <button wire:click='MudEstado({{$loop->iteration}})' class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Mudar Estado</button>
-                @endif</td>
-            </tr>
-            @empty
-                <tr>
-                    <td colspan="3">Ainda sem Marcações!</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+
+    <div class="py-8 ">
+        <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+            <table class="w-full table-auto">
+                    <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
+                        <tr>
+                            <th class="px-4 py-3 text-left">Data</th>
+                            <th class="px-4 py-3 text-left">Hora</th>
+                            @if (Auth::user()->utype == "Cliente")
+                            <th class="px-4 py-3 text-left">Responsável</th>
+                            @elseif (Auth::user()->utype == "Personal")
+                            <th class="px-4 py-3 text-left">Cliente</th>
+                            @endif
+                            <th class="px-4 py-3 text-left">Atividade</th>
+                            <th class="w-1/12 px-4 py-3">Estado</th>
+                            <th class="w-1/12 px-4 py-3">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-900 dark:text-slate-900">
+                        <tr class="hover:bg-gray-100">
+                            @forelse ($marcacoes as $marcacao)
+                            <td class="px-4 py-3">{{ $marcacao->dia }}</td>
+                            <td class="px-4 py-3">{{ $marcacao->hora }}</td>
+                            @if (Auth::user()->utype == "Cliente")
+                            <td class="px-4 py-3">{{ $marcacao->personal->user->name }}</td>
+                            @elseif (Auth::user()->utype == "Personal")
+                            <td class="px-4 py-3">{{ $marcacao->cliente->name }}</td>
+                            @endif
+                            <td class="px-4 py-3">{{ $marcacao->personal->atividade->atividade }}</td>
+                            <td class="px-4 py-3">
+
+                                @if ($EstadoChan == false)
+                                @if ($marcacao->estado == "aceite")
+                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                @elseif ($marcacao->estado == "recusado")
+                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                @elseif ($marcacao->estado == "cancelado")
+                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                @else
+                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                @endif
+
+                                
+                                    
+                                @elseif ($loop->iteration == $iteration)
+                                <div class="flex">
+                                    <select wire:model='estado' id="estado" name="estado" wire:change="StoreEstado({{$marcacao->id}})"
+                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg border-0 h-10" >
+                                    <option selected value="pendente">pendente</option>
+                                    <option value="aceite">aceitar</option>
+                                    <option value="recusado">recusar</option>
+                                </select>
+                                <button wire:click='CanMud' class="ms-2 px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                                  </svg></button>
+                            </div>
+                                @else
+                                    @if ($marcacao->estado == "aceite")
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                    @elseif ($marcacao->estado == "recusado")
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                    @elseif ($marcacao->estado == "cancelado")
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                    @else
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">{{ $marcacao->estado}}</span>
+                                    @endif
+                                @endif
+                            </td>
+                            
+                            <td class="px-4 py-3 text-center">
+                                <x-dropdown-table>
+                                    <x-slot name="trigger">
+                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                    </x-slot>
+                                    <x-slot name="content">
+                                        <x-dropdown-link-table wire:click='Cancelar({{$marcacao->id}})'>
+                                            Cancelar
+                                        </x-dropdown-link-table>
+                                        @if ($marcacao->estado == "pendente" && Auth::user()->utype == "Personal")
+                                        <x-dropdown-link-table wire:click='MudEstado({{$loop->iteration}})'>
+                                            Mudar Estado
+                                        </x-dropdown-link-table>
+                                        @endif
+                                    </x-slot>
+                                </x-dropdown-table>
+                                
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6">Ainda sem Marcações!</td>
+                        </tr>
+                    @endforelse
+                        
+                    </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -26,6 +26,11 @@ class Ver extends Component
         $this->EstadoChan = true;
     }
 
+    public function CanMud()
+    {
+        $this->reset(['iteration', 'EstadoChan']);
+    }
+
     public function StoreEstado(Marcacao $marcacao)
     {
         $marcacao->estado = $this->estado;

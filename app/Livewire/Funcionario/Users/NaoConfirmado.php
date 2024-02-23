@@ -38,7 +38,7 @@ class NaoConfirmado extends Component
         'dtNascimento' => 'required | date',
         'telefone' => 'required | min:9 | string',
         'morada' => 'required | max:255 | string',
-        'atividade_id' => 'required',
+        'atividade_id' => 'sometimes',
     ];
 
     protected $messages = [
@@ -72,7 +72,18 @@ class NaoConfirmado extends Component
 
     public function cancelar()
     {
-        $this->alterar = false;
+        
+        $this->reset([
+        'user_id', 
+        'tipo',
+        'mensalidade_id',
+        'atividade_id',
+        'NIF',
+        'dtNascimento',
+        'telefone',
+        'morada',
+        'alterar',
+    ]);
     }
     
     #[On('tipo::changed')]
@@ -86,7 +97,7 @@ class NaoConfirmado extends Component
         if($this->tipo == "Cliente")
         {
             Cliente::create($this->validate());
-            
+
             $user = User::findOrFail($this->user_id);
 
             $user->utype = "Cliente";
