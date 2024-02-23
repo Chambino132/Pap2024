@@ -93,22 +93,22 @@
         <div class="row counters">
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$clientes}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Clientes</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="22" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$equipamentos}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Maquinas de Treino</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$anos}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Anos</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$colaboradores}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Colaboradores</p>
           </div>
 

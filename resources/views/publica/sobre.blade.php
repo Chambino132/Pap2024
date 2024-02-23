@@ -79,57 +79,29 @@
 
       <div class="container" data-aos="zoom-in" data-aos-delay="100">
 
+        @foreach ($mensalidades as $mensalidade)
+        @if ($loop->first)
         <div class="row g-4">
-
-          <div class="col-lg-4">
+        @endif
+        <div class="col-lg-4 ">
+          <div class="mt-3">
             <div class="pricing-item featured">
-              <h3><span>1</span>x Semana</h3>
+              <h3><span>{{$mensalidade->Dias}}</span>x Semana</h3>
               <div class="icon">
-                <i class="bi bi-1-circle-fill"></i>
+                <i class="bi bi-{{$mensalidade->Dias}}-circle-fill"></i>
               </div>
-              <h4>20<sup>€</sup><span> / Mês</span></h4>
-              <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
-            </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-4">
-            <div class="pricing-item featured">
-              <h3><span>2</span>x Semana</h3>
-              <div class="icon">
-                <i class="bi bi-2-circle-fill"></i>
-              </div>
-              <h4>30<sup>€</sup><span> / Mês</span></h4>
+              <h4>{{$mensalidade->Preco}}<sup>€</sup><span> / Mês</span></h4>
               <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
             </div>
           </div>
-
-          <div class="col-lg-4">
-            <div class="pricing-item featured">
-              <h3><span>3</span>x Semana</h3>
-              <div class="icon">
-                <i class="bi bi-3-circle-fill"></i>
-              </div>
-
-              <h4>35<sup>€</sup><span> / Mês</span></h4>
-              <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
-            </div>
-          </div><!-- End Pricing Item -->
-          
-        <div class="center">
-          <div class="col-lg-4">
-            <div class="pricing-item featured">
-              <h3>Livre Trânsito</h3>
-              <div class="icon">
-                <i class="bi bi-arrow-right-circle-fill"></i>
-              </div>
-              <h4>45<sup>€</sup><span> / Mês</span></h4>
-              <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
-            </div>
-          </div><!-- End Pricing Item -->
         </div>
-
-        </div>
-      </div>
+          @if (fmod($loop->iteration, 3) == 0)
+            </div>
+            <div class="row g-4">
+          @elseif ($loop->last)    
+            </div>
+          @endif
+        @endforeach
 
     </section><!-- End Pricing Section -->
 

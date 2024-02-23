@@ -17,13 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 // Routes da pagina publica
 
-Route::get('/', function () {
-    return view('publica.entrada');
-})->name('entrada');
+Route::get('/',[ViewController::class, 'index'])->name('entrada');
 
-Route::get('/sobre', function () {
-    return view('publica.sobre');
-})->name('sobre');
+Route::get('/sobre', [ViewController::class, 'sobre'])->name('sobre');
 
 Route::get('/noticias', [ViewController::class, 'noticias'])->name('noticias');
 

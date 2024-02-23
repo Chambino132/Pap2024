@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('mensalidades', function (Blueprint $table) {
             $table->id();
-            $table->double('Preco');
-            $table->string('Dias');
+            $table->double('preco');
+            $table->string('dias');
             $table->timestamps();
         });
     }
