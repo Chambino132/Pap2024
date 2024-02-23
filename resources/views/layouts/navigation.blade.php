@@ -67,11 +67,14 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
+                        @if (Auth::user()->utype == 'Cliente')
                         <x-dropdown-link :href="route('clieInform')">
                             {{ __('Detalhes de Cliente') }}
                         </x-dropdown-link>
+                        @endif
+                       
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -80,7 +83,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Terminar Sessão') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
