@@ -25,7 +25,7 @@ class Marcar extends Component
 
     protected $rules = [
         'cliente_id' => 'required|exists:clientes,id',
-        'dia' => 'required|after:tomorrow',
+        'dia' => 'required|after:today',
         'hora' => 'required|after:9:15|before:21:15',
         'personal_id' => 'required|exists:personals,id',
     ];

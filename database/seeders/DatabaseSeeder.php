@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
-use App\Models\{Fotos, Noticia, User};
+use App\Models\{Categoria, Exercicio, Fotos, Noticia, Plano, User};
 
 use App\Models\Atividade;
 use App\Models\Cliente;
@@ -66,5 +66,13 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
         
         Marcacao::factory(10)->create();
+
+        Categoria::factory(5)->create();
+
+        Plano::factory(5)
+            ->has(Exercicio::factory(3))
+            ->create();
+
+    
     }
 }

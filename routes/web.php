@@ -64,5 +64,9 @@ Route::get('/sugestao', function(){
     return view('sugestoes.index');
 })->name('sugestao');
 
+Route::get('/planos', function(){
+    return view('planos.index');
+})->name('planos');
+
 
 require __DIR__ . '/auth.php';

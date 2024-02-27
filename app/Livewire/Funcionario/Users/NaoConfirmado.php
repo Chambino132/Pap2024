@@ -73,6 +73,10 @@ class NaoConfirmado extends Component
     public function cancelar()
     {
         $this->alterar = false;
+        $this->NIF = "";
+        $this->dtNascimento = null;
+        $this->telefone = "";
+        $this->morada = "";
     }
     
     #[On('tipo::changed')]
