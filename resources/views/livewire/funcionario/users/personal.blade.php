@@ -16,8 +16,8 @@
                             </thead>
                             <tbody>
                                 @forelse ($usersP as $userP)
-                                <tr>
-                                    <td class="px-3 py-2 border border-slate-700">{{ $userP->id }}</td>
+                                <tr wire:click="$dispatch('openModal', {component: 'funcionario.users.personal-modal', arguments:{UPersonal: {{$userP->personal->id}}}})" class="hover:bg-red-800">
+                                    <td class="px-3 py-2 border border-slate-700">{{ $userP->personal->id }}</td>
                                     <td class="px-3 py-2 border border-slate-700">{{ $userP->name }}</td>
                                     <td class="px-3 py-2 border border-slate-700">{{ $userP->email }}</td>
                                 </tr>

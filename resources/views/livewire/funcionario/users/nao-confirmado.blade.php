@@ -19,7 +19,7 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($usersNC as $userNC)
-                                            <tr>
+                                            <tr class="hover:bg-red-800">
                                                 <td class="px-3 py-2 border border-slate-700">{{ $userNC->id }}</td>
                                                 <td class="px-3 py-2 border border-slate-700">{{ $userNC->name }}</td>
                                                 <td class="px-3 py-2 border border-slate-700">{{ $userNC->email }}</td>

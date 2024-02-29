@@ -1,21 +1,28 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
-
 /** @type {import('tailwindcss').Config} */
-export default {
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+module.exports = {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './vendor/wire-elements/modal/src/ModalComponent.php',
     ],
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+            },
+            height: {
+                post_image_xl: "calc((((100vw * 2)/3) * 9)/32)",
+                post_image_lg: "calc((((100vw * 4)/5) * 9)/32)",
+                post_image: "calc((100vw * 9)/32)",
+                admin_master: "94vh",
             },
         },
     },
 
-    plugins: [forms],
+    plugins: [require('@tailwindcss/forms')],
 };
+

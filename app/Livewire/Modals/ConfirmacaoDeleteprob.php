@@ -8,6 +8,10 @@ use LivewireUI\Modal\ModalComponent;
 
 class ConfirmacaoDeleteprob extends ModalComponent
 {
+    public static function modalMaxWidth(): string
+{
+    return 'xl';
+}
     public ?Problema $problema;
 
     public function render()
