@@ -1,8 +1,5 @@
 <div>
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="px-12 py-5 overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-@if ($estEdit == false)
+    @if ($estEdit == false)
 
                 <x-primary-button wire:click="edit">{{ __('Editar') }}</x-primary-button>
                 <table class="w-full mt-3 border table-fixed border-slate-700 border-spacing-2 dark:text-gray-100 dark:border-gray-500">
@@ -20,7 +17,7 @@
                             <th class="px-3 py-2 border border-slate-500">{{$cliente->pluck('dtNascimento')->first()}}</th>
                             <th class="px-3 py-2 border border-slate-500">{{$cliente->pluck('telefone')->first()}}</th>
                             <th class="px-3 py-2 border border-slate-500">{{$cliente->pluck('NIF')->first()}}</th>
-                            <th class="px-3 py-2 border border-slate-500">{{$cliente->pluck('Morada')->first()}}</th>
+                            <th class="px-3 py-2 border border-slate-500">{{$cliente->pluck('morada')->first()}}</th>
                     </tbody>
                 </table>
              
@@ -38,7 +35,7 @@
     </div>
     <div class="px-3">
         <x-input-label for="Morada" :value="__('Morada')" />
-        <x-text-input wire:model="Morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
+        <x-text-input wire:model="morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
         <x-input-error class="mt-2" :messages="$errors->get('Morada')" />
     </div>
     <div class="px-3 mt-5">
@@ -48,8 +45,6 @@
         <x-primary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-primary-button>
     </div>
 @endif
-          </div>
-        </div>
-    </div>
+          
 </div>
 

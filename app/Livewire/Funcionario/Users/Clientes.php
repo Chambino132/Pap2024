@@ -20,7 +20,13 @@ class Clientes extends Component
         'entrada' => 'required',
     ];
 
+    #[On('cliente::created')]
     public function mount()
+    {
+        $this->montar();
+    }
+
+    public function montar(): void 
     {
         $this->usersC = User::Where('utype',"Cliente")->get();
     }
@@ -30,17 +36,12 @@ class Clientes extends Component
         return view('livewire.funcionario.users.clientes');
     }
 
-    #[On('cliente::created')]
-    public function refresh() : void 
-    {
-        $this->usersC = User::Where('utype',"Cliente")->get();
-    }
-
     public function saveEntrada($id)
     {
         $this->cliente_id = $id;
         $this->entrada = Carbon::now();
 
         Presenca::create($this->validate());
+        $this->dispatch('novaEntrada')->to('funcionario.entradas.index');
     }
 }

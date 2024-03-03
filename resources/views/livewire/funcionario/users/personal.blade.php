@@ -1,4 +1,3 @@
-<div class="w-1/2">
     <div class="py-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
@@ -32,4 +31,4 @@
             </div>
         </div>
     </div>
-</div>
+

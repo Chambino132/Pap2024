@@ -3,31 +3,78 @@
 namespace App\Livewire\Funcionario\Entradas;
 
 use App\Models\Cliente;
-use Illuminate\Database\Eloquent\Collection;
-use Livewire\Attributes\On;
+use App\Models\Presenca;
+use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Date;
 
 class Index extends Component
 {
-    public Collection $clientes;
+    use WithPagination;
 
-    public ?int $aTabela;
-    public ?int $Idg;
-    public ?Collection $cID;
+    public int $perPage = 10;
+    public string $search = '';
+    public string $firstDate;
+    public string $lastDate;
     
+   
+
+
+    #[On('pagination::updated')]
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    #[On('novaEntrada')]
+    public function novaEntrada()
+    {
+        return redirect(request()->header('Referer'));
+    }
+
     public function mount()
     {
-        $this->clientes = Cliente::all();
+        $this->montar();
     }
 
-    public function IDCliente()
+
+    public function montar()
     {
-        $this->cID = Cliente::where('id',$this->Idg)->get();
-    }
+        $this->lastDate = Carbon::now();
 
-    #[On('aTabela::changed')]
+        $tempEntradas = Presenca::all();
+        $counter = 0;
+
+        foreach($tempEntradas as $entrada)
+        {
+            if( $counter == 0) 
+            {
+                
+                $this->firstDate = Carbon::parse($entrada->entrada)->format('Y-m-d H:i:s');
+            }
+                 
+            $counter = $counter + 1;
+        }
+    }
+    
     public function render()
     {
-        return view('livewire.funcionario.entradas.index');
+       
+        
+
+        $entradas = Presenca::query()
+        ->join('clientes', 'presencas.cliente_id', 'clientes.id')
+        ->join('users', 'clientes.user_id', 'users.id')
+        ->where('users.name', 'like', '%'.$this->search.'%')
+        ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
+        ->orderBy('entrada' , 'desc')
+        ->paginate($this->perPage);
+
+       
+
+        return view('livewire.funcionario.entradas.index', compact('entradas'));
     }
 }
