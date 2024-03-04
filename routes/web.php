@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
 use Illuminate\Support\Facades\Route;
 
@@ -24,13 +25,9 @@ Route::get('/sobre', function () {
     return view('publica.sobre');
 })->name('sobre');
 
-Route::get('/noticias', function () {
-    return view('publica.noticias');
-})->name('noticias');
+Route::get('/noticias', [ViewController::class, 'noticias'])->name('noticias');
 
-Route::get('/galeria', function () {
-    return view('publica.galeria');
-})->name('galeria');
+Route::get('/galeria', [ViewController::class, 'galeria'])->name('galeria');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -59,10 +56,13 @@ Route::get('/entradas', function () {
     return view('Funcionario.entradas.index');
 })->middleware(['auth', 'verified'])->name('entradas');
 
-
 Route::get('/marcacoes', function (){
     return view('marcacoes.cliente');
 })->name('marcacoes');
+
+Route::get('/sugestao', function(){
+    return view('sugestoes.index');
+})->name('sugestao');
 
 
 require __DIR__ . '/auth.php';

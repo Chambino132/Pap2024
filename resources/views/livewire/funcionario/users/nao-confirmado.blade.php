@@ -3,45 +3,59 @@
         <div>
             <div class="py-2">
                 <div class="mx-auto max-w-7x1 sm:px-6 lg:px-8">
-                    <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                    <div class=" bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <header>
                                 <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                                     {{ __('Lista de Users não confirmados') }}
                                 </h2>
                             </header>
-                            <div class="pb-3">
-                                <table class="w-full border border-spacing-2 border-slate-500">
-                                    <thead>
-                                        <th class="px-3 py-2">#</th>
-                                        <th class="px-3 py-2">Nome</th>
-                                        <th class="px-3 py-2">Email</th>
-                                        <th class="px-3 py-2">Ações</th>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($usersNC as $userNC)
-                                            <tr class="hover:bg-red-800">
-                                                <td class="px-3 py-2 border border-slate-700">{{ $userNC->id }}</td>
-                                                <td class="px-3 py-2 border border-slate-700">{{ $userNC->name }}</td>
-                                                <td class="px-3 py-2 border border-slate-700">{{ $userNC->email }}</td>
-                                                <td class="px-3 py-2 border border-slate-700"><button
-                                                        class="inline-flex items-center px-4 px-12 py-2 py-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-                                                        wire:click='mudar({{ $userNC->id }})'>
-                                                        {{ __('Associar') }}
-                                                    </button></td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="3">Ainda sem users por confirmar!</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
 
 
-
-
+                                <div class="py-8 ">
+                                    <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+                                        <table class="w-full table-auto">
+                                                <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
+                                                    <tr>
+                                                        <th class="px-4 py-3 text-left">#</th>
+                                                        <th class="px-4 py-3 text-left">Nome</th>
+                                                        <th class="px-4 py-3 text-left">Email</th>
+                                                        <th class="w-1/12 px-4 py-3">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-900 dark:text-slate-900">
+                                                    @forelse ($usersNC as $userNC)
+                                                    <tr class="hover:bg-gray-100">
+                                                        <td class="px-4 py-3">
+                                                            {{ $userNC->id }}
+                                                        </td>
+                                                        <td class="px-4 py-3">{{ $userNC->name }}</td>
+                                                        <td class="px-4 py-3">{{ $userNC->email }}</td>
+                                                        
+                                                        
+                                                        <td class="px-4 py-3 text-center">
+                                                            <x-dropdown-table>
+                                                                <x-slot name="trigger">
+                                                                    <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                                </x-slot>
+                                                                <x-slot name="content">
+                                                                    <x-dropdown-link-table wire:click='mudar({{ $userNC->id }})'>
+                                                                          Associar
+                                                                    </x-dropdown-link-table>
+                                                                </x-slot>
+                                                            </x-dropdown-table>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="3">Ainda sem users por confirmar!</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -105,8 +119,20 @@
                                         <option value="{{ $atividade->id }}">{{ $atividade->atividade }}</option>
                                     @endforeach
                                 </select>
-
+                                <x-input-error class="mt-2" :messages="$errors->get('NIF')" />
                             </div>
+                        @elseif ($tipo == "Personal")
+                            <div class="pb-5">
+                                <x-input-label for="atividade_id" :value="__('Atividades')" />
+                                <select  wire:model='atividade_id' id="atividade_id" name="atividade_id"
+                                    class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>{{__('Selecione uma Opção')}}</option>
+                                    @foreach ($atividades as $atividade)                   
+                                        <option value="{{$atividade->id}}">{{ $atividade->atividade }}</option>
+                                    @endforeach
+                                </select>
+                            </div>                   
+                                     
                         @endif
 
                         @if ($tipo == 'Funcionario')

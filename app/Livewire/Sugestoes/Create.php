@@ -20,18 +20,7 @@ class Create extends Component
         'user_id' => 'required',
     ];
 
-    public function abrir() : void 
-    {
-        if($this->sugestao == true)
-        {
-            $this->sugestao = false;
-        }
-        else
-        {
-            $this->sugestao = true;    
-        }
-            
-    }
+    
 
     public function guardar()
     {
@@ -40,7 +29,7 @@ class Create extends Component
         Reclamacao::create($this->validate());
 
         $this->reset();
-        session()->flash('sucesso', 'A Sua Review Foi Submetida Com Sucesso');
+        $this->dispatch('notify', "A sua review foi submetida com sucesso!");
     }
 
     public function render()

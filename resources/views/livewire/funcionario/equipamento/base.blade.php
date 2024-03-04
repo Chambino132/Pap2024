@@ -1,7 +1,8 @@
 <div>
+
     <div class="py-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+            <div class="bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if ($alterarC == false)
                         <header class="flex justify-between">
@@ -11,39 +12,58 @@
 
                             <button class='inline-flex items-center px-4 py-2 mb-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click='mudarC'>Adicionar</button>
                         </header>
-                        <table class="w-full border border-spacing-2 border-slate-500">
-                            <thead>
-                                <th class="px-3 py-2">#</th>
-                                <th class="px-3 py-2">Equipamento</th>
-                                <th class="px-3 py-2">Data de Aquisição</th>
-                                <th class="px-3 py-2">Preço</th>
-                                <th class="px-3 py-2">Ações</th>
-                            </thead>
-                            <tbody>
-                                    @forelse ($maquinas as $maquina)
-                                        <tr class="hover:bg-red-800">
-                                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-3 py-2 border border-slate-700">{{$maquina->id}}</td>
-                                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-3 py-2 border border-slate-700">{{$maquina->equipamento}}</td>
-                                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-3 py-2 border border-slate-700">{{$maquina->dtAquisicao}}</td>
-                                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-3 py-2 border border-slate-700">{{$maquina->preco}}€</td>
-                                            <td class="w-1/4 py-2 border border-slate-700">
-                                                <div class="pl-5">
-                                                    <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click="mudar({{$maquina->id}})">Alterar</button>
 
-                                                    <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click="$dispatch('openModal', {component: 'modals.confirmacao-delete', arguments: {maquina:{{$maquina->id}}}})">Excluir</button>
+                        <div class="py-8 ">
+                            <div class="bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+                                <table class="w-full table-auto">
+                                        <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
+                                            <tr>
+                                                <th class="px-4 py-3 text-left">#</th>
+                                                <th class="px-4 py-3 text-left">Equipamento</th>
+                                                <th class="px-4 py-3 text-left">Data de Aquisição</th>
+                                                <th class="px-4 py-3 text-left">Preço</th>
+                                                <th class="w-1/12 px-4 py-3">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-gray-900 dark:text-slate-900">
+                                            @forelse ($maquinas as $maquina)
+                                            <tr class="hover:bg-gray-100">
+                                                <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-4 py-3">{{$maquina->id}}</td>
+                                                <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-4 py-3">{{$maquina->equipamento}}</td>
+                                                <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-4 py-3">{{$maquina->dtAquisicao}}</td>
+                                                <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})" class="px-4 py-3">
+                                                    <span class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-400">{{$maquina->preco}}€</span>
+                                                </td>
+                                                
+                                                <td class="px-4 py-3 text-center">
+                                                    <x-dropdown-table>
+                                                        <x-slot name="trigger">
+                                                            <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                        </x-slot>
+                                                        <x-slot name="content">
+                                                            <x-dropdown-link-table wire:click="mudar({{$maquina->id}})">
+                                                                Alterar
+                                                            </x-dropdown-link>
+                                                            <x-dropdown-link-table wire:click="$dispatch('openModal', {component: 'modals.confirmacao-delete', arguments: {maquina:{{$maquina->id}}}})">
+                                                                Excluir
+                                                            </x-dropdown-link>
+                                                            <x-dropdown-link-table wire:click='add({{$maquina->id}})'>
+                                                                + Problema
+                                                            </x-dropdown-link>
+                                                        </x-slot>
+                                                    </x-dropdown-table>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                                <td colspan="3">Ainda sem maquinas!</td>
+                                            @endforelse
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                                                    <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25' wire:click='add({{$maquina->id}})'>+ Problema</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="3">Ainda sem maquinas!</td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
-                            </tbody>
-                        </table>
+
+                        
                     @else
                         <header class="flex justify-between pb-4">
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
@@ -120,17 +140,16 @@
                             </div>
                     @elseif($tipo == "Problema")
                         @if ($altProblema == false)
-                            
-                                <div class="pb-5">
-                                    <x-input-label for="SelProblema" :value="__('Problema no Equipamento')" />
-                                    <select wire:model='SelProblema' id="SelProblema" name="SelProblema"
-                                        class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:change="$dispatch('SelProblema::changed')">   
-                                            <option selected> {{__('Selecione uma Opção')}}</option>         
-                                        @foreach ($mID->problemas as $problema)
-                                            <option value="{{$problema->id}}">{{$problema->problema}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                            <div class="pb-5">
+                                <x-input-label for="SelProblema" :value="__('Problema no Equipamento')" />
+                                <select wire:model='SelProblema' id="SelProblema" name="SelProblema"
+                                    class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:change="$dispatch('SelProblema::changed')">   
+                                        <option selected> {{__('Selecione uma Opção')}}</option>         
+                                    @foreach ($mID->problemas as $problema)
+                                        <option value="{{$problema->id}}">{{$problema->problema}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @else
                         <form wire:submit='guardarP'>
                             <x-input-label for="problema" :value="__('Problema do Equipamento')"/>
@@ -168,9 +187,10 @@
                     @if ($tipo == "Problema" || $tipo == "Equipamento")
                         <div><x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
                         </form>
+                        <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
+                    @else
+                        <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
                     @endif
-                    
-                    <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
                 </div>
             </div>
         </div>
@@ -206,6 +226,7 @@
                             <div class="pt-3"><x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
                         </form>
                         <x-secondary-button wire:click="cancelarP">{{ __('Cancelar') }}</x-secondary-button>
+                        
                     </div>
                 </div>
             </div>

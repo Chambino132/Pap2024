@@ -2,6 +2,12 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+
+use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
+use App\Models\Atividade;
+use App\Models\Cliente;
+use App\Models\Mensalidade;
+
 use App\Models\User;
 use App\Models\Cliente;
 use App\Models\Funcionario;
@@ -28,13 +34,16 @@ class NaoConfirmado extends Component
     public string $user_id = "";
     public ?string $tipo;
     public ?string $mensalidade_id;
+    public ?string $atividade_id;
     public ?string $NIF;
     public ?string $dtNascimento;
     public ?string $telefone;
     public ?string $morada;
+
     public ?string $atividade_id;
     public ?string $cargo;
     public $imagem;
+
 
     protected $messages = [
         'user_id.required' => "O utilizador é obrigatorio",
@@ -114,7 +123,18 @@ class NaoConfirmado extends Component
 
     public function cancelar()
     {
-        $this->alterar = false;
+        
+        $this->reset([
+        'user_id', 
+        'tipo',
+        'mensalidade_id',
+        'atividade_id',
+        'NIF',
+        'dtNascimento',
+        'telefone',
+        'morada',
+        'alterar',
+    ]);
     }
     
     #[On('tipo::changed')]
@@ -131,11 +151,13 @@ class NaoConfirmado extends Component
         {
             Cliente::create($this->validate());
 
+
             $user->utype = "Cliente";
 
             $user->save();
             
             $this->dispatch('cliente::created')->to(Clientes::class);
+            $this->dispatch('notify', "O user: $user->name foi associado como cliente");
         }
         else if ($this->tipo == "Personal")
         {
@@ -145,8 +167,8 @@ class NaoConfirmado extends Component
 
             $user->save();
             
-
             $this->dispatch('personal::created')->to(UsersPersonal::class);
+            $this->dispatch('notify', "O user: $user->name foi associado como Personal Trainer");
         }
         else if($this->tipo == 'Funcionario')
         {
@@ -172,7 +194,6 @@ class NaoConfirmado extends Component
         }
 
         $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
-        $this->cancelar();
-        
+        $this->cancelar();   
     }
 }

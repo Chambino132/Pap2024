@@ -38,7 +38,7 @@ class Informacoes extends Component
     public function mount(): void
     {
 
-        $this->cliente = Cliente::where('user_id', Auth::user()->id)->get();
+        $this->cliente = Cliente::where('user_id', Auth::user()->id)->get()->first();
 
     }
 
@@ -52,7 +52,7 @@ class Informacoes extends Component
     public function cancel(): void
     {
         $this->estEdit = false;
-        $this->cliente = Cliente::where('user_id', Auth::user()->id)->get();
+        $this->cliente = Cliente::where('user_id', Auth::user()->id)->get()->first();
     }
 
     public function update(): void

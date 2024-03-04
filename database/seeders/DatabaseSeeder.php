@@ -4,11 +4,17 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+
+use App\Models\{Fotos, Noticia, User};
+
 use App\Models\Atividade;
+use App\Models\Chat;
+use App\Models\ChatUser;
 use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Funcionario;
 use App\Models\Marcacao;
+use App\Models\Mensagem;
 use App\Models\Mensalidade;
 use App\Models\Pagamento;
 use App\Models\Personal;
@@ -16,8 +22,7 @@ use App\Models\Presenca;
 use App\Models\Problema;
 use App\Models\Reclamacao;
 use Illuminate\Database\Seeder;
-use \App\Models\User;
-use GuzzleHttp\Client;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +31,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Noticia::factory(11)->create();
+        Fotos::factory(11)->create();
+
         Mensalidade::factory(4)
             ->create();
 
@@ -58,7 +67,15 @@ class DatabaseSeeder extends Seeder
 
         //User Admin
         User::factory(5)->create();
+
+
+        Chat::factory(10)
+            ->has(Mensagem::factory(2))
+            ->create();
+
+
         
         Marcacao::factory(10)->create();
+
     }
 }
