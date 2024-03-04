@@ -58,7 +58,7 @@
     </div>
       @else
         @if ($OpNew)
-        <form wire:submit='Criar'>
+        <form wire:submit.prevent='Criar'>
           <div class="flex items-center px-3 pt-2">
             <x-text-input wire:model='pesquisa' wire:click="$dispatch('IsSearching')" wire:change="$dispatch('IsSearching')" autocomplete="off" list="destinatarios" class="w-9/12 h-10" name="user_id" placeholder="{{__('Insira um Destinatario')}}"></x-text-input>
             @if ($searching)

@@ -1,9 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('As suas Informações') }}
-        </h2>
+    <x-slot name="pageTitle">
+        As suas Informações
     </x-slot>
+
     <livewire:cliente.informacoes>
     <livewire:cliente.entradas>
 </x-app-layout>

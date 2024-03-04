@@ -39,6 +39,16 @@
                             {{ __('Sugestões')}}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('mensalidade')" :active="request()->routeIs('mensalidade')">
+                            {{ __('Mensalidades')}}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('customize')" :active="request()->routeIs('customize')">
+                            {{ __('Customizar Site')}}
+                        </x-nav-link>
+                    </div>
                 @endif
                 @if (Auth::user()->utype == "Cliente" || Auth::user()->utype == "Personal")
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -49,6 +59,7 @@
                 @endif
 
             </div>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -64,7 +75,7 @@
                             </div>
                         </button>
                     </x-slot>
-
+                    
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Perfil') }}
@@ -74,7 +85,7 @@
                             {{ __('Detalhes de Cliente') }}
                         </x-dropdown-link>
                         @endif
-                       
+                        
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

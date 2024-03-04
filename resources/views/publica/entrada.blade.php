@@ -11,7 +11,7 @@
         <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">Bem vindo à PepaGym</h2>
+              <h2 class="animated fadeInDown">Bem vindo ao PepaGym</h2>
               <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
@@ -65,19 +65,19 @@
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>
-              <h4 class="title"><a href="">Inauguração</a></h4>
+              <h4 class="title">Inauguração</h4>
               <p class="description">PepaGym está desde Maio de 2009 a forncecer um local de treino para os seus clientes</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title"><a href="">Localização</a></h4>
+              <h4 class="title">Localização</h4>
               <p class="description">Localizado na Rua Joana Isabel Matos Lima Dias</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
-              <h4 class="title"><a href="">Estabelicimento</a></h4>
+              <h4 class="title">Estabelicimento</h4>
               <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
             </div>
 

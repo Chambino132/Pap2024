@@ -6,11 +6,9 @@ use Livewire\Component;
 use App\Models\Problema;
 use App\Models\Equipamento;
 use Livewire\Attributes\On;
-use function Laravel\Prompts\confirm;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Database\Eloquent\Collection;
-use NunoMaduro\Collision\Exceptions\TestException;
 
 class Base extends Component
 {
@@ -19,12 +17,16 @@ class Base extends Component
     public bool $alterarC = false;
     public bool $altProblema = false;
     public bool $addP = false;
+    public bool $repeted = false;
     public ?Equipamento $mID;
     public ?Equipamento $mIDd;
     public ?string $tipo;
     public string $SelProblema;
     public Problema $Tempproblema;
-    public string $altguard;
+    public ?string $altguard = '';
+    public string $aba = "Ver";
+
+    public bool $notified = false;
 
     public string $message = "Guardado com sucesso!";
 
@@ -35,15 +37,10 @@ class Base extends Component
     public string $equipamento_id = "";
     public ?string $estado;
 
+    public Equipamento $altEquipamento;
 
-    public function mount()
-    {
-        $this->maquinas = Equipamento::all();
-        if(session('sucesso'))
-        {
-            $this->dispatch('notify', Session::get('sucesso'));
-        }
-    }
+
+    
 
     #[On('equipamento::delete')]
     public function refresh()
@@ -53,6 +50,14 @@ class Base extends Component
         return redirect(request()->header('Referer'));
     }
 
+    #[On('openModal')]
+    public function work() 
+    {
+        $this->dispatch('notify');
+    }
+
+    
+
     #[On('problema::delete')]
     public function probDelete()
     {
@@ -60,115 +65,57 @@ class Base extends Component
         return redirect(request()->header('Referer'));
     }
 
-    public function rules()
+    #[On('alterar')]
+    public function mudar(Equipamento $equipamento)
     {
-        
-            if($this->altguard == "Equipamento")
-            {
-                return [
-                    'dtAquisicao' => 'required | date',
-                    'preco' => 'required | int',
-                    'equipamento' => 'required | string | max:255',
-                ];
-            }
-            else if ($this->altguard == "Problema")
-            {
-                return [
-                    'problema' => 'required | string | max:255',
-                    'estado' => 'required | string',
-                    'equipamento_id' => 'required',
-                ];
-            }
-       
+        $this->aba = "Alterar";
+        $this->altEquipamento = $equipamento;
     }
 
-    public function mudar($id)
-    {
-        $this->mID = Equipamento::findOrFail($id);
-        $this->dtAquisicao = $this->mID->dtAquisicao;
-        $this->preco = $this->mID->preco;
-        $this->equipamento = $this->mID->equipamento;
-        $this->alterar = true;
-        $this->altguard = "Equipamento";
-    }
-
+    #[On('adicionar')]
     public function mudarC()
     {
+        $this->aba = "Adicionar";
         $this->alterarC = true;
-        $this->altguard = "Equipamento";
+        
     }
-
-    public function add($id)
+    
+    #[On('add')]
+    public function add($equipamento)
     {
-        $this->equipamento_id = $id;
-        $this->addP = true;
-        $this->altguard = "Problema";
+        $this->aba = "AddProb";
+        $this->equipamento_id = $equipamento;
     }
 
-    public function cancelarC()
-    {
-        $this->alterarC = false;
-    }
-
-    public function cancelarP()
-    {
-        $this->addP = false;
-    }
-
-
-    public function cancelar()
+    #[On('resetar::component')]
+    public function resetar()
     {
         $this->reset();
         $this->maquinas = Equipamento::all();
     }
 
-    public function guardarE()
+
+    #[On('cancelar')]
+    public function cancelar()
     {
-        $this->mID->update($this->validate());
-        $this->cancelar();
-        $this->dispatch('notify', "Equipamento alterado com sucesso!");
+        return redirect(request()->header('Referer'));
     }
 
-
-    public function guardarP()
-    {
-        $this->Tempproblema->update($this->validate());
-        $this->cancelar();
-        $this->dispatch('notify', "Problema alterado com sucesso!");
-    }
-
-    public function Salvar()
-    {
-        Equipamento::create($this->validate());
-
-        $this->cancelar();
-        $this->dispatch('notify', "Equipamento adicionado com sucesso!");
-    }
-
-    public function salvarP()
-    {
-        Problema::create($this->validate());
-        $this->cancelar();
-        $this->dispatch('notify', "Problema adicionado com sucesso!");
-    }
-
-    public function retroceder()
-    {
-        $this->altProblema = false;
-    }
-
-    #[On('SelProblema::changed')]
-    public function altProblema()
-    {
-        $this->altProblema = true;
-        $this->Tempproblema = Problema::findOrFail($this->SelProblema);
-        $this->problema = $this->Tempproblema->problema;
-        $this->estado = $this->Tempproblema->estado;
-    }
     
-    #[On('tipo::changed')]
+
+    
+
+    
+
+    
+
+    
+    
+    
     public function render()
     {
         return view('livewire.funcionario.equipamento.base');
+
+        
     }
 }

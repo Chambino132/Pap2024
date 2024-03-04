@@ -15,19 +15,19 @@ class Informacoes extends Component
 
     public $telefone;
 
-    public $Morada;
+    public $morada;
 
     protected $rules = [
         'telefone' => 'required|min:9',
-        'Morada'   => 'required|string|max:255',
+        'morada'   => 'required|string|max:255',
     ];
 
     protected $messages = [
         'telefone.required' => 'O telefone é obrigratorio',
-        'Morada.required'   => 'A Morada é obrigratoria',
+        'morada.required'   => 'A Morada é obrigratoria',
         'telefone.min'      => 'O telefone tem de ter no minimo 9 digitos',
-        'Morada.string'     => 'A Morada tem de ser um conjunto de caracteres',
-        'Morada.max'        => 'A Morada tem de ter no maximo 255 caracteres',
+        'morada.string'     => 'A Morada tem de ser um conjunto de caracteres',
+        'morada.max'        => 'A Morada tem de ter no maximo 255 caracteres',
     ];
 
     public function render(): View
@@ -46,7 +46,7 @@ class Informacoes extends Component
     {
         $this->estEdit  = true;
         $this->telefone = $this->cliente->pluck('telefone')->first();
-        $this->Morada   = $this->cliente->pluck('Morada')->first();
+        $this->morada   = $this->cliente->pluck('morada')->first();
     }
 
     public function cancel(): void

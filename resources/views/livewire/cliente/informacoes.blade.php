@@ -2,10 +2,7 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="px-12 py-5  bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-@if ($estEdit == false)
-
-                <x-primary-button wire:click="edit">{{ __('Editar') }}</x-primary-button>
-                
+@if ($estEdit == false)                
                 <div class="py-8 ">
                     <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
                         <table class="w-full table-auto">
@@ -26,7 +23,7 @@
                                         <td class="px-4 py-3">{{$cliente->telefone}}</td>
                                         <td class="px-4 py-3">{{$cliente->NIF}}</td>
                                         <td class="px-4 py-3">
-                                            {{$cliente->Morada}}
+                                            {{$cliente->morada}}
                                         </td>
                                         
                                         <td class="px-4 py-3 text-center">
@@ -63,8 +60,8 @@
     </div>
     <div class="px-3">
         <x-input-label for="Morada" :value="__('Morada')" />
-        <x-text-input wire:model="Morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
-        <x-input-error class="mt-2" :messages="$errors->get('Morada')" />
+        <x-text-input wire:model="morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('morada')->first()" />
+        <x-input-error class="mt-2" :messages="$errors->get('morada')" />
     </div>
     <div class="px-3 mt-5">
         <x-primary-button type="submit">{{__('Alterar')}}</x-primary-button>

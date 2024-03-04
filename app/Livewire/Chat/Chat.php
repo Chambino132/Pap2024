@@ -175,6 +175,7 @@ class Chat extends Component
 
         $this->validateOnly('pesquisa');
 
+
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();
 
         $proceed = true;

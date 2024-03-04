@@ -106,10 +106,10 @@
                                     class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected>{{__('Selecione uma Opção')}}</option>
                                     @foreach ($mensalidades as $mensalidade)                   
-                                        <option value="{{$mensalidade->id}}">{{ $mensalidade->Dias }} Dias/semana</option>
+                                        <option value="{{$mensalidade->id}}">{{ $mensalidade->dias }} Dias/semana</option>
                                     @endforeach
                                 </select>
-                                <x-input-error class="mt-2" :messages="$errors->get('NIF')" />
+                                <x-input-error class="mt-2" :messages="$errors->get('mensalidade_id')" />
                             </div>
                         @elseif ($tipo == "Personal")
                             <div class="pb-5">

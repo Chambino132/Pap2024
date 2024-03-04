@@ -15,7 +15,7 @@ class Cliente extends Model
         'dtNascimento',
         'NIF',
         'telefone',
-        'Morada',
+        'morada',
         'user_id',
         'ultMes',
     ];

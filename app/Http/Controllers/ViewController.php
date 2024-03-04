@@ -24,15 +24,14 @@ class ViewController extends Controller
 
     public function sobre():View
     {
-        $mensalidades = Mensalidade::all();
+        $unsorted = Mensalidade::all();
+        $mensalidades = $unsorted->sortBy('dias');
 
         return view('publica.sobre', compact('mensalidades'));
     }
 
     public function index(): View
     {
-        
-
         $clientes = Cliente::all()->count();
         $equipamentos = Equipamento::all()->count();
         $anos = Carbon::createFromDate(2009)->age;

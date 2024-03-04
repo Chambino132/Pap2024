@@ -26,33 +26,28 @@
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="font-sans antialiased ">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            
             @include('layouts.navigation')
             
+ 
 
             <!-- Page Heading -->
-            @if (isset($header))
+            
 
                 <header class="bg-white shadow dark:bg-gray-800">
                     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div class="flex justify-between">
-                            {{ $header }}
-                            
-                            @if (session('sucesso'))
-                                <div class="px-4 py-3 text-teal-900 bg-teal-100 border-t-4 border-teal-500 rounded-b shadow-md" role="alert">
-                                    <div class="flex">
-                                    <div class="py-1"><svg class="w-6 h-6 mr-4 text-teal-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-                                    <div>
-                                        <p class="font-bold">{{Session::get('sucesso')}}</p>
-                                    </div>
-                                    </div>
-                                </div>
-                            @endif
+                            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                                {{ $pageTitle }}
+                            </h2>
+                            <x-theme-toggle></x-theme-toggle>
+                           
 
                         </div>
 
                     </div>
                 </header>
-            @endif
+          
             
             <!-- Page Content -->
             <main>
@@ -63,9 +58,6 @@
                 <livewire:chat.chat>
             </div>
 
-            <div class="absolute top-5 right-7 sm:right-28">
-                <x-theme-toggle></x-theme-toggle>
-            </div>
 
         </div>
         

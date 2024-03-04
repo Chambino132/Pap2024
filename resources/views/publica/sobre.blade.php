@@ -86,11 +86,11 @@
         <div class="col-lg-4 ">
           <div class="mt-3">
             <div class="pricing-item featured">
-              <h3><span>{{$mensalidade->Dias}}</span>x Semana</h3>
+              <h3><span>{{$mensalidade->dias}}</span>x Semana</h3>
               <div class="icon">
-                <i class="bi bi-{{$mensalidade->Dias}}-circle-fill"></i>
+                <i class="bi bi-{{$mensalidade->dias}}-circle-fill"></i>
               </div>
-              <h4>{{$mensalidade->Preco}}<sup>€</sup><span> / Mês</span></h4>
+              <h4>{{$mensalidade->preco}}<sup>€</sup><span> / Mês</span></h4>
               <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
             </div>
           </div>

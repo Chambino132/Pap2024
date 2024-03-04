@@ -68,13 +68,6 @@ class DatabaseSeeder extends Seeder
         //User Admin
         User::factory(5)->create();
 
-
-        Chat::factory(10)
-            ->has(Mensagem::factory(2))
-            ->create();
-
-
-        
         Marcacao::factory(10)->create();
 
     }

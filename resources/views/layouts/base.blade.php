@@ -104,7 +104,6 @@
             <div class="row justify-content-between">
 
               <div class="col-lg-3 col-md-6 footer-links">
-                <h4>Useful Links</h4>
                 <ul>
                   <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Início</a></li>
                   <li><i class="bx bx-chevron-right"></i> <a href="{{route('sobre')}}">Sobre nós</a></li>
@@ -113,15 +112,7 @@
                 </ul>
               </div>
 
-              <div class="col-lg-3 col-md-6 footer-links">
-                <h4>Our Services</h4>
-                <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                </ul>
-              </div>
+              
 
               <div class="col-lg-3 col-md-6 footer-contact">
                 <h4>Morada</h4>

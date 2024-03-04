@@ -2,7 +2,9 @@
 
 
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
+use App\Livewire\Publica\Customize;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +58,15 @@ Route::get('/marcacoes', function (){
     return view('marcacoes.cliente');
 })->name('marcacoes');
 
-Route::get('/sugestao', function(){
+Route::get('/sugestaos', function(){
     return view('sugestoes.index');
 })->name('sugestao');
+
+Route::get('/mensalidades', function(){
+    return view('mensalidade.index');
+})->name('mensalidade');
+
+Route::get('/customize', Customize::class)->name('customize');
 
 
 require __DIR__ . '/auth.php';
