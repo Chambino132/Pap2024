@@ -12,10 +12,11 @@
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
+            @if (Auth::user()->utype != "Admin")
 
             <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg">
                     <section>
-                        <p class="text-lg font-light text-gray-900 dark:text-gray-100">
+                        <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             As Suas Informações
                         </p>
                         @if (Auth::user()->utype == 'Cliente')
@@ -27,7 +28,7 @@
                         @endif
                     </section>
             </div>
-
+            @endif
             <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')

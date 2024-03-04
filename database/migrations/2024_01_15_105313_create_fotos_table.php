@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('fotos', function (Blueprint $table) {
             $table->id();
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->string('titulo');
             $table->timestamps();
         });
