@@ -1,15 +1,20 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Dashboard') }}
-        </h2>
+    <x-slot name="pageTitle">
+        Trabalhadores
     </x-slot>
 
-    <div class="flex">
-        <livewire:funcionario.users.clientes>
+    @if (Auth::user()->utype == "Admin")
+        <div class="flex">
+            <div class="w-1/2">
+            <livewire:funcionario.users.personal>
+            </div>
+            <div class="w-1/2">
+            <livewire:funcionario.users.funcionario>
+            </div>
+        </div>
+    @else
         <livewire:funcionario.users.personal>
-    </div>
-
+    @endif 
     <livewire:funcionario.users.nao-confirmado>
     
 </x-app-layout>

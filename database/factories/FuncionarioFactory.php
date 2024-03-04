@@ -19,6 +19,7 @@ class FuncionarioFactory extends Factory
         return [
             'telefone' => fake()->phoneNumber(),
             'morada' => fake()->address(),
+            'cargo' => fake()->word(),
         ];
     }
 }

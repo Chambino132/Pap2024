@@ -14,6 +14,8 @@ class Funcionario extends Model
         'telefone',
         'morada',
         'user_id',
+        'cargo',
+        'foto',
     ];
 
     function user(): BelongsTo

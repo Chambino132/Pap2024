@@ -71,6 +71,8 @@
         
 
         @livewire('wire-elements-modal')
+
         @livewireScripts
+
     </body>
 </html>

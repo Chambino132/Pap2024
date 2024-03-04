@@ -4,8 +4,6 @@
             <div class="px-12 py-5  bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
 @if ($estEdit == false)
 
-                <x-primary-button wire:click="edit">{{ __('Editar') }}</x-primary-button>
-                
                 <div class="py-8 ">
                     <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
                         <table class="w-full table-auto">
@@ -48,6 +46,7 @@
                         </table>
                     </div>
                 </div>
+
              
             
 @else
@@ -63,7 +62,7 @@
     </div>
     <div class="px-3">
         <x-input-label for="Morada" :value="__('Morada')" />
-        <x-text-input wire:model="Morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
+        <x-text-input wire:model="morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
         <x-input-error class="mt-2" :messages="$errors->get('Morada')" />
     </div>
     <div class="px-3 mt-5">
@@ -73,8 +72,6 @@
         <x-primary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-primary-button>
     </div>
 @endif
-          </div>
-        </div>
-    </div>
+          
 </div>
 

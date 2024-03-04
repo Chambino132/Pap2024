@@ -19,8 +19,7 @@ class PresencaFactory extends Factory
     {
         
         return [
-            'dia' => fake()->date(),
-            'hora' => fake()->time(),
+            'entrada' => fake()->dateTime(),
         ];
     }
 }
