@@ -3,24 +3,20 @@
 namespace App\Livewire\Funcionario\Users;
 
 
-use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
 use App\Models\Atividade;
 use App\Models\Cliente;
 use App\Models\Mensalidade;
-
 use App\Models\User;
-use App\Models\Cliente;
 use App\Models\Funcionario;
 use Livewire\Component;
 use App\Models\Personal;
-use App\Models\Atividade;
-use App\Models\Mensalidade;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
+
 
 class NaoConfirmado extends Component
 {
@@ -39,8 +35,6 @@ class NaoConfirmado extends Component
     public ?string $dtNascimento;
     public ?string $telefone;
     public ?string $morada;
-
-    public ?string $atividade_id;
     public ?string $cargo;
     public $imagem;
 

@@ -17,8 +17,8 @@ class Index extends Component
 
     public int $perPage = 10;
     public string $search = '';
-    public string $firstDate;
-    public string $lastDate;
+    public string $firstDate = '';
+    public string $lastDate = '';
     
    
 
@@ -63,7 +63,6 @@ class Index extends Component
     public function render()
     {
        
-        
 
         $entradas = Presenca::query()
         ->join('clientes', 'presencas.cliente_id', 'clientes.id')

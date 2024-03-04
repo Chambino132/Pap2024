@@ -1,7 +1,5 @@
 <div>
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="px-12 py-5  bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+
 @if ($estEdit == false)
 
                 <div class="py-8 ">
@@ -24,7 +22,7 @@
                                         <td class="px-4 py-3">{{$cliente->telefone}}</td>
                                         <td class="px-4 py-3">{{$cliente->NIF}}</td>
                                         <td class="px-4 py-3">
-                                            {{$cliente->Morada}}
+                                            {{$cliente->morada}}
                                         </td>
                                         
                                         <td class="px-4 py-3 text-center">
@@ -45,14 +43,9 @@
                                 </tbody>
                         </table>
                     </div>
-                </div>
-
-             
-            
+                </div>   
 @else
-<h2 class="mb-5 text-lg font-medium text-gray-900 dark:text-gray-100">
-    {{ __('Editar Informações') }} 
-</h2>
+
 <form wire:submit="update">
     @csrf
     <div class="px-3 mb-5">
@@ -69,7 +62,7 @@
         <x-primary-button type="submit">{{__('Alterar')}}</x-primary-button>
     
 </form>
-        <x-primary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-primary-button>
+        <x-secondary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-secondary-button>
     </div>
 @endif
           

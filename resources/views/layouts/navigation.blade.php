@@ -17,7 +17,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
+                @if (Auth::user()->utype == "Admin" || Auth::user()->utype == "Funcionario")
+                    
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Trabalhadores') }}
@@ -33,17 +34,6 @@
                         {{ __('Entrada') }}
                     </x-nav-link>
                 </div>
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('equipamento')" :active="request()->routeIs('equipamento')">
-                            {{ __('Equipamento') }}
-                        </x-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('entradas')" :active="request()->routeIs('entradas')">
-                            {{ __('Entrada') }}
-                        </x-nav-link>
-                    </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
                             {{ __('Sugestões')}}
