@@ -10,6 +10,10 @@ use LivewireUI\Modal\ModalComponent;
 
 class ProblemasModal extends ModalComponent
 {
+    public static function modalMaxWidth(): string
+    {
+        return '6xl';
+    }
     public Equipamento $maquina;
     public Problema $problema;
 

@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Models\Presenca;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\Attributes\On; 
@@ -10,21 +12,36 @@ use Livewire\Attributes\On;
 class Clientes extends Component
 {
     public Collection $usersC;
+    public ?string $entrada;
+    public ?int $cliente_id;
 
+    protected $rules = [
+        'cliente_id' => 'required',
+        'entrada' => 'required',
+    ];
+
+    #[On('cliente::created')]
     public function mount()
+    {
+        $this->montar();
+    }
+
+    public function montar(): void 
     {
         $this->usersC = User::Where('utype',"Cliente")->get();
     }
-
    
     public function render()
     {
         return view('livewire.funcionario.users.clientes');
     }
 
-    #[On('cliente::created')]
-    public function refresh() : void 
+    public function saveEntrada($id)
     {
-        $this->usersC = User::Where('utype',"Cliente")->get();
+        $this->cliente_id = $id;
+        $this->entrada = Carbon::now();
+
+        Presenca::create($this->validate());
+        $this->dispatch('novaEntrada')->to('funcionario.entradas.index');
     }
 }

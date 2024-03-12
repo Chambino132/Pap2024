@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
-            $table->binary('imagem');
+            $table->string('imagem');
             $table->string('titulo');
             $table->string('descricao');
             $table->date('data');

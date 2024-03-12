@@ -1,6 +1,6 @@
 <div>
     
-    <div wire:click="abrir" class="rounded-t-lg bg-gradient-to-r from-red-400 to-red-600 w-60 h-8 justify-between flex hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
+    {{-- <div wire:click="abrir" class="rounded-t-lg bg-gradient-to-r from-red-400 to-red-600 w-60 h-8 justify-between flex hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
         <h3 class="m-1 ml-2"><strong>{{__('Deixe aqui a sua Opinião')}}</strong></h3>
         @if($sugestao == false)
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up m-2    " viewBox="0 0 16 16">
@@ -12,17 +12,19 @@
           </svg>
         @endif
         
-    </div>
-    @if ($sugestao == true)
+    </div> --}}
+    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+      {{ __('Deixe aqui a sua Opinião') }} 
+    </h2>
     <div class="h-auto bg-white dark:bg-gray-800 pb-2">
         <div class="mx-2">
             <form wire:submit='guardar'>
               <div class="pt-2 pb-5">
-                <x-text-input wire:model='titulo' name="titulo" placeholder="{{__('Insira um Titulo')}}"></x-text-input>
+                <x-text-input wire:model='titulo' class="w-96" name="titulo" placeholder="{{__('Insira um Titulo')}}"></x-text-input>
                 <x-input-error class="mt-2" :messages="$errors->get('titulo')" />
             </div>
             <div class="pb-5">
-                <textarea wire:model='descricao' class="resize-none border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" name="descricao" id="" cols="22" rows="7" placeholder="{{__('Descreva a sua sugestão')}}"></textarea>
+                <textarea wire:model='descricao' class="w-full resize-none border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" name="descricao" id=""  rows="7" placeholder="{{__('Descreva a sua sugestão')}}"></textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('descricao')" />
             </div>
             <button type="submit" class="rounded-lg bg-gradient-to-r from-red-400 to-red-600 w-60 h-8 flex justify-center hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9 w-full">
@@ -32,5 +34,5 @@
             </form>
         </div>
     </div>
-    @endif
+
 </div>

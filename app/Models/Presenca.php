@@ -12,8 +12,7 @@ class Presenca extends Model
 
     protected $fillable = [
         'cliente_id',
-        'dia',
-        'hora',
+        'entrada',
     ];
 
     function cliente(): BelongsTo

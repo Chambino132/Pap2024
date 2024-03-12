@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('telefone');
             $table->string('morada');
+            $table->string('cargo');
+            $table->string('foto')->nullable();
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });
