@@ -8,7 +8,12 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+        @if ($hero1)
+          <div class="carousel-item active" style="background-image: url({{Storage::url($hero1->imagem)}})">
+        @else
+          <div class="carousel-item active" >
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Bem vindo ao PepaGym</h2>
@@ -19,7 +24,12 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+        @if ($hero2)
+          <div class="carousel-item" style="background-image: url({{Storage::url($hero2->imagem)}})">
+        @else
+          <div class="carousel-item">        
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">O Seu Conforto Em Primeiro Lugar</h2>
@@ -29,7 +39,12 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+        @if ($hero3)
+          <div class="carousel-item" style="background-image: url({{Storage::url($hero3->imagem)}})">
+        @else
+          <div class="carousel-item"> 
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
@@ -55,7 +70,12 @@
       <div class="container-fluid">
 
         <div class="row justify-content-center">
-          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+          @if ($videoImg)
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url({{Storage::url($videoImg->imagem)}})">
+          @else
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+          @endif
+          
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a>
           </div>
 

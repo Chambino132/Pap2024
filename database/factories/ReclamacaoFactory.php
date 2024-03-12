@@ -18,7 +18,6 @@ class ReclamacaoFactory extends Factory
     public function definition(): array
     {
         return [
-            'titulo' => fake()->word(),
             'descricao' => fake()->sentence(6),
         ];
     }

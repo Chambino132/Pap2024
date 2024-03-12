@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Session;
 class Create extends Component
 {
     public bool $sugestao = false;
-    public ?string $titulo;
     public ?string $descricao;
     public ?string $user_id;
 
     protected $rules = [
-        'titulo' => 'required|string|max:255',
         'descricao' => 'required|string|max:255',
         'user_id' => 'required',
     ];

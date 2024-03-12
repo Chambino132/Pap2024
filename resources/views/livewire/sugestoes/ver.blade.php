@@ -13,22 +13,28 @@
                                     <tr>
                                         <th class="px-4 py-3 text-left">#</th>
                                         <th class="px-4 py-3 text-left">Autor</th>
-                                        <th class="px-4 py-3 text-left">Titulo</th>
                                         <th class="px-4 py-3 text-left">Opinião</th>
+                                        <th class="px-4 py-3 text-left">Arquivado</th>
                                         <th class="w-1/12 px-4 py-3">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-900 dark:text-slate-900 ">
                                     @forelse ($opinioes as $opiniao)
                                     <tr class="hover:bg-gray-100">
-                                        <td class="px-4 py-3">
+                                        <td class="px-4 py-3 w-3">
                                             {{$opiniao->id}}
                                         </td>
-                                        <td class="px-4 py-3">
+                                        <td class="px-4 py-3 w-48">
                                             <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">{{$opiniao->user->name}}</span>
                                         </td>
-                                        <td class="px-4 py-3">{{$opiniao->titulo}}</td>
-                                        <td class="px-4 py-3">{{$opiniao->descricao}}</td>
+                                        <td class="px-4 py-3 w-72 overflow">{{$opiniao->descricao}}</td>
+                                        <td class="px-4 py-3 w-4">
+                                            @if ($opiniao->arquivado)
+                                                Sim
+                                            @else
+                                                Não
+                                            @endif
+                                        </td>
                                         
                                         
                                         <td class="px-4 py-3 text-center">
@@ -40,9 +46,15 @@
                                                     <x-dropdown-link-table  wire:click="$dispatch('openModal', {component:'modals.confirmacao-deletesugestao', arguments: {sugestao:{{$opiniao->id}}}})">
                                                         Excluir
                                                     </x-dropdown-link-table>
-                                                    <x-dropdown-link-table>
-                                                        Arquivar
+                                                    @if (!$opiniao->arquivado)
+                                                        <x-dropdown-link-table wire:click='arquivar({{$opiniao->id}})'>
+                                                            Arquivar
+                                                        </x-dropdown-link-table>
+                                                    @else
+                                                    <x-dropdown-link-table wire:click='desarquivar({{$opiniao->id}})'>
+                                                        Desarquivar
                                                     </x-dropdown-link-table>
+                                                    @endif
                                                 </x-slot>
                                             </x-dropdown-table>
                                             

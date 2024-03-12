@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('imagem');
             $table->string('titulo');
+            $table->boolean('arquivado')->default(false);
             $table->timestamps();
         });
     }

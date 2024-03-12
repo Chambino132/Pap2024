@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('reclamacaos', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
             $table->string('descricao');
             $table->foreignIdFor(User::class)->constrained();
+            $table->boolean('arquivado')->default(false);
             $table->timestamps();
         });
     }

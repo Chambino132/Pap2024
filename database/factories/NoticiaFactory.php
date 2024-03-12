@@ -20,7 +20,6 @@ class NoticiaFactory extends Factory
             'imagem'    => fake()->imageUrl(),
             'titulo'    => fake()->word(),
             'descricao' => fake()->sentence(),
-            'data'      => fake()->date(),
         ];
     }
 }
