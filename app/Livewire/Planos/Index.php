@@ -5,6 +5,7 @@ namespace App\Livewire\Planos;
 use App\Models\Exercicio;
 use App\Models\Plano;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -31,7 +32,15 @@ class Index extends Component
 
     public function mount()
     {
-        $this->planos = Plano::all();
+        if(Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
+        {
+            $this->planos = Plano::all();
+        }
+        else
+        {
+            $this->planos = Auth::user()->cliente->planos;
+        }
+
         if(session('sucesso'))
         {
             $this->dispatch('notify', Session::get('sucesso'));

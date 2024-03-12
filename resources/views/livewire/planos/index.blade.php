@@ -6,7 +6,12 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <header class="flex justify-between">
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Lista de Planos') }}
+                                @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
+                                    {{ __('Lista de Planos') }}    
+                                @else
+                                    {{ __('Os seus Planos') }}
+                                @endif
+                                
                             </h2>
 
                             <button class='inline-flex items-center px-4 py-2 mb-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click='adicionar'>Adicionar</button>
@@ -16,8 +21,10 @@
                                 <th class="px-3 py-2">#</th>
                                 <th class="px-3 py-2">Nome</th>
                                 <th class="px-3 py-2">Descrição</th>
+                                @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
                                 <th class="px-3 py-2">Preço</th>
                                 <th class="px-3 py-2">Ações</th>
+                                @endif
                             </thead>
                             <tbody>
                                 @forelse ($planos as $plano)
@@ -25,8 +32,9 @@
                                         <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-3 py-2 border border-slate-700">{{$plano->id}}</td>
                                         <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-3 py-2 border border-slate-700">{{$plano->nome}}</td>
                                         <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-3 py-2 border border-slate-700">{{$plano->descricao}}</td>
+                                        @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
                                         <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-3 py-2 border border-slate-700">{{$plano->preco}}€</td>
-                                        <td class="w-1/4 py-2 border border-slate-700">
+                                            <td class="w-1/4 py-2 border border-slate-700">
                                             <div class="pl-5">
                                                 <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click="alterar({{$plano->id}})">Alterar</button>
 
@@ -35,7 +43,8 @@
                                                 <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25' wire:click="$dispatch('openModal', {component: 'planos.plano-addprob', arguments: {plano: {{$plano->id}}}})">+ Exercicio</button>
                                             </div>
                                         </td>
-                                    </tr>
+                                    @endif
+                                </tr>
                                 @empty
                                     <tr>
                                         <td colspan="3">Ainda sem maquinas!</td>

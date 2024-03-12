@@ -20,4 +20,9 @@ class Plano extends Model
     {
         return $this->belongsToMany(Exercicio::class)->withPivot('repeticoes');
     }
+
+    public function clientes(): BelongsToMany
+    {
+        return $this->belongsToMany(Cliente::class);
+    }
 }
