@@ -16,12 +16,6 @@ class ConfirmacaoDeletesugestao extends ModalComponent
         return view('livewire.modals.confirmacao-deletesugestao');
     }
 
-    #[On('sugestao::delete')]
-    public function refresh()
-    {
-        return redirect(request()->header('Referer'));
-    }
-
     public function delConfirm()
     {
         $this->sugestao->delete();

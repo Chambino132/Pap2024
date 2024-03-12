@@ -117,7 +117,6 @@ class NaoConfirmado extends Component
 
     public function cancelar()
     {
-        
         $this->reset([
         'user_id', 
         'tipo',
@@ -129,6 +128,7 @@ class NaoConfirmado extends Component
         'morada',
         'alterar',
     ]);
+
     }
     
     #[On('tipo::changed')]

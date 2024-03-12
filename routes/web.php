@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
+use App\Livewire\Planos\Main;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +64,8 @@ Route::get('/marcacoes', function (){
 Route::get('/sugestao', function(){
     return view('sugestoes.index');
 })->name('sugestao');
+
+Route::get('/planos/{cliente?}/{plano?}', Main::class)->name('planos');
 
 
 require __DIR__ . '/auth.php';

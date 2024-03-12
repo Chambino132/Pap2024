@@ -62,24 +62,22 @@ class Base extends Component
 
     public function rules()
     {
-        
-            if($this->altguard == "Equipamento")
-            {
-                return [
-                    'dtAquisicao' => 'required | date',
-                    'preco' => 'required | int',
-                    'equipamento' => 'required | string | max:255',
-                ];
-            }
-            else if ($this->altguard == "Problema")
-            {
-                return [
-                    'problema' => 'required | string | max:255',
-                    'estado' => 'required | string',
-                    'equipamento_id' => 'required',
-                ];
-            }
-       
+        if($this->altguard == "Equipamento")
+        {
+            return [
+                'dtAquisicao' => 'required | date',
+                'preco' => 'required | int',
+                'equipamento' => 'required | string | max:255',
+            ];
+        }
+        else if ($this->altguard == "Problema")
+        {
+            return [
+                'problema' => 'required | string | max:255',
+                'estado' => 'required | string',
+                'equipamento_id' => 'required',
+            ];
+        }
     }
 
     public function mudar($id)
