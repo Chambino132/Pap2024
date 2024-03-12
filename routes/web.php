@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
 use App\Livewire\Publica\Customize;
+use App\Livewire\Planos\Main;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -62,11 +63,15 @@ Route::get('/sugestaos', function(){
     return view('sugestoes.index');
 })->name('sugestao');
 
+
 Route::get('/mensalidades', function(){
     return view('mensalidade.index');
 })->name('mensalidade');
 
 Route::get('/customize', Customize::class)->name('customize');
+
+Route::get('/planos/{cliente?}/{plano?}', Main::class)->name('planos');
+
 
 
 require __DIR__ . '/auth.php';

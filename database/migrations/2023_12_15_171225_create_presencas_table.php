@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('presencas', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Cliente::class)->constrained();
-            $table->date('dia');
-            $table->time('hora');
+            $table->dateTime('entrada');
             $table->timestamps();
         });
     }

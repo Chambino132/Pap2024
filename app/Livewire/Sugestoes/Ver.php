@@ -4,6 +4,8 @@ namespace App\Livewire\Sugestoes;
 
 use App\Models\Reclamacao;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Ver extends Component
@@ -13,13 +15,17 @@ class Ver extends Component
     public function mount()
     {
         $this->opinioes = Reclamacao::all();
+        if(session('sucesso'))
+        {
+            $this->dispatch('notify', Session::get('sucesso'));
+        }
     }
 
-    public function delete($id) : void
+    #[On('sugestao::delete')]
+    public function refresh()
     {
-        $reclamacao = Reclamacao::findOrFail($id);
-        $reclamacao->delete();
-        $this->opinioes = Reclamacao::all();
+        session()->flash('sucesso', 'Sugestão deletada!');
+        return redirect(request()->header('Referer'));
     }
 
     public function arquivar(Reclamacao $opiniao) : void 

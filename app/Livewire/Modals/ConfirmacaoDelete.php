@@ -12,6 +12,11 @@ use function Laravel\Prompts\confirm;
 
 class ConfirmacaoDelete extends ModalComponent
 {
+    public static function modalMaxWidth(): string
+    {
+        return 'xl';
+    }
+
     public ?Equipamento $maquina;
 
     public function render()

@@ -1,4 +1,3 @@
-<div class="w-1/2">
     <div class="py-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class=" bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
@@ -21,7 +20,7 @@
                                         </thead>
                                         <tbody class="text-gray-900 dark:text-slate-900">
                                             @forelse ($usersP as $userP)
-                                            <tr class="hover:bg-gray-100">
+                                            <tr wire:click="$dispatch('openModal', {component: 'funcionario.users.personal-modal', arguments:{UPersonal: {{$userP->personal->id}}}})" class="hover:bg-gray-100">
                                                 <td class="px-4 py-3">
                                                     {{ $userP->id }}
                                                 </td>
@@ -42,4 +41,4 @@
             </div>
         </div>
     </div>
-</div>
+

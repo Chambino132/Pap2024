@@ -65,6 +65,7 @@ class Base extends Component
         return redirect(request()->header('Referer'));
     }
 
+
     #[On('alterar')]
     public function mudar(Equipamento $equipamento)
     {

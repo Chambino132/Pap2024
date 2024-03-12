@@ -1,8 +1,5 @@
 <div>
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="px-12 py-5  bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-@if ($estEdit == false)                
+@if ($estEdit == false)
                 <div class="py-8 ">
                     <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
                         <table class="w-full table-auto">
@@ -44,13 +41,9 @@
                                 </tbody>
                         </table>
                     </div>
-                </div>
-             
-            
+                </div>   
 @else
-<h2 class="mb-5 text-lg font-medium text-gray-900 dark:text-gray-100">
-    {{ __('Editar Informações') }} 
-</h2>
+
 <form wire:submit="update">
     @csrf
     <div class="px-3 mb-5">
@@ -59,19 +52,18 @@
         <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
     </div>
     <div class="px-3">
-        <x-input-label for="Morada" :value="__('Morada')" />
+        <x-input-label for="morada" :value="__('Morada')" />
         <x-text-input wire:model="morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('morada')->first()" />
         <x-input-error class="mt-2" :messages="$errors->get('morada')" />
+
     </div>
     <div class="px-3 mt-5">
         <x-primary-button type="submit">{{__('Alterar')}}</x-primary-button>
     
 </form>
-        <x-primary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-primary-button>
+        <x-secondary-button wire:click="cancel" class="ms-5">{{__('Cancelar')}}</x-secondary-button>
     </div>
 @endif
-          </div>
-        </div>
-    </div>
+          
 </div>
 
