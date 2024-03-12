@@ -32,9 +32,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        Noticia::factory(11)->create();
-        Fotos::factory(11)->create();
-
         Mensalidade::factory(4)
             ->create();
 
@@ -68,13 +65,6 @@ class DatabaseSeeder extends Seeder
         //User Admin
         User::factory(5)->create();
 
-
-        Chat::factory(10)
-            ->has(Mensagem::factory(2))
-            ->create();
-
-
-        
         Marcacao::factory(10)->create();
 
 

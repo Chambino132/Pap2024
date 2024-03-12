@@ -2,8 +2,10 @@
 
 
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
+use App\Livewire\Publica\Customize;
 use App\Livewire\Planos\Main;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 // Routes da pagina publica
 
-Route::get('/', function () {
-    return view('publica.entrada');
-})->name('entrada');
+Route::get('/',[ViewController::class, 'index'])->name('entrada');
 
-Route::get('/sobre', function () {
-    return view('publica.sobre');
-})->name('sobre');
+Route::get('/sobre', [ViewController::class, 'sobre'])->name('sobre');
 
 Route::get('/noticias', [ViewController::class, 'noticias'])->name('noticias');
 
@@ -61,11 +59,19 @@ Route::get('/marcacoes', function (){
     return view('marcacoes.cliente');
 })->name('marcacoes');
 
-Route::get('/sugestao', function(){
+Route::get('/sugestaos', function(){
     return view('sugestoes.index');
 })->name('sugestao');
 
+
+Route::get('/mensalidades', function(){
+    return view('mensalidade.index');
+})->name('mensalidade');
+
+Route::get('/customize', Customize::class)->name('customize');
+
 Route::get('/planos/{cliente?}/{plano?}', Main::class)->name('planos');
+
 
 
 require __DIR__ . '/auth.php';

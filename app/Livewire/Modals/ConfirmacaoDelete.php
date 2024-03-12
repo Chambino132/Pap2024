@@ -30,7 +30,7 @@ class ConfirmacaoDelete extends ModalComponent
         {
             $this->maquina->delete();
             $this->closeModal();
-            session()->flash('sucesso', 'Projeto Criado!');
+            session()->flash('sucesso', 'Equipamento deletado com sucesso');
             $this->dispatch('equipamento::delete');
         }
         else

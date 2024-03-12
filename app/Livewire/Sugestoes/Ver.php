@@ -28,6 +28,20 @@ class Ver extends Component
         return redirect(request()->header('Referer'));
     }
 
+    public function arquivar(Reclamacao $opiniao) : void 
+    {
+        $opiniao->arquivado = true;
+        $opiniao->save();
+        $this->opinioes = Reclamacao::all();    
+    }
+
+    public function desarquivar(Reclamacao $opiniao) : void 
+    {
+        $opiniao->arquivado = false;
+        $opiniao->save();
+        $this->opinioes = Reclamacao::all();    
+    }
+
     public function render()
     {
         return view('livewire.sugestoes.ver');

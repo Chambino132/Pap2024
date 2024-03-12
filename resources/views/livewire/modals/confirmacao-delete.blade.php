@@ -1,4 +1,4 @@
-<div class="w-full overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+<div x-on:click.outside="$dispatch('closeModal')" class="w-full overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
     <div class="p-6 text-gray-900 dark:text-gray-100">
         <header class="pb-3">
             <h1 class="text-xl font-medium text-gray-900 dark:text-gray-100">

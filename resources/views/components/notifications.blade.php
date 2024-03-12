@@ -3,7 +3,6 @@
         messages: [],
         remove(mid) {
             $dispatch('close-me', {id: mid})
-            
             let m = this.messages.filter((m) => { return m.id == mid })
             if (m.length) {
                 setTimeout(() => {
@@ -11,15 +10,21 @@
                 }, 2000)   
             }
         },
+        
     }"
+    
     @notify.window="let mid = Date.now(); messages.push({id: mid, msg: $event.detail}); setTimeout(() => { remove(mid) }, 2500)"
     class="fixed inset-0 z-50 flex flex-col items-end justify-center px-4 py-6 space-y-4 pointer-events-none sm:p-6 sm:justify-start"
+
+    
 >
+
+
     <template x-for="(message, messageIndex) in messages" :key="messageIndex" hidden>
         <div
             x-data="{ id: message.id, show: false }"
             x-init="$nextTick(() => { show = true })"
-            x-show="show"
+            x-show="message.msg != ''"
             @close-me.window="if ($event.detail.id == id) {show=false}"
             x-transition:enter="transform ease-out duration-300 transition"
             x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -53,4 +58,5 @@
             </div>
         </div>
     </template>
+
 </div>

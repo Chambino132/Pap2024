@@ -1,7 +1,5 @@
 <div>
-
 @if ($estEdit == false)
-
                 <div class="py-8 ">
                     <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
                         <table class="w-full table-auto">
@@ -54,9 +52,10 @@
         <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
     </div>
     <div class="px-3">
-        <x-input-label for="Morada" :value="__('Morada')" />
-        <x-text-input wire:model="morada" id="Morada" name="Morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('Morada')->first()" />
-        <x-input-error class="mt-2" :messages="$errors->get('Morada')" />
+        <x-input-label for="morada" :value="__('Morada')" />
+        <x-text-input wire:model="morada" type="text" class="block w-full mt-1" :value="$cliente->pluck('morada')->first()" />
+        <x-input-error class="mt-2" :messages="$errors->get('morada')" />
+
     </div>
     <div class="px-3 mt-5">
         <x-primary-button type="submit">{{__('Alterar')}}</x-primary-button>

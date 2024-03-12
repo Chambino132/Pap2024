@@ -8,10 +8,15 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+        @if ($hero1)
+          <div class="carousel-item active" style="background-image: url({{Storage::url($hero1->imagem)}})">
+        @else
+          <div class="carousel-item active" >
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">Bem vindo à PepaGym</h2>
+              <h2 class="animated fadeInDown">Bem vindo ao PepaGym</h2>
               <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
@@ -19,7 +24,12 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+        @if ($hero2)
+          <div class="carousel-item" style="background-image: url({{Storage::url($hero2->imagem)}})">
+        @else
+          <div class="carousel-item">        
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">O Seu Conforto Em Primeiro Lugar</h2>
@@ -29,7 +39,12 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+        @if ($hero3)
+          <div class="carousel-item" style="background-image: url({{Storage::url($hero3->imagem)}})">
+        @else
+          <div class="carousel-item"> 
+        @endif
+        
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
@@ -55,7 +70,12 @@
       <div class="container-fluid">
 
         <div class="row justify-content-center">
-          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+          @if ($videoImg)
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url({{Storage::url($videoImg->imagem)}})">
+          @else
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+          @endif
+          
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a>
           </div>
 
@@ -65,19 +85,19 @@
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>
-              <h4 class="title"><a href="">Inauguração</a></h4>
+              <h4 class="title">Inauguração</h4>
               <p class="description">PepaGym está desde Maio de 2009 a forncecer um local de treino para os seus clientes</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title"><a href="">Localização</a></h4>
+              <h4 class="title">Localização</h4>
               <p class="description">Localizado na Rua Joana Isabel Matos Lima Dias</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
-              <h4 class="title"><a href="">Estabelicimento</a></h4>
+              <h4 class="title">Estabelicimento</h4>
               <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
             </div>
 
@@ -93,22 +113,22 @@
         <div class="row counters">
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$clientes}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Clientes</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="22" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$equipamentos}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Maquinas de Treino</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$anos}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Anos</p>
           </div>
 
           <div class="text-center col-lg-3 col-6">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{$colaboradores}}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Colaboradores</p>
           </div>
 

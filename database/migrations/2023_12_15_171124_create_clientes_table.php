@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->string('NIF');
             $table->string('telefone');
             $table->string('morada');
-            $table->date('ultMes');
+            $table->date('ultMes')->nullable();
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

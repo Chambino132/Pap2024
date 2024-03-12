@@ -24,7 +24,7 @@ class Informacoes extends Component
 
     protected $messages = [
         'telefone.required' => 'O telefone é obrigratorio',
-        'Morada.required'   => 'A Morada é obrigratoria',
+        'morada.required'   => 'A Morada é obrigratoria',
         'telefone.min'      => 'O telefone tem de ter no minimo 9 digitos',
         'morada.string'     => 'A Morada tem de ser um conjunto de caracteres',
         'morada.max'        => 'A Morada tem de ter no maximo 255 caracteres',

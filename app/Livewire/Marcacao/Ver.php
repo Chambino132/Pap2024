@@ -33,9 +33,9 @@ class Ver extends Component
 
     public function StoreEstado(Marcacao $marcacao)
     {
+        
         $marcacao->estado = $this->estado;
         $marcacao->save();
-        $this->reset(['estado']);
         $this->montar();
         $this->EstadoChan = false;
     }
