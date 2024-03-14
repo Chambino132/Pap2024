@@ -26,7 +26,7 @@ class Index extends Component
     #[On('pagination::updated')]
     public function updatingSearch()
     {
-        $this->resetPage();
+        $this->resetPage('entradasPage');
     }
 
     #[On('novaEntrada')]
@@ -70,7 +70,7 @@ class Index extends Component
         ->where('users.name', 'like', '%'.$this->search.'%')
         ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
         ->orderBy('entrada' , 'desc')
-        ->paginate($this->perPage);
+        ->paginate($this->perPage, ['*'], 'entradasPage');
 
        
 

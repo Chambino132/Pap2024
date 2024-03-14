@@ -4,11 +4,11 @@
     </x-slot>
 
     @if (Auth::user()->utype == "Admin")
-        <div class="flex">
-            <div class="w-1/2">
+        <div class="lg:flex">
+            <div class="lg:w-1/2">
             <livewire:funcionario.users.personal>
             </div>
-            <div class="w-1/2">
+            <div class="lg:w-1/2">
             <livewire:funcionario.users.funcionario>
             </div>
         </div>

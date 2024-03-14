@@ -5,28 +5,38 @@ namespace App\Livewire\Funcionario\Users;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Collection;
 
 class Funcionario extends Component
 {
-    
+    use WithPagination;
 
-    public Collection $funcionarios;
+    public int $perPage = 10;
+    public string $search = '';
 
-
-    public function mount() : void
+    #[On('pagination::updated')]
+    public function updatingSearch()
     {
-        $this->montar();
+        $this->resetPage('funcionarioPage');
     }
 
     #[On('funcionario::created')]
-    public function montar(): void 
+    public function montar() 
     {
-        $this->funcionarios = User::where('utype', 'Funcionario')->get();
+        $funcionarios = User::query()
+        ->where('utype', 'Funcionario')
+        ->where('name', 'like', '%'.$this->search.'%')
+        ->paginate($this->perPage, ['*'], 'funcionarioPage');
+        
+        return $funcionarios;
     }
 
     public function render()
     {
-        return view('livewire.funcionario.users.funcionario');
+        $funcionarios = $this->montar();
+
+
+        return view('livewire.funcionario.users.funcionario', compact('funcionarios'));
     }
 }

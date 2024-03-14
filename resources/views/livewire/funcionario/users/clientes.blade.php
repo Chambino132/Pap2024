@@ -1,4 +1,4 @@
-
+<div>
     <div class="py-12 ">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class=" bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
@@ -17,6 +17,7 @@
                                             <th class="px-4 py-3 text-left">#</th>
                                             <th class="px-4 py-3 text-left">Nome</th>
                                             <th class="px-4 py-3 text-left">Email</th>
+                                            <th class="px-4 py-3">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-gray-900 dark:text-slate-900">
@@ -53,3 +54,4 @@
             </div>
         </div>
     </div>
+</div>

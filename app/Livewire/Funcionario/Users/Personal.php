@@ -3,29 +3,42 @@
 namespace App\Livewire\Funcionario\Users;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\Attributes\On; 
+use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
+use Illuminate\Database\Eloquent\Collection;
 
 class Personal extends Component
 {
-    public Collection $usersP;
 
-    public function mount()
+    use WithPagination;
+
+    public int $perPage = 10;
+    public string $search = '';
+
+    #[On('pagination::updated')]
+    public function updatingSearch()
     {
-        $this->usersP = User::Where('utype', 'Personal')->get();
+        $this->resetPage('personalPage');
     }
 
-    
     public function render()
     {
-        return view('livewire.funcionario.users.personal');
+        $personals = $this->montar();
+
+        return view('livewire.funcionario.users.personal', compact('personals'));
     }
 
     #[On('personal::created')]
-    public function refresh() : void 
+    public function montar() 
     {
-        $this->usersP = User::Where('utype', 'Personal')->get();
+        $personals = User::query()
+        ->where('utype', 'Personal')
+        ->where('name', 'like', '%'.$this->search.'%')
+        ->paginate($this->perPage,['*'], 'personalPage');
+
+        return $personals;
     }
 
 }

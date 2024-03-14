@@ -1,8 +1,6 @@
 <div>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Planos de Treino') }}
-        </h2>
+    <x-slot name="pageTitle">
+        {{ __('Planos de Treino') }}
     </x-slot>
     
     @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")

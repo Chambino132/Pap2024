@@ -7,6 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link href="my_images/pepa.svg" rel="icon">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -25,7 +27,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="font-sans antialiased ">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-800">
             
             @include('layouts.navigation')
             
@@ -34,7 +36,7 @@
             <!-- Page Heading -->
             
 
-                <header class="bg-white shadow dark:bg-gray-800">
+                <header class="bg-white shadow dark:bg-slate-900">
                     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div class="flex justify-between">
                             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">

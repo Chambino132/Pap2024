@@ -4,10 +4,9 @@
 
     </x-slot>
 
+    
 
     <livewire:funcionario.users.clientes>
-    
-    <livewire:funcionario.entradas.index>
-    
 
+    <livewire:funcionario.entradas.index>
 </x-app-layout>

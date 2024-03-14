@@ -1,10 +1,10 @@
 <div>
     <div>
-        <h2 class="ms-2 text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             {{ __('Noticias') }}
             
         </h2>
-        <hr class="w-1/12 mb-5">
+        <hr class="w-1/12 mb-5 border-black dark:border-white">
         @if (!$isEditing)
             
         

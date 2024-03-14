@@ -1,10 +1,10 @@
 <div>
     <div>
-        <h2 class="ms-2 text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             {{ __('Imagens') }}
             
         </h2>
-        <hr class="w-1/12 mb-5">
+        <hr class="w-1/12 mb-5 border-black dark:border-white">
         <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
             
             <table class="w-full table-auto">

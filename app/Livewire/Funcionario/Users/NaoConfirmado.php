@@ -3,14 +3,15 @@
 namespace App\Livewire\Funcionario\Users;
 
 
-use App\Models\Atividade;
-use App\Models\Cliente;
-use App\Models\Mensalidade;
 use App\Models\User;
-use App\Models\Funcionario;
+use App\Models\Cliente;
 use Livewire\Component;
 use App\Models\Personal;
+use App\Models\Atividade;
+use App\Models\Funcionario;
+use App\Models\Mensalidade;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use Livewire\Attributes\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Request;
@@ -20,9 +21,11 @@ use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
 
 class NaoConfirmado extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithPagination;
 
-    public Collection $usersNC;
+
+    public int $perPage = 10;
+    public string $search = '';
     public bool $alterar = false;
     public Collection $mensalidades;
     public Collection $atividades;
@@ -98,7 +101,6 @@ class NaoConfirmado extends Component
 
     public function mount()
     {
-        $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
         $this->mensalidades = Mensalidade::all();
         $this->atividades = Atividade::all();
 
@@ -127,14 +129,26 @@ class NaoConfirmado extends Component
         'telefone',
         'morada',
         'alterar',
-    ]);
+        ]);
 
+    }
+
+    public function montar()
+    {
+        $usersNC = User::query()
+        ->where('utype', 'PorConfirmar')
+        ->where('name', 'like', '%'. $this->search.'%')
+        ->paginate($this->perPage, ['*'], 'naoconfirmadoPage');
+
+        return $usersNC;
     }
     
     #[On('tipo::changed')]
     public function render()
     {
-        return view('livewire.funcionario.users.nao-confirmado');
+        $usersNC = $this->montar();
+
+        return view('livewire.funcionario.users.nao-confirmado', compact('usersNC'));
     }
 
     public function guardar()
@@ -187,7 +201,7 @@ class NaoConfirmado extends Component
             $this->dispatch('funcionario::created')->to('funcionario.users.funcionario');
         }
 
-        $this->usersNC = User::Where('utype', 'PorConfirmar')->get();
+        $this->montar();
         $this->cancelar();   
     }
 }

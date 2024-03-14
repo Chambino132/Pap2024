@@ -57,8 +57,8 @@
                         </table>
                         
                     </div>
-                    <div class="my-2 text-gray-900 dark:text-gray-100">
-                        {{ $entradas->links() }}
+                    <div class="my-2">
+                        {{ $entradas->links(data: ['scrollTo' => false]) }}
                     </div>
                 </div>
             </div>
