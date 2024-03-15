@@ -5,7 +5,6 @@
                 {{ __('Informações do personal: ') }} <strong>{{$UPersonal->user->name}}</strong>
             </h2>
         </header>
-
         <div class="py-3 ">
             <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
                 <table class="w-full table-auto">

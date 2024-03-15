@@ -26,6 +26,8 @@ class NaoConfirmado extends Component
 
     public int $perPage = 10;
     public string $search = '';
+    public bool $ordena = false;
+
     public bool $alterar = false;
     public Collection $mensalidades;
     public Collection $atividades;
@@ -106,6 +108,18 @@ class NaoConfirmado extends Component
 
     }
 
+    public function ordenar() : void
+    {
+        if($this->ordena)
+        {
+            $this->ordena = false;
+        }
+        else
+        {
+            $this->ordena = true;
+        }   
+    }
+
     public function rmvimg()
     {
         $this->reset(['imagem']);
@@ -135,10 +149,21 @@ class NaoConfirmado extends Component
 
     public function montar()
     {
-        $usersNC = User::query()
-        ->where('utype', 'PorConfirmar')
-        ->where('name', 'like', '%'. $this->search.'%')
-        ->paginate($this->perPage, ['*'], 'naoconfirmadoPage');
+        if($this->ordena)
+        {
+            $usersNC = User::query()
+            ->where('utype', 'PorConfirmar')
+            ->where('name', 'like', '%'. $this->search.'%')
+            ->orderBy('name')
+            ->paginate($this->perPage, ['*'], 'naoconfirmadoPage');
+        }
+        else
+        {
+            $usersNC = User::query()
+            ->where('utype', 'PorConfirmar')
+            ->where('name', 'like', '%'. $this->search.'%')
+            ->paginate($this->perPage, ['*'], 'naoconfirmadoPage');
+        }
 
         return $usersNC;
     }

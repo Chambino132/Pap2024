@@ -16,11 +16,24 @@ class Personal extends Component
 
     public int $perPage = 10;
     public string $search = '';
+    public bool $ordena = false;
 
     #[On('pagination::updated')]
     public function updatingSearch()
     {
         $this->resetPage('personalPage');
+    }
+
+    public function ordenar()
+    {
+        if(!$this->ordena)
+        {
+            $this->ordena = true;
+        }
+        else
+        {
+            $this->ordena = false;
+        }
     }
 
     public function render()
@@ -32,11 +45,22 @@ class Personal extends Component
 
     #[On('personal::created')]
     public function montar() 
-    {
-        $personals = User::query()
-        ->where('utype', 'Personal')
-        ->where('name', 'like', '%'.$this->search.'%')
-        ->paginate($this->perPage,['*'], 'personalPage');
+    {   
+        if(!$this->ordena)
+        {
+            $personals = User::query()
+            ->where('utype', 'Personal')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->paginate($this->perPage,['*'], 'personalPage');
+        }
+        else
+        {
+            $personals = User::query()
+            ->where('utype', 'Personal')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->orderBy('name')
+            ->paginate($this->perPage,['*'], 'personalPage');
+        }
 
         return $personals;
     }

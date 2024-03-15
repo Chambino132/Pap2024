@@ -14,6 +14,7 @@ class Funcionario extends Component
 
     public int $perPage = 10;
     public string $search = '';
+    public bool $ordena = false;
 
     #[On('pagination::updated')]
     public function updatingSearch()
@@ -21,13 +22,36 @@ class Funcionario extends Component
         $this->resetPage('funcionarioPage');
     }
 
+    function ordenar() : void 
+    {
+        if($this->ordena)
+        {
+            $this->ordena = false;
+        }
+        else
+        {
+            $this->ordena = true;
+        }    
+    }
+
     #[On('funcionario::created')]
     public function montar() 
     {
-        $funcionarios = User::query()
-        ->where('utype', 'Funcionario')
-        ->where('name', 'like', '%'.$this->search.'%')
-        ->paginate($this->perPage, ['*'], 'funcionarioPage');
+        if(!$this->ordena)
+        {
+            $funcionarios = User::query()
+            ->where('utype', 'Funcionario')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->paginate($this->perPage, ['*'], 'funcionarioPage');   
+        }
+        else
+        {
+            $funcionarios = User::query()
+            ->where('utype', 'Funcionario')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->orderBy('name')
+            ->paginate($this->perPage, ['*'], 'funcionarioPage');
+        }
         
         return $funcionarios;
     }
