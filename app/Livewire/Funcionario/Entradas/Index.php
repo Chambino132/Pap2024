@@ -19,7 +19,7 @@ class Index extends Component
     public string $search = '';
     public string $firstDate = '';
     public string $lastDate = '';
-    
+    public string $ordena = '';
    
 
 
@@ -38,6 +38,18 @@ class Index extends Component
     public function mount()
     {
         $this->montar();
+    }
+
+    public function ordenar($campo)
+    {
+        if($this->ordena == $campo)
+        {
+            $this->ordena = '';
+        }
+        else
+        {
+            $this->ordena = $campo;
+        }
     }
 
 
@@ -63,14 +75,37 @@ class Index extends Component
     public function render()
     {
        
-
-        $entradas = Presenca::query()
-        ->join('clientes', 'presencas.cliente_id', 'clientes.id')
-        ->join('users', 'clientes.user_id', 'users.id')
-        ->where('users.name', 'like', '%'.$this->search.'%')
-        ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
-        ->orderBy('entrada' , 'desc')
-        ->paginate($this->perPage, ['*'], 'entradasPage');
+        if($this->ordena == 'nome')
+        {
+            $entradas = Presenca::query()
+            ->join('clientes', 'presencas.cliente_id', 'clientes.id')
+            ->join('users', 'clientes.user_id', 'users.id')
+            ->where('users.name', 'like', '%'.$this->search.'%')
+            ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
+            ->orderBy('name')
+            ->paginate($this->perPage, ['*'], 'entradasPage');
+        }
+        else if ($this->ordena == 'data')
+        {
+            $entradas = Presenca::query()
+            ->join('clientes', 'presencas.cliente_id', 'clientes.id')
+            ->join('users', 'clientes.user_id', 'users.id')
+            ->where('users.name', 'like', '%'.$this->search.'%')
+            ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
+            ->orderBy('entrada')
+            ->paginate($this->perPage, ['*'], 'entradasPage');
+        }
+        else
+        {
+            $entradas = Presenca::query()
+            ->join('clientes', 'presencas.cliente_id', 'clientes.id')
+            ->join('users', 'clientes.user_id', 'users.id')
+            ->where('users.name', 'like', '%'.$this->search.'%')
+            ->whereBetween('entrada', [$this->firstDate, $this->lastDate])
+            ->orderBy('entrada' , 'desc')
+            ->paginate($this->perPage, ['*'], 'entradasPage');
+        }
+        
 
        
 

@@ -57,15 +57,18 @@ class Customize extends Component
 
     public function cancelar(): void
     {
-        $this->reset(['alt1','alt2','alt3','alt4', 'foto']);
+        $this->reset(['alt1','alt2','alt3','alt4', 'foto', 'foto2', 'foto3', 'foto4', 'foto1']);
     }
 
-    public function alterar($imagem):void
+    public function alterar(string $imagem):void
     {
-        $this->validateOnly('foto');
+       
 
         if($imagem == 'hero1')
         {
+            $this->foto = $this->foto1;
+            $this->validateOnly('foto');
+
             Storage::disk('public')->delete($this->hero1->imagem);
 
             $name = $this->foto->getClientOriginalName();
@@ -78,6 +81,9 @@ class Customize extends Component
 
         if($imagem == 'hero2')
         {
+            $this->foto = $this->foto2;
+            $this->validateOnly('foto');
+
             Storage::disk('public')->delete($this->hero2->imagem);
 
             $name = $this->foto->getClientOriginalName();
@@ -90,6 +96,9 @@ class Customize extends Component
 
         if($imagem == 'hero3')
         {
+            $this->foto = $this->foto3;
+            $this->validateOnly('foto');
+
             Storage::disk('public')->delete($this->hero3->imagem);
 
             $name = $this->foto->getClientOriginalName();
@@ -102,6 +111,9 @@ class Customize extends Component
 
         if($imagem == 'videoImg')
         {
+            $this->foto = $this->foto4;
+            $this->validateOnly('foto');
+
             Storage::disk('public')->delete($this->videoImg->imagem);
 
             $name = $this->foto->getClientOriginalName();
@@ -157,6 +169,7 @@ class Customize extends Component
             'titulo' => $this->titulo,
         ]);
 
+        $this->cancelar();
         $this->montar();
     }
 

@@ -24,7 +24,7 @@
                                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                             <tr>
                                                 <th class="px-4 py-3 text-left">#</th>
-                                                <th wire:click='ordenar' class="px-4 pr-10 py-3 text-left inline-flex  dark:hover:bg-red-900">Nome 
+                                                <th wire:click='ordenar' class="px-4 pr-10 py-3 text-left flex  dark:hover:bg-red-900 hover:bg-red-700">Nome 
                                                     @if ($ordena)
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
                                                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -49,7 +49,7 @@
                                             </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="3">Ainda sem contactos!</td>
+                                                    <td class="px-4 py-3" colspan="3">Sem Personal trainers!</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

@@ -29,7 +29,7 @@ class Ver extends Component
     {
         $this->mensalidade->update($this->validate());
         $this->reset();
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
         $this->dispatch('notify', 'A Mensalidade foi alterada com sucesso');
     }
 
@@ -50,7 +50,7 @@ class Ver extends Component
     {
         Mensalidade::create($this->validate());
         $this->reset(['isCreating']);
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
         $this->dispatch('notify', 'A Mensalidade foi alterada com sucesso');
     }
 
@@ -67,15 +67,16 @@ class Ver extends Component
 
     public function mount()
     {
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
     }
 
     public function render()
     {
-        return view('livewire.mensalidade.ver');
         if(session('sucesso'))
         {
             $this->dispatch('notify', Session::get('sucesso'));
         }
+        return view('livewire.mensalidade.ver');
+        
     }
 }

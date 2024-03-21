@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="pageTitle">
-        Entradas
+        Clientes
 
     </x-slot>
 

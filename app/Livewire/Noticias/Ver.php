@@ -4,6 +4,8 @@ namespace App\Livewire\Noticias;
 
 use App\Models\Noticia;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
@@ -11,15 +13,19 @@ use Illuminate\Database\Eloquent\Collection;
 
 class Ver extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads , WithPagination;
 
-    public Collection $noticias;
     public bool $isEditing = false;
     public Noticia $noticia;
 
     public $foto;
     public string $titulo;
     public string $descricao;
+
+    public int $perPage = 10;
+    public string $search = '';
+    public string $ordena = '';
+    public string $arquivado = 'todos';
 
     protected $rules = [
         'foto' => 'required|image',
@@ -37,10 +43,6 @@ class Ver extends Component
         'descricao.max' => 'A descrição não pode ter mais de 255 caracteres',
     ];
 
-    public function mount() : void 
-    {
-        $this->noticias = Noticia::all();    
-    }
 
     public function editar(Noticia $noticia): void
     {
@@ -48,6 +50,17 @@ class Ver extends Component
         $this->titulo = $noticia->titulo;
         $this->descricao = $noticia->descricao;
         $this->isEditing = true;
+    }
+
+    #[On('pagination::updated')]
+    public function updatingSearch(): Void
+    {
+        $this->resetPage('noticiasPage');
+    }
+
+    public function cancelar() : void 
+    {
+        $this->reset();    
     }
 
     public function  rmvimg() : void 
@@ -90,20 +103,144 @@ class Ver extends Component
 
     public function desarquivar(Noticia $noticia): void
     {
-        $noticia->arquivado = false;
-        $noticia->save();
-        $this->noticias = Noticia::all();
+       
+    }
+
+    public function ordenar(string $ordena) : void 
+    {
+            if($this->ordena == $ordena)
+            {
+                $this->ordena = '';
+            }
+            else
+            {
+                $this->ordena = $ordena;
+            }
+    }
+
+    public function montar() 
+    {
+        if($this->ordena == 'titulo')
+        {
+            switch($this->arquivado)
+            {
+                case 'todos':
+                    $opinioes = Noticia::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->orWhere('descricao','like', '%' .$this->search. '%')
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->where('titulo', 'like', '%' .$this->search. '%')
+                        ->orWhere('descricao','like', '%' .$this->search. '%');
+                    })
+                    ->where('arquivado', true)
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'nao arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->where('titulo', 'like', '%' .$this->search. '%')
+                        ->orWhere('descricao','like', '%' .$this->search. '%');
+                    })
+                    ->where('arquivado', false)
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+            }
+ 
+        }
+        else if($this->ordena == 'descricao')
+        {
+            switch($this->arquivado)
+            {
+                case 'todos':
+                    $opinioes = Noticia::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->orWhere('descricao','like', '%' .$this->search. '%')
+                    ->orderby('descricao')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->where('titulo', 'like', '%' .$this->search. '%')
+                        ->orWhere('descricao','like', '%' .$this->search. '%');
+                    })
+                    ->where('arquivado', true)
+                    ->orderby('descricao')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'nao arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->where('titulo', 'like', '%' .$this->search. '%')
+                        ->orWhere('descricao','like', '%' .$this->search. '%');
+                    })
+                    ->where('arquivado', false)
+                    ->orderby('descricao')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+            }
+            
+        }
+        else
+        {
+            switch($this->arquivado)
+            {
+                case 'todos':
+                    $opinioes = Noticia::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->orWhere('descricao','like', '%' .$this->search. '%')
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->where('titulo', 'like', '%' .$this->search. '%')
+                        ->orWhere('descricao','like', '%' .$this->search. '%');
+                    })
+                    ->where('arquivado', true)
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+                case 'nao arquivados':
+                    $opinioes = Noticia::query()
+                    ->where(function($query){
+                        $query->Where('descricao','like', '%' .$this->search. '%')
+                        ->orwhere('titulo', 'like', '%' .$this->search. '%');  
+                    })
+                    ->where('arquivado', false)
+                    ->paginate($this->perPage, ['*'], 'noticiasPage');
+                    break;
+            }
+        }
+
+        return $opinioes;
     }
 
     public function arquivar(Noticia $noticia): void
     {
-        $noticia->arquivado = true;
-        $noticia->save();
-        $this->noticias = Noticia::all();
+        if(!$noticia->arquivado)
+        {
+            $noticia->arquivado = true;
+            $noticia->save();
+        }
+        else
+        {
+            $noticia->arquivado = false;
+            $noticia->save();
+        }
+        
     }
 
     public function render()
-    {
-        return view('livewire.noticias.ver');
+    {   
+        $noticias = $this->montar();
+
+        return view('livewire.noticias.ver', compact('noticias'));
     }
 }
