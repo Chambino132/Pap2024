@@ -15,7 +15,7 @@
                 </div>
                 <div class="py-8 ">
 
-                    <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+                    <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
                         <table class="w-full table-auto">
                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                 
@@ -30,7 +30,7 @@
                                 </thead>
                                 <tbody class="text-gray-900 dark:text-slate-900">
                                     @forelse ($mensalidades as $mensalidade)
-                                    <tr class="hover:bg-gray-100">
+                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                         <td class="px-4 py-3">
                                             {{$mensalidade->id}}
                                         </td>

@@ -6,7 +6,7 @@
 
         <div class="py-8 ">
 
-            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-300">
+            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
                 <table class="w-full table-auto">
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
         
@@ -20,7 +20,7 @@
                         </thead>
                         <tbody class="text-gray-900 dark:text-slate-900">
         
-                            <tr class="hover:bg-gray-100">
+                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                 <td class="px-4 py-3">
                                     {{$funcionario->telefone}}
                                 </td>

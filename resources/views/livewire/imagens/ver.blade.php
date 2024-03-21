@@ -19,7 +19,7 @@
         </div>
         
         <hr style="border:1px solid red" class="mb-4 mt-4" >
-        <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+        <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
             
             <table class="w-full table-auto">
                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
@@ -43,7 +43,7 @@
                     <tbody class="text-gray-900 dark:text-slate-900">
                         @forelse ($fotos as $foto)
                         <div wire:key='item-{{$foto->id}}'>
-                            <tr class="hover:bg-gray-100">
+                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                 
                                 <td class="px-4 py-3">
                                     {{$foto->titulo}}
