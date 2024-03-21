@@ -12,7 +12,7 @@ class Ver extends Component
 {   
     use WithPagination;
 
-    public int $perPage = 10;
+    public int $perPage = 5;
     public string $search = '';
     public string $ordena = '';
     public string $arquivado = 'todos';
@@ -118,8 +118,10 @@ class Ver extends Component
         }
     }
 
-    public function arquivar(Fotos $foto): void 
-    {   
+    public function arquivar($id): void 
+    {  
+        $foto = Fotos::findOrFail($id);
+
         if(!$foto->arquivado)
         {
             $foto->arquivado = true;
@@ -130,6 +132,8 @@ class Ver extends Component
             $foto->arquivado = false;
             $foto->save();
         }
+
+        
     }
 
 
