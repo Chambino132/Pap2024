@@ -9,7 +9,7 @@
     @endif
         <div class="w-1/2 py-6">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                     <div class="p-6 pb-3 text-gray-900 dark:text-gray-100">
                         <header class="flex justify-between">
                             <h2 class="text-2xl font-medium text-gray-900 dark:text-gray-100">

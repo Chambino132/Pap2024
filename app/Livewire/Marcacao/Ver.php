@@ -9,16 +9,16 @@ use Livewire\Component;
 
 class Ver extends Component
 {
-    public Collection $marcacoes;
 
     public bool $EstadoChan = false;
     public string $estado = 'pendente';
     public int $iteration;
 
-    public function mount()
-    {
-        $this->montar();
-    }
+    public int $perPage = 10;
+    public string $search = '';
+    public string $ordena = '';
+    public string $est = 'todos';
+
 
     public function MudEstado(int $iter)
     {
@@ -32,11 +32,9 @@ class Ver extends Component
     }
 
     public function StoreEstado(Marcacao $marcacao)
-    {
-        
+    {   
         $marcacao->estado = $this->estado;
         $marcacao->save();
-        $this->montar();
         $this->EstadoChan = false;
     }
 
@@ -48,34 +46,75 @@ class Ver extends Component
         $this->montar();
     }
 
-    public function montar()
-    {
-        $this->marcacoes = new Collection();
-        $allmarcacaos = Marcacao::all();
-
-
-        foreach($allmarcacaos as $marcacao)
-        {
-            if(Auth::user()->utype == "Cliente")
-            {
-                if($marcacao->cliente->id == Auth::user()->cliente->id )
-                {
-                    $this->marcacoes->add($marcacao);
-                }
-            }
-            else if(Auth::user()->utype == "Personal")
-            {
-                if($marcacao->personal->id == Auth::user()->personal->id)
-                {
-                    $this->marcacoes->add($marcacao);
-                }
-            }
-        }
-    }
 
 
     public function render()
     {
-        return view('livewire.marcacao.ver');
+        
+            if($this->est == 'todos')
+            {
+                if(Auth::user()->utype == "Cliente")
+                {
+                    $marcacoes = Auth::user()->cliente->marcacaos()
+                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
+                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('users', 'personals.user_id', 'users.id')
+                    ->where(function($query){
+                        $query->where('users.name', 'like', '%' .$this->search. '%')
+                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                    })
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->paginate($this->perPage, ['*'], 'marcacoesPage');
+                }
+                else
+                {
+                    $marcacoes = Auth::user()->personal->marcacaos()
+                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
+                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('clientes', 'marcacaos.cliente_id', 'clientes.id')
+                    ->join('users', 'clientes.user_id', 'users.id')
+                    ->where(function($query){
+                        $query->where('users.name', 'like', '%' .$this->search. '%')
+                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                    })
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->paginate($this->perPage, ['*'], 'marcacoesPage');
+                }
+            }
+            else
+            {
+                if(Auth::user()->utype == "Cliente")
+                {
+                    $marcacoes = Auth::user()->cliente->marcacaos()
+                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
+                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('users', 'personals.user_id', 'users.id')
+                    ->where(function($query){
+                        $query->where('users.name', 'like', '%' .$this->search. '%')
+                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                    })
+                    ->where('estado', $this->est)
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->paginate($this->perPage, ['*'], 'marcacoesPage');
+                }
+                else
+                {
+                    $marcacoes = Auth::user()->personal->marcacaos()
+                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
+                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('clientes', 'marcacaos.cliente_id', 'clientes.id')
+                    ->join('users', 'clientes.user_id', 'users.id')
+                    ->where(function($query){
+                        $query->where('users.name', 'like', '%' .$this->search. '%')
+                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                    })
+                    ->where('estado', $this->est)
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->paginate($this->perPage, ['*'], 'marcacoesPage');
+                }
+            }
+        
+
+        return view('livewire.marcacao.ver', compact('marcacoes'));
     }
 }
