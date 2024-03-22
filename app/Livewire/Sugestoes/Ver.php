@@ -79,6 +79,7 @@ class Ver extends Component
                     ->where('users.name', 'like', '%' .$this->search. '%')
                     ->orWhere('descricao','like', '%' .$this->search. '%')
                     ->orderby('name')
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
                 case 'arquivados':
@@ -90,6 +91,7 @@ class Ver extends Component
                     })
                     ->where('arquivado', false)
                     ->orderby('name')
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
                 case 'nao arquivados':
@@ -100,6 +102,7 @@ class Ver extends Component
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
                     ->where('arquivado', true)
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->orderby('name')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
@@ -115,6 +118,7 @@ class Ver extends Component
                     ->join('users', 'reclamacaos.user_id', 'users.id')
                     ->where('users.name', 'like', '%' .$this->search. '%')
                     ->orWhere('descricao','like', '%' .$this->search. '%')
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
                 case 'arquivados':
@@ -125,6 +129,7 @@ class Ver extends Component
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
                     ->where('arquivado', false)
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
                 case 'nao arquivados':
@@ -132,15 +137,16 @@ class Ver extends Component
                     ->join('users', 'reclamacaos.user_id', 'users.id')
                     ->where(function($query){
                         $query->Where('descricao','like', '%' .$this->search. '%')
-                        ->orwhere('users.name', 'like', '%' .$this->search. '%');
-                        
+                        ->orwhere('users.name', 'like', '%' .$this->search. '%');       
                     })
                     ->where('arquivado', true)
+                    ->select('reclamacaos.id as id', 'reclamacaos.descricao as descricao', 'users.name as name', 'reclamacaos.arquivado as arquivado')
                     ->paginate($this->perPage, ['*'], 'opinoesPage');
                     break;
             }
             
         }
+
 
         return $opinioes;
     }

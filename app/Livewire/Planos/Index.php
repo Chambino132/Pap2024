@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public Collection $planos;
+
+    use WithPagination;
 
     public ?string $base = "base";
     public ?bool $add = false;
@@ -23,23 +24,26 @@ class Index extends Component
     public ?string $descricao;
     public ?string $preco;
 
+    public int $perPage = 10;
+    public string $search = '';
+    public string $ordena = '';
+
     protected $rules = [
         'nome' => 'required | string',
         'descricao' => 'required | string',
         'preco' => 'required | numeric',
     ];
 
+    #[On('paginationPlanos::updated')]
+    public function updatingSearch(): Void
+    {
+        $this->setPage(1, 'planosPage');
+    }
 
     public function mount()
     {
-        if(Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
-        {
-            $this->planos = Plano::all();
-        }
-        else
-        {
-            $this->planos = Auth::user()->cliente->planos;
-        }
+
+        
 
         if(session('sucesso'))
         {
@@ -49,9 +53,82 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.planos.index');
+        if(Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
+        {
+            switch($this->ordena)
+            {
+                case 'nome':
+                    $planos = Plano::query()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->orderby('nome')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+                case 'descricao':
+                    $planos = Plano::query()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->orderby('descricao')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+                case 'preco':
+                    $planos = Plano::query()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->orderby('preco')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+                default:
+                    $planos = Plano::query()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+            }
+
+            
+        }
+        else
+        {
+            switch($this->ordena)
+            {
+                case 'nome':
+                    $planos = Auth::user()->cliente->planos()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->orderby('nome')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+                case 'descricao':
+                    $planos = Auth::user()->cliente->planos()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->orderby('descricao')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+                default:
+                    $planos = Auth::user()->cliente->planos()
+                    ->where('nome', 'like', '%'. $this->search. '%')
+                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
+                    ->paginate($this->perPage, ['*'], 'planosPage');
+                    break;
+            }
+        }
+
+        return view('livewire.planos.index', compact('planos'));
     }
 
+    public function ordenar($ordena)
+    {
+        if($this->ordena == $ordena)
+        {
+            $this->ordena = '';
+        }
+        else
+        {
+            $this->ordena = $ordena;
+        }
+    }
     
 
     #[On('plano::delete')]
@@ -64,7 +141,6 @@ class Index extends Component
     public function refresh()
     {
         $this->reset();
-        $this->planos = Plano::all();
     }
 
     public function alterar($id)

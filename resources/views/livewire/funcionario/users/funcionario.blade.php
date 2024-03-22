@@ -21,7 +21,6 @@
                     <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
                         <table class="w-full table-auto rounded-lg">
                             <thead class="text-white bg-red-500 rounded-lg shadow-lg dark:bg-red-700">
-
                                 <tr>
                                     <th class="px-4 py-3 text-left">#</th>
                                     <th wire:click='ordenar' class="px-4 pr-10 flex py-3 text-left dark:hover:bg-red-900 hover:bg-red-700">Nome 
@@ -46,7 +45,6 @@
                                     <td class="px-4 py-3">{{$funcionario->name}}</td>
                                     <td class="px-4 py-3">{{$funcionario->email}}</td>
                                 </tr>
-    
                                 @empty
                                     <tr>
                                         <td class="px-4 py-3" colspan="3">Sem Funcionarios</td>

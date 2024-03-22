@@ -96,10 +96,10 @@ class Table extends Component
         $equipamentos = $this->montar();
 
 
-        // if(session('sucesso'))
-        // {
-        //     $this->dispatch('notify', Session::get('sucesso'));
-        // }
+        if(session('sucesso'))
+        {
+            $this->dispatch('notify', Session::get('sucesso'));
+        }
         return view('livewire.funcionario.equipamento.table', compact('equipamentos'));
     }
 }

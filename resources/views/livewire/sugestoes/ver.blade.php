@@ -44,44 +44,45 @@
                                 </thead>
                                 <tbody class="text-gray-900 dark:text-slate-900 ">
                                     @forelse ($opinioes as $opiniao)
-                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                        <td class="px-4 py-3 w-3">
-                                            {{$opiniao->id}}
-                                        </td>
-                                        <td class="px-4 py-3 w-48">
-                                            <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">{{$opiniao->user->name}}</span>
-                                        </td>
-                                        <td class="px-4 py-3 w-72 overflow">{{$opiniao->descricao}}</td>
-                                        <td  class="px-4 py-3 w-4">
-                                            @if ($opiniao->arquivado)
-                                                Não
-                                            @else
-                                                Sim
-                                            @endif
-                                        </td>
-                                        
-                                        
-                                        <td class="px-4 py-3 text-center">
-                                            <x-dropdown-table>
-                                                <x-slot name="trigger">
-                                                    <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
-                                                </x-slot>
-                                                <x-slot name="content">
-                                                    <x-dropdown-link-table  wire:click="$dispatch('openModal', {component:'modals.confirmacao-deletesugestao', arguments: {sugestao:{{$opiniao->id}}}})">
-                                                        Excluir
-                                                    </x-dropdown-link-table>
-                                                    <x-dropdown-link-table wire:click.prevent='arquivar({{$opiniao->id}})'>
-                                                    @if ($opiniao->arquivado)
-                                                        Arquivar
-                                                    @else
-                                                        Desarquivar
-                                                    @endif
-                                                    </x-dropdown-link-table>
-                                                </x-slot>
-                                            </x-dropdown-table>
+                                    <div>
+                                        <tr wire:key='{{$opiniao->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                                            <td class="px-4 py-3 w-3">
+                                                {{$opiniao->id}}
+                                            </td>
+                                            <td class="px-4 py-3 w-48">
+                                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">{{$opiniao->name}}</span>
+                                            </td>
+                                            <td class="px-4 py-3 w-72 overflow">{{$opiniao->descricao}}</td>
+                                            <td  class="px-4 py-3 w-4">
+                                                @if ($opiniao->arquivado)
+                                                    Não
+                                                @else
+                                                    Sim
+                                                @endif
+                                            </td>
                                             
-                                        </td>
-                                    </tr>
+                                            <td class="px-4 py-3 text-center">
+                                                <x-dropdown-table>
+                                                    <x-slot name="trigger">
+                                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                    </x-slot>
+                                                    <x-slot name="content">
+                                                        <x-dropdown-link-table  wire:click="$dispatch('openModal', {component:'modals.confirmacao-deletesugestao', arguments: {sugestao:{{$opiniao->id}}}})">
+                                                            Excluir
+                                                        </x-dropdown-link-table>
+                                                        <x-dropdown-link-table wire:click.prevent='arquivar({{$opiniao->id}})'>
+                                                        @if ($opiniao->arquivado)
+                                                            Arquivar
+                                                        @else
+                                                            Desarquivar
+                                                        @endif
+                                                        </x-dropdown-link-table>
+                                                    </x-slot>
+                                                </x-dropdown-table>
+                                                
+                                            </td>
+                                        </tr>
+                                    </div>
                                     @empty
                                     <tr>
                                         <td class="px-4 py-3 text-left" colspan="5">Ainda sem Opiniões</td>

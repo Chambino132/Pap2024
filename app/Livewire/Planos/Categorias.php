@@ -2,34 +2,49 @@
 
 namespace App\Livewire\Planos;
 
+use Livewire\Component;
 use App\Models\Categoria;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Livewire\Attributes\On;
-use Livewire\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class Categorias extends Component
 {
-    public Collection $categorias;
+    use WithPagination;
 
     public ?Categoria $cID;
     public string $base = "base";
 
     public ?string $nome;
 
+    public int $perPage = 10;
+    public string $search = '';
+    public string $ordena = '';
+
     public function render()
     {
-        return view('livewire.planos.categorias');
-    }
+        if($this->ordena == 'nome')
+        {
+            $categorias = Categoria::query()
+                            ->where('nome', 'like', '%'. $this->search. '%')
+                            ->orderby('nome')
+                            ->paginate($this->perPage, ['*'], 'categoriasPage');
+        }
+        else
+        {
+            $categorias = Categoria::query()
+                            ->where('nome', 'like', '%'. $this->search. '%')
+                            ->paginate($this->perPage, ['*'], 'categoriasPage');
+        }
 
-    public function mount()
-    {
-        $this->categorias = Categoria::all();
         if(session('sucessoC'))
         {
             $this->dispatch('notify', Session::get('sucessoC'));
         }
+
+        return view('livewire.planos.categorias', compact('categorias'));
     }
 
     public function rules()
@@ -42,7 +57,25 @@ class Categorias extends Component
     public function refresh()
     {
         $this->reset();
-        $this->categorias = Categoria::all();
+    }
+
+    public function ordenar(): void 
+    {
+        if($this->ordena == 'nome')
+        {
+            $this->ordena = '';
+        }    
+        else
+        {
+            $this->ordena = 'nome';
+        }
+    }
+
+
+    #[On('paginationCategorias::updated')]
+    public function updatingSearch(): Void
+    {
+        $this->setPage(1,'categoriasPage');
     }
 
     #[On('categoria::delete')]

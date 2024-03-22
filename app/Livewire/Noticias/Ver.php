@@ -137,7 +137,7 @@ class Ver extends Component
                         $query->where('titulo', 'like', '%' .$this->search. '%')
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
-                    ->where('arquivado', true)
+                    ->where('arquivado', false)
                     ->orderby('titulo')
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
@@ -147,7 +147,7 @@ class Ver extends Component
                         $query->where('titulo', 'like', '%' .$this->search. '%')
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
-                    ->where('arquivado', false)
+                    ->where('arquivado', true)
                     ->orderby('titulo')
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
@@ -171,7 +171,7 @@ class Ver extends Component
                         $query->where('titulo', 'like', '%' .$this->search. '%')
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
-                    ->where('arquivado', true)
+                    ->where('arquivado', false)
                     ->orderby('descricao')
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
@@ -181,7 +181,7 @@ class Ver extends Component
                         $query->where('titulo', 'like', '%' .$this->search. '%')
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
-                    ->where('arquivado', false)
+                    ->where('arquivado', true)
                     ->orderby('descricao')
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
@@ -204,7 +204,7 @@ class Ver extends Component
                         $query->where('titulo', 'like', '%' .$this->search. '%')
                         ->orWhere('descricao','like', '%' .$this->search. '%');
                     })
-                    ->where('arquivado', true)
+                    ->where('arquivado', false)
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
                 case 'nao arquivados':
@@ -213,7 +213,7 @@ class Ver extends Component
                         $query->Where('descricao','like', '%' .$this->search. '%')
                         ->orwhere('titulo', 'like', '%' .$this->search. '%');  
                     })
-                    ->where('arquivado', false)
+                    ->where('arquivado', true)
                     ->paginate($this->perPage, ['*'], 'noticiasPage');
                     break;
             }

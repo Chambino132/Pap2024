@@ -43,28 +43,30 @@
                                                 </thead>
                                                 <tbody class="text-gray-900 dark:text-slate-900">
                                                     @forelse ($usersNC as $userNC)
-                                                    <tr class="hover:bg-gray-100  dark:hover:bg-gray-300">
-                                                        <td class="px-4 py-3">
-                                                            {{ $userNC->id }}
-                                                        </td>
-                                                        <td class="px-4 py-3">{{ $userNC->name }}</td>
-                                                        <td class="px-4 py-3">{{ $userNC->email }}</td>
-                                                        
-                                                        
-                                                        <td class="px-4 py-3 text-center">
-                                                            <x-dropdown-table>
-                                                                <x-slot name="trigger">
-                                                                    <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
-                                                                </x-slot>
-                                                                <x-slot name="content">
-                                                                    <x-dropdown-link-table wire:click='mudar({{ $userNC->id }})'>
-                                                                          Associar
-                                                                    </x-dropdown-link-table>
-                                                                </x-slot>
-                                                            </x-dropdown-table>
+                                                    <div wire:key='{{$userNC->id}}'>
+                                                        <tr class="hover:bg-gray-100  dark:hover:bg-gray-300">
+                                                            <td class="px-4 py-3">
+                                                                {{ $userNC->id }}
+                                                            </td>
+                                                            <td class="px-4 py-3">{{ $userNC->name }}</td>
+                                                            <td class="px-4 py-3">{{ $userNC->email }}</td>
                                                             
-                                                        </td>
-                                                    </tr>
+                                                            
+                                                            <td class="px-4 py-3 text-center">
+                                                                <x-dropdown-table>
+                                                                    <x-slot name="trigger">
+                                                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                                    </x-slot>
+                                                                    <x-slot name="content">
+                                                                        <x-dropdown-link-table wire:click='mudar({{ $userNC->id }})'>
+                                                                            Associar
+                                                                        </x-dropdown-link-table>
+                                                                    </x-slot>
+                                                                </x-dropdown-table>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </div>
                                                     @empty
                                                         <tr>
                                                             <td class="px-4 py-3" colspan="3">Sem users por confirmar!</td>

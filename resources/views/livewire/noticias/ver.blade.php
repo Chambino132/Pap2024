@@ -56,41 +56,43 @@
                     </thead>
                     <tbody class="text-gray-900 dark:text-slate-900">
                         @forelse ($noticias as $noticia)
-                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                        <div >
+                            <tr  class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                                <td class="px-4 py-3">
+                                    {{$noticia->titulo}}
+                                </td>
+                            <td class="px-4 py-3"><img class="h-20" src="{{Storage::url($noticia->imagem)}}"></td>
+                            <td class="px-4 py-3">{{$noticia->descricao}}</td>
                             <td class="px-4 py-3">
-                                {{$noticia->titulo}}
+                                @if ($noticia->arquivado)
+                                    Não
+                                @else
+                                    Sim 
+                                @endif
                             </td>
-                           <td class="px-4 py-3"><img class="h-20" src="{{Storage::url($noticia->imagem)}}"></td>
-                           <td class="px-4 py-3">{{$noticia->descricao}}</td>
-                           <td class="px-4 py-3">
-                            @if ($noticia->arquivado)
-                                Não
-                            @else
-                                Sim 
-                            @endif
-                        </td>
-                            <td class="px-4 py-3 text-center">
-                                <x-dropdown-table>
-                                    <x-slot name="trigger">
-                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
-                                    </x-slot>
-                                    <x-slot name="content">
-                                        <x-dropdown-link-table wire:click='editar({{$noticia->id}})'>
-                                            Editar
+                                <td class="px-4 py-3 text-center">
+                                    <x-dropdown-table>
+                                        <x-slot name="trigger">
+                                            <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link-table wire:click='editar({{$noticia->id}})'>
+                                                Editar
+                                            </x-dropdown-link-table>
+                                            <x-dropdown-link-table wire:key='{{$noticia->id}}' wire:click='arquivar({{$noticia->id}})'>
+                                            @if (!$noticia->arquivado)
+                                                Desarquivar
+                                            @else
+                                                Arquivar
+                                            @endif
                                         </x-dropdown-link-table>
-                                        <x-dropdown-link-table wire:click='arquivar({{$noticia->id}})'>
-                                        @if (!$noticia->arquivado)
-                                            Desarquivar
-                                        @else
-                                            Arquivar
-                                        @endif
-                                    </x-dropdown-link-table>
-                                    </x-slot>
-                                </x-dropdown-table>
-                                
-    
-                            </td>
-                        </tr>
+                                        </x-slot>
+                                    </x-dropdown-table>
+                                    
+        
+                                </td>
+                            </tr>
+                        </div>
                         @empty
                             <tr>
                                 <td class="px-4 py-3" colspan="3">Ainda sem imagens</td>

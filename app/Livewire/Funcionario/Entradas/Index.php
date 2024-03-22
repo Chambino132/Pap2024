@@ -2,14 +2,15 @@
 
 namespace App\Livewire\Funcionario\Entradas;
 
-use App\Models\Cliente;
-use App\Models\Presenca;
 use Carbon\Carbon;
+use App\Models\Cliente;
 use Livewire\Component;
+use App\Models\Presenca;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Collection;
 
 class Index extends Component
 {
@@ -32,6 +33,7 @@ class Index extends Component
     #[On('novaEntrada')]
     public function novaEntrada()
     {
+        session()->flash('sucesso', 'A Entrada foi registada com sucesso');
         return redirect(request()->header('Referer'));
     }
 
@@ -106,8 +108,10 @@ class Index extends Component
             ->paginate($this->perPage, ['*'], 'entradasPage');
         }
         
-
-       
+        if(session('sucesso'))
+        {
+            $this->dispatch('notify', Session::get('sucesso'));
+        }
 
         return view('livewire.funcionario.entradas.index', compact('entradas'));
     }

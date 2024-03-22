@@ -42,9 +42,8 @@
                     </thead>
                     <tbody class="text-gray-900 dark:text-slate-900">
                         @forelse ($fotos as $foto)
-                        <div wire:key='item-{{$foto->id}}'>
-                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                
+                        <div wire:key='{{$foto->id}}'>
+                            <tr wire:key='{{$foto->id}}tr' class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                 <td class="px-4 py-3">
                                     {{$foto->titulo}}
                                 </td>
@@ -71,8 +70,6 @@
                                             </x-dropdown-link-table>
                                         </x-slot>
                                     </x-dropdown-table>
-                                    
-        
                                 </td>
                             </tr>
                         </div>

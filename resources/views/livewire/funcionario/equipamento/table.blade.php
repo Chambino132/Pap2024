@@ -62,41 +62,42 @@
                 </thead>
                 <tbody class="text-gray-900 dark:text-slate-900">
                     @forelse ($equipamentos as $maquina)
-                    <div class="hidden">n</div>
-                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                        <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
-                            class="px-4 py-3">{{$maquina->id}}</td>
-                        <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
-                            class="px-4 py-3">{{$maquina->equipamento}}</td>
-                        <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
-                            class="px-4 py-3">{{$maquina->dtAquisicao}}</td>
-                        <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
-                            class="px-4 py-3">
-                            <span
-                                class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-500">{{$maquina->preco}}€</span>
-                        </td>
+                    <div >
+                        <tr wire:key='{{$maquina->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
+                                class="px-4 py-3">{{$maquina->id}}</td>
+                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
+                                class="px-4 py-3">{{$maquina->equipamento}}</td>
+                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
+                                class="px-4 py-3">{{$maquina->dtAquisicao}}</td>
+                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
+                                class="px-4 py-3">
+                                <span
+                                    class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-500">{{$maquina->preco}}€</span>
+                            </td>
 
-                        <td class="px-4 py-3 text-center">
-                            <x-dropdown-table>
-                                <x-slot name="trigger">
-                                    <button
-                                        class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
-                                </x-slot>
-                                <x-slot name="content">
-                                    <x-dropdown-link-table wire:click="alterar({{$maquina->id}})">
-                                        Alterar
-                                        </x-dropdown-link>
-                                        <x-dropdown-link-table
-                                            wire:click="$dispatch('openModal', {component: 'modals.confirmacao-delete', arguments: {maquina:{{$maquina->id}}}})">
-                                            Excluir
+                            <td class="px-4 py-3 text-center">
+                                <x-dropdown-table>
+                                    <x-slot name="trigger">
+                                        <button
+                                            class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                    </x-slot>
+                                    <x-slot name="content">
+                                        <x-dropdown-link-table wire:click="alterar({{$maquina->id}})">
+                                            Alterar
                                             </x-dropdown-link>
-                                            <x-dropdown-link-table wire:click='add({{$maquina->id}})'>
-                                                + Problema
-                                            </x-dropdown-link>
-                                </x-slot>
-                            </x-dropdown-table>
-                        </td>
-                    </tr>
+                                            <x-dropdown-link-table
+                                                wire:click="$dispatch('openModal', {component: 'modals.confirmacao-delete', arguments: {maquina:{{$maquina->id}}}})">
+                                                Excluir
+                                                </x-dropdown-link>
+                                                <x-dropdown-link-table wire:click='add({{$maquina->id}})'>
+                                                    + Problema
+                                                </x-dropdown-link>
+                                    </x-slot>
+                                </x-dropdown-table>
+                            </td>
+                        </tr>
+                    </div>
                     @empty
                     <td class="px-4 py-3" colspan="3">Sem maquinas!</td>
                     @endforelse
