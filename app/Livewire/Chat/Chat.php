@@ -2,16 +2,17 @@
 
 namespace App\Livewire\Chat;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Mensagem;
 use Livewire\Attributes\On;
 use App\Models\Chat as ModelChat;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Collection;
-
 use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Collection;
 
 class Chat extends Component
 {
@@ -228,6 +229,7 @@ class Chat extends Component
         }
         
         $this->chats = $this->unsorted->sortByDesc('lastMensagem');
+        
     }
 
 
@@ -238,6 +240,7 @@ class Chat extends Component
     
     public function render()
     {
+        
         return view('livewire.chat.chat');
     }
 }

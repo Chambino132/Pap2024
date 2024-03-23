@@ -6,9 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Session;
 
-class UserIsFuncionarioOrAdmin
+class UserIsNotPersonal
 {
     /**
      * Handle an incoming request.
@@ -17,14 +16,10 @@ class UserIsFuncionarioOrAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check())
-        {
-            if(Auth::user()->utype === "Admin" || Auth::user()->utype === "Funcionario" )
-            {
-                return $next($request);
-            }
+        if(Auth::user()->utype != "Personal" && Auth::user()->utype != "PorConfirmar") {
+            return $next($request);
         }
-
+        
         session()->flash("failed", "Não tem permissão para aceder a esta pagina");
         return redirect()->route('login');
     }

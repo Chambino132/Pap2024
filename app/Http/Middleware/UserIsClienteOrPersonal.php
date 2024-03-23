@@ -24,6 +24,7 @@ class UserIsClienteOrPersonal
             }
         }
 
+        session()->flash("failed", "Não tem permissão para aceder a esta pagina");
         return redirect()->route('login');
     }
 }
