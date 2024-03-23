@@ -1,6 +1,6 @@
 <div class=" py-4">
-    <h2 class="text-2xl">Pagamentos de {{$mes}}</h2>
-    <hr class="pb-5 w-72">
+    <h2 class="text-2xl">Pagamentos de: {{$mes}}</h2>
+    <hr class="pb-5 border-black dark:border-white" style="width: 172px">
     <div class="lg:flex">    
         <div class="sm:flex md:w-2/3">
             <div class="w-1/2 dark:bg-green-500 bg-green-300 p-3 border border-1 border-slate-600">
