@@ -8,10 +8,13 @@ use Livewire\Component;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class Exercicios extends Component
 {
-    public Collection $exercicios;
+    
+    use WithPagination;
+
     public Collection $categorias;
 
     public ?string $nome;
@@ -21,20 +24,66 @@ class Exercicios extends Component
     public string $base = "base";
     public ?Exercicio $eID;
 
+    public int $perPage = 10;
+    public string $search = '';
+    public string $ordena = '';
+
+    public string $class = 'overflow-y-auto';
+
     protected $rules = [
         'nome' => 'required | string',
         'descricao' => 'required | string',
         'categoria_id' => 'required | numeric',
     ];
 
+    #[On('paginationExercicios::updated')]
+    public function updatingSearch(): Void
+    {
+        $this->setPage(1,'exerciciosPage');
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
+
     public function render()
     {
-        return view('livewire.planos.exercicios');
+        switch($this->ordena)
+        {
+            case 'nome':
+
+                break;
+            case 'descricao':
+
+                break;
+            case 'categoria':
+
+                break;
+            default:
+                $exercicios = Exercicio::query()
+                                ->join('categorias', 'exercicios.categoria_id', 'categorias.id')
+                                ->where('exercicios.nome', 'like', '%'. $this->search. '%')
+                                ->orwhere('descricao', 'like', '%'. $this->search. '%')
+                                ->orwhere('categorias.nome', 'like', '%'. $this->search .'%')
+                                ->select('exercicios.nome as nome', 'categorias.nome as catNome', 'exercicios.descricao as descricao', 'exercicios.id as id')
+                                ->orderby('exercicios.id')
+                                ->paginate($this->perPage, ['*'], 'exerciciosPage');
+                break;
+        }
+
+        return view('livewire.planos.exercicios', compact('exercicios'));
     }
 
     public function mount()
     {
-        $this->exercicios = Exercicio::all();
+
         $this->categorias = Categoria::all();
         if(session('sucessoE'))
         {
@@ -45,7 +94,6 @@ class Exercicios extends Component
     public function refresh()
     {
         $this->reset();
-        $this->exercicios = Exercicio::all();
         $this->categorias = Categoria::all();
     }
     

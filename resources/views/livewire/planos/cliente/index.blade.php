@@ -1,7 +1,7 @@
 <div>
     <div class="px-10 mt-5">
         <h2 class="text-2xl dark:text-white">Planos Disponiveis</h2>
-        <hr class="w-1/5">
+        <hr class="w-52 border-black dark:border-white">
     </div>
     @foreach ($planos as $plano)
     @if ($loop->first)
@@ -9,7 +9,7 @@
     @endif
         <div class="w-1/2 py-6">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                     <div class="p-6 pb-3 text-gray-900 dark:text-gray-100">
                         <header class="flex justify-between">
                             <h2 class="text-2xl font-medium text-gray-900 dark:text-gray-100">

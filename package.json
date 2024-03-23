@@ -16,7 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "perfect-scrollbar": "^1.5.5"
-
+        "perfect-scrollbar": "^1.5.5",
+        "portal-vue": "^3.0.0"
     }
 }

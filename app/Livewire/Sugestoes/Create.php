@@ -34,6 +34,7 @@ class Create extends Component
     {
         if(Session('sucesso'))
         {
+            dd('asfasf');
             $this->dispatch('notify', Session::get('sucesso'));
         }
 

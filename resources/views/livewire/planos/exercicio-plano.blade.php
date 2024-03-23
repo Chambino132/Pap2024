@@ -4,35 +4,63 @@
             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Lista de exercicios do plano: ') }} {{$plano->nome}}
             </h2>
+            <hr class="w-64 border-black dark:border-white">
         </header>
-        <table class="w-full border border-spacing-2 border-slate-500">
-            <thead>
-                <th class="px-3 py-2">#</th>
-                <th class="px-3 py-2">Nome</th>
-                <th class="px-3 py-2">Descrição</th>
-                <th class="px-3 py-2">Categoria</th>
-                <th class="px-3 py-2">Repetições</th>
-                <th class="px-3 py-2">Ações</th>
-            </thead>
-            <tbody>
-                @forelse ($plano->exercicios as $exercicio)
-                    <tr>
-                        <td class="px-3 py-2 border border-slate-700">{{$exercicio->id}}</td>
-                        <td class="px-3 py-2 border border-slate-700">{{$exercicio->nome}}</td>
-                        <td class="px-3 py-2 border border-slate-700">{{$exercicio->descricao}}</td>
-                        <td class="px-3 py-2 border border-slate-700">{{$exercicio->categoria->nome}}</td>
-                        <td class="px-3 py-2 border border-slate-700">{{$exercicio->pivot->repeticoes}}</td>
-                        <td class="px-3 py-2 border border-slate-700">
-                            <button class='inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click="dessassociar({{$exercicio->id}})">dessassociar</button>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3">Ainda sem Exercicios!</td>
-                    </tr>
-                @endforelse
-            </tbody>     
-        </table>     
+
+        <div class="py-8 ">
+
+            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
+                <table class="w-full table-auto">
+                        <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
+        
+                            <tr>
+                                <th class="px-4 py-3 text-left">#</th>
+                                <th class="px-4 py-3 text-left">Nome</th>
+                                <th class="px-4 py-3 text-left">Descrição</th>
+                                <th class="px-4 py-3 text-left">Categoria</th>
+                                <th class="px-4 py-3 text-left">Repetições</th>
+        
+                                <th class="w-1/12 px-4 py-3">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-900 dark:text-slate-900">
+                            @forelse ($plano->exercicios as $exercicio)
+                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                                <td class="px-4 py-3">
+                                    {{$exercicio->id}}
+                                </td>
+                                <td class="px-4 py-3">{{$exercicio->nome}}</td>
+                                <td class="px-4 py-3">{{$exercicio->descricao}}</td>
+                                <td class="px-4 py-3">{{$exercicio->categoria->nome}}</td>
+                                <td class="px-4 py-3 flex">
+        
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">{{$exercicio->pivot->repeticoes}}</span>
+                                </td>
+                                
+                                <td class="px-4 py-3 text-center">
+                                    <x-dropdown-table>
+                                        <x-slot name="trigger">
+                                            <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-400 focus:outline-none">&#8943;</button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link-table wire:click="dessassociar({{$exercicio->id}})">
+                                                Dessassociar
+                                            </x-dropdown-link-table>
+                                        </x-slot>
+                                    </x-dropdown-table>
+                                    
+        
+                                </td>
+                            </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3">Ainda sem Exercicios!</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                </table>
+            </div>
+        </div>   
     </div>
 </div>
 

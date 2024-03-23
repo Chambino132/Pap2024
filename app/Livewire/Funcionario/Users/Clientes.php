@@ -7,34 +7,84 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use Livewire\Attributes\On; 
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class Clientes extends Component
 {
-    public Collection $usersC;
+    use WithPagination;
+
     public ?string $entrada;
     public ?int $cliente_id;
+
+    public int $perPage = 10;
+    public string $search = '';
+    public bool $ordena = false;
+
+    public string $class = 'overflow-y-auto';
 
     protected $rules = [
         'cliente_id' => 'required',
         'entrada' => 'required',
     ];
 
-    #[On('cliente::created')]
-    public function mount()
+    #[On('pagination::updated')]
+    public function updatingSearch()
     {
-        $this->montar();
+        $this->resetPage('clientePage');
     }
 
-    public function montar(): void 
+    function ordenar() : void 
     {
-        $this->usersC = User::Where('utype',"Cliente")->get();
+        if($this->ordena)
+        {
+            $this->ordena = false;
+        }
+        else
+        {
+            $this->ordena = true;
+        }    
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
+
+    public function montar() 
+    {
+        if($this->ordena)
+        {
+            $usersC = User::query()
+            ->where('utype',"Cliente")
+            ->where('name', 'like', '%' .$this->search. '%')
+            ->orderBy('name')
+            ->paginate($this->perPage, ['*'], 'clientesPage');
+        }
+        else
+        {
+            $usersC = User::query()
+            ->where('utype',"Cliente")
+            ->where('name', 'like', '%' .$this->search. '%')
+            ->paginate($this->perPage, ['*'], 'clientePage');
+        }
+
+        return $usersC;
     }
    
     public function render()
     {
-        return view('livewire.funcionario.users.clientes');
+        $usersC = $this->montar();
+
+        return view('livewire.funcionario.users.clientes', compact('usersC'));
     }
+    
 
     public function saveEntrada($id)
     {

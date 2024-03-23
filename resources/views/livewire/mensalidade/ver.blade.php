@@ -1,21 +1,21 @@
 <div class="py-12">
     <div class="mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+        <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 @if (!$isEditing && !$isCreating)
                 <div class="flex justify-between">
-                    <header>
                         <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Mensalidades') }}
+                            {{ __('Lista de Mensalidades') }}
+                            <hr class="border-black dark:border-white" style="width: 205px">
                         </h2>
-                    </header>
+                        
                     <button wire:click='novo' class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                         Adicionar
                     </button>
                 </div>
                 <div class="py-8 ">
 
-                    <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+                    <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
                         <table class="w-full table-auto">
                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                 
@@ -30,12 +30,12 @@
                                 </thead>
                                 <tbody class="text-gray-900 dark:text-slate-900">
                                     @forelse ($mensalidades as $mensalidade)
-                                    <tr class="hover:bg-gray-100">
+                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                         <td class="px-4 py-3">
                                             {{$mensalidade->id}}
                                         </td>
                                         <td class="px-4 py-3">{{$mensalidade->dias}}x Por Semana</td>
-                                        <td class="px-4 py-3">
+                                        <td class="px-4 py-3 flex">
                 
                                             <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-300 rounded-lg">{{$mensalidade->preco}}€</span>
                                         </td>
@@ -43,7 +43,7 @@
                                         <td class="px-4 py-3 text-center">
                                             <x-dropdown-table>
                                                 <x-slot name="trigger">
-                                                    <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                    <button wire:click='changeClass' class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                                 </x-slot>
                                                 <x-slot name="content">
                                                     <x-dropdown-link-table wire:click='edit({{$mensalidade->id}})'>

@@ -3,29 +3,66 @@
 namespace App\Livewire\Funcionario\Users;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\Attributes\On; 
+use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
+use Illuminate\Database\Eloquent\Collection;
 
 class Personal extends Component
 {
-    public Collection $usersP;
 
-    public function mount()
+    use WithPagination;
+
+    public int $perPage = 10;
+    public string $search = '';
+    public bool $ordena = false;
+
+    #[On('pagination::updated')]
+    public function updatingSearch()
     {
-        $this->usersP = User::Where('utype', 'Personal')->get();
+        $this->resetPage('personalPage');
     }
 
-    
+    public function ordenar()
+    {
+        if(!$this->ordena)
+        {
+            $this->ordena = true;
+        }
+        else
+        {
+            $this->ordena = false;
+        }
+    }
+
     public function render()
     {
-        return view('livewire.funcionario.users.personal');
+        $personals = $this->montar();
+
+        return view('livewire.funcionario.users.personal', compact('personals'));
     }
 
     #[On('personal::created')]
-    public function refresh() : void 
-    {
-        $this->usersP = User::Where('utype', 'Personal')->get();
+    public function montar() 
+    {   
+        if(!$this->ordena)
+        {
+            $personals = User::query()
+            ->where('utype', 'Personal')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->paginate($this->perPage,['*'], 'personalPage');
+        }
+        else
+        {
+            $personals = User::query()
+            ->where('utype', 'Personal')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->orderBy('name')
+            ->paginate($this->perPage,['*'], 'personalPage');
+        }
+
+        return $personals;
     }
 
 }

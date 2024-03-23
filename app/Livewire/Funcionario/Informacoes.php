@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Funcionario;
 
-use App\Models\Funcionario;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Funcionario;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\This;
 
 class Informacoes extends Component
@@ -61,6 +62,8 @@ class Informacoes extends Component
             $nome = $this->imagem->getClientOriginalName();
 
             $foto = $this->imagem->storeAs('images', $nome, 'public');
+
+            Storage::disk('public')->delete($this->funcionario);
 
             $this->funcionario->update([
                 'telefone' => $this->telefone,

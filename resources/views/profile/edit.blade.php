@@ -5,14 +5,14 @@
 
     <div class="py-12">
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg">
+            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-900 sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
             @if (Auth::user()->utype != "Admin")
 
-            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg">
+            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-900 sm:rounded-lg">
                     <section>
                         <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             As Suas Informações
@@ -27,7 +27,7 @@
                     </section>
             </div>
             @endif
-            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg">
+            <div class="p-4 bg-white shadow sm:p-8 dark:bg-gray-900 sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>

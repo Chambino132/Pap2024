@@ -1,13 +1,12 @@
 <x-app-layout>
     <x-slot name="pageTitle">
-        Entradas
+        Clientes
 
     </x-slot>
 
+    
 
     <livewire:funcionario.users.clientes>
-    
-    <livewire:funcionario.entradas.index>
-    
 
+    <livewire:funcionario.entradas.index>
 </x-app-layout>

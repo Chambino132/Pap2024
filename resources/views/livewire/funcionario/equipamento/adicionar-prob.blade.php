@@ -24,5 +24,5 @@
         <div class="pt-3">
             <x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
     </form>
-    <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button>
+    <x-secondary-button wire:click="$dispatch('cancelar')">{{ __('Cancelar') }}</x-secondary-button>
     </div>

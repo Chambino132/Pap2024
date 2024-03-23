@@ -41,34 +41,46 @@ Route::middleware('auth')->group(function () {
     })->name('clieInform');
 });
 
+Route::middleware('adminFun')->group(function () {
+    Route::get('/users', function () {
+        return view('Funcionario.users.index');
+    })->middleware(['auth', 'verified'])->name('users');
+    Route::get('/equipamento', function () {
+        return view('Funcionario.equipamento.index');
+    })->middleware(['auth', 'verified'])->name('equipamento');
+    Route::get('/entradas', function () {
+        return view('Funcionario.entradas.index');
+    })->middleware(['auth', 'verified'])->name('entradas');
+    Route::get('/sugestaos', function(){
+        return view('sugestoes.index');
+    })->name('sugestao');
+    Route::get('/mensalidades', function(){
+        return view('mensalidade.index');
+    })->name('mensalidade');
+    Route::get('/customize', Customize::class)->name('customize');
+});
+
+
+
 // Routes das dashboards
 
-Route::get('/users', function () {
-    return view('Funcionario.users.index');
-})->middleware(['auth', 'verified'])->name('users');
-
-Route::get('/equipamento', function () {
-    return view('Funcionario.equipamento.index');
-})->middleware(['auth', 'verified'])->name('equipamento');
-
-Route::get('/entradas', function () {
-    return view('Funcionario.entradas.index');
-})->middleware(['auth', 'verified'])->name('entradas');
-
-Route::get('/marcacoes', function (){
-    return view('marcacoes.cliente');
-})->name('marcacoes');
-
-Route::get('/sugestaos', function(){
-    return view('sugestoes.index');
-})->name('sugestao');
+Route::middleware('clientePer')->group(function () {
+    Route::get('/marcacoes', function (){
+        return view('marcacoes.cliente');
+    })->name('marcacoes');
+});
 
 
-Route::get('/mensalidades', function(){
-    return view('mensalidade.index');
-})->name('mensalidade');
 
-Route::get('/customize', Customize::class)->name('customize');
+
+
+
+
+
+
+
+
+
 
 Route::get('/planos/{cliente?}/{plano?}', Main::class)->name('planos');
 

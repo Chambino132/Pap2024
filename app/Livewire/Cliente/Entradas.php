@@ -18,8 +18,9 @@ class Entradas extends Component
 
     public function mount()
     {
-        $cliente = Cliente::where('user_id', Auth::user()->id)->get();
+        $cliente = Cliente::where('user_id', Auth::user()->id)->get()->first();
 
-        $this->presencas = Presenca::where('cliente_id', $cliente->pluck('id')->first())->get();
+        $this->presencas = Presenca::where('cliente_id', $cliente->id)->get();
+
     }
 }

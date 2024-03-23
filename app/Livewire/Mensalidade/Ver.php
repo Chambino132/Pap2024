@@ -17,6 +17,8 @@ class Ver extends Component
     public bool $isEditing = false;
     public bool $isCreating = false;
 
+    public string $class = 'overflow-y-auto';
+
     public ?string $dias;
     public ?string $preco;
     
@@ -25,11 +27,22 @@ class Ver extends Component
         'preco' => 'required|numeric',
     ];
 
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
+
     public function alterar(): void 
     {
         $this->mensalidade->update($this->validate());
         $this->reset();
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
         $this->dispatch('notify', 'A Mensalidade foi alterada com sucesso');
     }
 
@@ -50,7 +63,7 @@ class Ver extends Component
     {
         Mensalidade::create($this->validate());
         $this->reset(['isCreating']);
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
         $this->dispatch('notify', 'A Mensalidade foi alterada com sucesso');
     }
 
@@ -67,15 +80,16 @@ class Ver extends Component
 
     public function mount()
     {
-        $this->mensalidades = Mensalidade::all();
+        $this->mensalidades = Mensalidade::all()->sortBy('dias');
     }
 
     public function render()
     {
-        return view('livewire.mensalidade.ver');
         if(session('sucesso'))
         {
             $this->dispatch('notify', Session::get('sucesso'));
         }
+        return view('livewire.mensalidade.ver');
+        
     }
 }

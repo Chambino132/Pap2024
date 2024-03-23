@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
             ->has(Reclamacao::factory())
             ->create();
 
-        Equipamento::factory(5)
+        Equipamento::factory(100)
             ->has(Problema::factory(3))
             ->create();
 

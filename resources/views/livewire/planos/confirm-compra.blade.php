@@ -1,6 +1,6 @@
 <div class="py-12 ">
     <div class="mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+        <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <h2 class="text-lg">O utilizador <strong>{{$cliente->user->name}}</strong>  comprou o plano <strong>{{$plano->nome}}</strong></h2>
                 <h2 class="mt-2 text-md">Confirme que recebeu o pagamento de <strong>{{$plano->preco}}€</strong> e clique no botão</h2>

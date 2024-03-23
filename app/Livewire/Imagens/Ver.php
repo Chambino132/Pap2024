@@ -3,68 +3,157 @@
 namespace App\Livewire\Imagens;
 
 use App\Models\Fotos;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Collection;
 
 class Ver extends Component
-{
-    public Collection $fotos;
+{   
+    use WithPagination;
 
+    public int $perPage = 5;
+    public string $search = '';
+    public string $ordena = '';
+    public string $arquivado = 'todos';
+
+    public string $class = 'overflow-y-auto';
+
+    #[On('pagination::updated')]
+    public function updatingSearch(): Void
+    {
+        $this->resetPage('fotosPage');
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function montar()
     {
-        $this->fotos = Fotos::all();
-
-        $count = 0;
-        foreach($this->fotos as $foto)
+        if($this->ordena == 'titulo')
         {
-            if($foto->titulo == "hero1")
+            switch($this->arquivado)
             {
-                $this->fotos->forget($count);
+                case 'todos':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
+                case 'arquivados':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->where('arquivado', false)
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
+                case 'nao arquivados':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->where('arquivado', true)
+                    ->orderby('titulo')
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
             }
+ 
+        }
+        else
+        {
+            switch($this->arquivado)
+            {
+                case 'todos':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
+                case 'arquivados':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->where('arquivado', false)
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
+                case 'nao arquivados':
+                    $fotos = Fotos::query()
+                    ->where('titulo', 'like', '%' .$this->search. '%')
+                    ->whereNot('titulo', 'hero1')
+                    ->whereNot('titulo', 'hero2')
+                    ->whereNot('titulo', 'videoImg')
+                    ->whereNot('titulo', 'hero3')
+                    ->where('arquivado', true)
+                    ->paginate($this->perPage, ['*'], 'fotosPage');
+                    break;
+            }
+        }
+    
+        return $fotos;
+    }
 
-            if($foto->titulo == "hero2")
-            {
-                $this->fotos->forget($count);
-            }
 
-            if($foto->titulo == "hero3")
-            {
-                $this->fotos->forget($count);
-            }
-            
-            if($foto->titulo == "videoImg")
-            {
-                $this->fotos->forget($count);
-            }
-            $count++;
+
+    public function ordenar(): void 
+    {
+        if($this->ordena == 'titulo')
+        {
+            $this->ordena = '';
+        }    
+        else
+        {
+            $this->ordena = 'titulo';
         }
     }
 
-    public function arquivar(Fotos $foto): void 
-    {   
-        $foto->arquivado = true;
-        $foto->save();  
+    public function arquivar($id): void 
+    {  
+        $foto = Fotos::findOrFail($id);
 
-        $this->montar();
+        if(!$foto->arquivado)
+        {
+            $foto->arquivado = true;
+            $foto->save();  
+        }
+        else
+        {
+            $foto->arquivado = false;
+            $foto->save();
+        }
+
+        
     }
 
-    public function desarquivar(Fotos $foto): void 
-    {   
-        $foto->arquivado = false;
-        $foto->save();  
-
-        $this->montar();
-    }
-
-
-    public function mount() : void 
-    {
-        $this->montar();    
-    }
 
     public function render()
     {
-        return view('livewire.imagens.ver');
+        $fotos = $this->montar();
+
+
+        return view('livewire.imagens.ver', compact('fotos'));
     }
 }
