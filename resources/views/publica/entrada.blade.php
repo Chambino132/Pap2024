@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
@@ -11,7 +12,7 @@
         @if ($hero1)
           <div class="carousel-item active" style="background-image: url({{Storage::url($hero1->imagem)}})">
         @else
-          <div class="carousel-item active" >
+          <div class="carousel-item active" style="background-image: url('my_images/hero1.jpg')">
         @endif
         
           <div class="carousel-container">
@@ -22,12 +23,12 @@
             </div>
           </div>
         </div>
-
+        
         <!-- Slide 2 -->
         @if ($hero2)
           <div class="carousel-item" style="background-image: url({{Storage::url($hero2->imagem)}})">
         @else
-          <div class="carousel-item">        
+          <div class="carousel-item" style="background-image: url('my_images/hero2.jpg')">        
         @endif
         
           <div class="carousel-container">
@@ -42,7 +43,7 @@
         @if ($hero3)
           <div class="carousel-item" style="background-image: url({{Storage::url($hero3->imagem)}})">
         @else
-          <div class="carousel-item"> 
+          <div class="carousel-item" style="background-image: url('my_images/hero3.jpg')"> 
         @endif
         
           <div class="carousel-container">
@@ -73,7 +74,7 @@
           @if ($videoImg)
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url({{Storage::url($videoImg->imagem)}})">
           @else
-            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url('my_images/videoImg.jpg')">
           @endif
           
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a>
