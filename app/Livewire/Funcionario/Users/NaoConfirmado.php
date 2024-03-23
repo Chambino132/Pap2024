@@ -24,6 +24,8 @@ class NaoConfirmado extends Component
     use WithFileUploads, WithPagination;
 
 
+    public string $class = "overflow-y-auto";
+
     public int $perPage = 10;
     public string $search = '';
     public bool $ordena = false;
@@ -106,6 +108,17 @@ class NaoConfirmado extends Component
         $this->mensalidades = Mensalidade::all();
         $this->atividades = Atividade::all();
 
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-y-visible';
     }
 
     public function ordenar() : void

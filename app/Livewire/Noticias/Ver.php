@@ -27,6 +27,8 @@ class Ver extends Component
     public string $ordena = '';
     public string $arquivado = 'todos';
 
+    public string $class = 'overflow-y-auto';
+
     protected $rules = [
         'foto' => 'required|image',
         'titulo' => 'required|string',
@@ -43,6 +45,16 @@ class Ver extends Component
         'descricao.max' => 'A descrição não pode ter mais de 255 caracteres',
     ];
 
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function editar(Noticia $noticia): void
     {
@@ -101,10 +113,6 @@ class Ver extends Component
         return redirect(route('customize'));
     }
 
-    public function desarquivar(Noticia $noticia): void
-    {
-       
-    }
 
     public function ordenar(string $ordena) : void 
     {

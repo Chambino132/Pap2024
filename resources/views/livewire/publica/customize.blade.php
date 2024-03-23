@@ -9,7 +9,10 @@
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
                     <div class="p-6 text-gray-900 dark:text-gray-100  ">
                             <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Primeira Imagem da Pagina
-                                Principal</label>
+                                Principal
+                                <hr class="border-black dark:border-white">
+                            </label>
+                                
                             @if (!$alt1)
                                 @if ($hero1)
                                 <img class="w-96 h-40" src="{{Storage::url($hero1->imagem)}}">
@@ -138,7 +141,9 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         
                             <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Segunda Imagem da Pagina
-                                Principal</label>
+                                Principal
+                                <hr class="border-black dark:border-white">
+                            </label>
                             @if (!$alt2)
                                 @if ($hero2)
                                 <img class="w-96" src="{{Storage::url($hero2->imagem)}}">
@@ -275,7 +280,9 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         <div>
                             <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Terceira Imagem da Pagina
-                                Principal</label>
+                                Principal
+                                <hr class="border-black dark:border-white">
+                            </label>
                                 <x-input-error class="mt-2" :messages="$errors->get('foto3')" />
                             @if (!$alt3)
                                 @if ($hero3)
@@ -408,7 +415,9 @@
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         <div>
-                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-3">Imagem de capa do video</label>
+                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-3">Imagem de capa do video
+                                <hr class="border-black dark:border-white w-48">
+                            </label>
                             @if (!$alt4)
                                 @if ($videoImg)
                                 <img class="w-96" src="{{Storage::url($videoImg->imagem)}}">
@@ -543,7 +552,7 @@
         </div>
     </div>
     <div class="xl:flex">
-        <div class="py-12 w-1/3">
+        <div class="py-12 xl:w-1/3">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -552,7 +561,7 @@
                 </div>
             </div>
         </div>
-        <div class="py-12 w-2/3">
+        <div class="py-12 xl:w-2/3">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">

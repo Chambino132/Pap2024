@@ -5,7 +5,7 @@
                 <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                     Lista de Funcionarios
                 </h2>
-                <hr class="w-48 border-black dark:border-white">
+                <hr class="border-black dark:border-white" style="width: 195px">
                 <div>
                     <x-text-input wire:model.live='search' class="w-1/2 mt-2 me-3" placeholder="Pesquisa"></x-text-input>
                     <select wire:model.live='perPage' id="perPage" class="'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40'" wire:change="$dispatch('pagination::updated')">
@@ -18,7 +18,7 @@
                 <hr style="border:1px solid red" class="mb-4 mt-4" >
                 <div>
 
-                    <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
+                    <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400 overflow-hidden">
                         <table class="w-full table-auto rounded-lg">
                             <thead class="text-white bg-red-500 rounded-lg shadow-lg dark:bg-red-700">
                                 <tr>

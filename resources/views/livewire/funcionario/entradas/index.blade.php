@@ -27,7 +27,7 @@
                 </div>
                 <div class="py-5 ">
 
-                    <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
+                    <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400 overflow-hidden">
                         <table class="w-full table-auto">
                             <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
 
@@ -64,7 +64,7 @@
                                         <td class="px-4 py-3">
                                             {{$entrada->cliente->user->name}}
                                         </td>
-                                        <td class="px-4 py-3">
+                                        <td class="px-4 py-3 flex">
                                             <span
                                                 class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-500">{{$entrada->entrada}}</span>
                                         </td>

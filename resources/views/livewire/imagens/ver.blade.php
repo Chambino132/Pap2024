@@ -3,7 +3,7 @@
         <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             {{ __('Lista de Imagens') }}
         </h2>
-        <hr class="w-40 border-black dark:border-white">
+        <hr class="border-black dark:border-white" style="width: 157px">
         <div>
             <x-text-input wire:model.live='search' class="w-1/2 mt-2 me-3" placeholder="Pesquisa"></x-text-input>
             <select wire:model.live='perPage' id="perPage" class="'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40'" wire:change="$dispatch('pagination::updated')">
@@ -19,7 +19,7 @@
         </div>
         
         <hr style="border:1px solid red" class="mb-4 mt-4" >
-        <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
+        <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
             
             <table class="w-full table-auto">
                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
@@ -58,7 +58,7 @@
                                 <td class="px-4 py-3 text-center">
                                     <x-dropdown-table>
                                         <x-slot name="trigger">
-                                            <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                            <button wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                         </x-slot>
                                         <x-slot name="content">
                                             <x-dropdown-link-table wire:click='arquivar({{$foto->id}})'>

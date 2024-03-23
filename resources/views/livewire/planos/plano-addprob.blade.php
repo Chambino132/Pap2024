@@ -4,6 +4,7 @@
             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Adicione exercicios ao plano: ') }} {{$plano->nome}}
             </h2>
+            <hr class="w-64 border-black dark:border-white">
         </header>
 
         <div class="pt-2 pb-5">

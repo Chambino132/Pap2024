@@ -1,5 +1,6 @@
 <div>
     <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">Adicionar Imagens</h2>
+    <hr class="border-black dark:border-white w-44">
 
     <form wire:submit="guardar">
     <div class="px-4 py-2">

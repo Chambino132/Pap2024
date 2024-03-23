@@ -24,6 +24,8 @@ class Ver extends Component
     public bool $ordena = false;
     public string $arquivado = 'todos';
 
+    public string $class = 'overflow-y-auto';
+
 
     #[On('sugestao::delete')]
     public function refresh()
@@ -46,6 +48,16 @@ class Ver extends Component
         }
     }
 
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function ordenar(): void 
     {

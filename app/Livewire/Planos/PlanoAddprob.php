@@ -13,7 +13,7 @@ class PlanoAddprob extends ModalComponent
 
     public ?Plano $plano;
 
-    public array $exercicio_id;
+    public string $exercicio_id;
     public string $repeticoes;
 
     public function render()

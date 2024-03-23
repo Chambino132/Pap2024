@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Marcacao;
 
-use App\Models\Marcacao;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Marcacao;
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class Ver extends Component
 {
@@ -19,11 +20,23 @@ class Ver extends Component
     public string $ordena = '';
     public string $est = 'todos';
 
+    public string $class = 'overflow-y-auto';
 
     public function MudEstado(int $iter)
     {
         $this->iteration = $iter;
         $this->EstadoChan = true;
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-y-visible';
     }
 
     public function CanMud()
@@ -43,7 +56,6 @@ class Ver extends Component
     {
         $marcacao->estado = 'cancelado';
         $marcacao->save();
-        $this->montar();
     }
 
 

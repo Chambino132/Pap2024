@@ -13,6 +13,8 @@ class Table extends Component
 {
     use WithPagination;
 
+    public string $class = "overflow-y-auto";
+
     public int $perPage = 10;
     public string $search = '';
     public string $ordenaPor = ''; 
@@ -52,6 +54,16 @@ class Table extends Component
         }
     }
 
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function montar() 
     {

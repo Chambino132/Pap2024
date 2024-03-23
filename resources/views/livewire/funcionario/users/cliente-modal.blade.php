@@ -1,13 +1,13 @@
 <div class="w-full overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
     <div class="p-6 text-gray-900 dark:text-gray-100">
-        <header>
+
             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Informações do cliente: ') }} <strong>{{$UCliente->user->name}}</strong>
             </h2>
-        </header>
+            <hr class="border-black dark:border-white" style="width: 213px">
         <div class="py-3">
 
-            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
+            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg overflow-hidden">
                 <table class="w-full table-auto">
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
         
@@ -24,19 +24,19 @@
         
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                 <td class="px-4 py-3">
-                                    {{$UCliente->mensalidade->dias}}
+                                    {{$UCliente->mensalidade->dias}}x Semana
                                 </td>
                                 <td class="px-4 py-3">{{$UCliente->dtNascimento}}</td>
                                 <td class="px-4 py-3">{{$UCliente->NIF}}</td>
                                 <td class="px-4 py-3">{{$UCliente->telefone}}</td>
                                 <td class="px-4 py-3">{{$UCliente->morada}}</td>
-                                <td class="px-4 py-3">
+                                <td class="px-4 py-3 flex">
         
-                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">@if ($mes < 10)
+                                    <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">@if ($mes < 10)
                                         0{{$mes}}
                                         @else
                                         {{$mes}}
-                                    @endif- {{$ano}} </span>
+                                    @endif/ {{$ano}} </span>
                                 </td>
                             </tr>
                             

@@ -1,12 +1,13 @@
 <div>
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
       {{ __('Deixe aqui a sua Opinião') }} 
+      <hr class="w-52">
     </h2>
     <div class="h-auto bg-white dark:bg-gray-900 pb-2">
         <div class="mx-2">
             <form wire:submit='guardar'>
             <div class="pb-5 pt-5">
-                <textarea wire:model='descricao' class="w-full resize-none border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" name="descricao" id=""  rows="7" placeholder="{{__('Descreva a sua Opinião')}}"></textarea>
+                <textarea wire:model='descricao' class="w-full resize-none border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" name="descricao" id=""  rows="7" placeholder="{{__('Escreva a sua Opinião')}}"></textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('descricao')" />
             </div>
             <button type="submit" class="rounded-lg bg-gradient-to-r from-red-400 to-red-600 w-60 h-8 flex justify-center hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9 w-full">

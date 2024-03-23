@@ -4,6 +4,7 @@
             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Lista de exercicios do plano: ') }} {{$plano->nome}}
             </h2>
+            <hr class="w-64 border-black dark:border-white">
         </header>
 
         <div class="py-8 ">
@@ -31,7 +32,7 @@
                                 <td class="px-4 py-3">{{$exercicio->nome}}</td>
                                 <td class="px-4 py-3">{{$exercicio->descricao}}</td>
                                 <td class="px-4 py-3">{{$exercicio->categoria->nome}}</td>
-                                <td class="px-4 py-3">
+                                <td class="px-4 py-3 flex">
         
                                     <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">{{$exercicio->pivot->repeticoes}}</span>
                                 </td>

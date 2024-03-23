@@ -23,6 +23,19 @@ class Categorias extends Component
     public string $search = '';
     public string $ordena = '';
 
+    public string $class = 'overflow-y-auto';
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
+
     public function render()
     {
         if($this->ordena == 'nome')

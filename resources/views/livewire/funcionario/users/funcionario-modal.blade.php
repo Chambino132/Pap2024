@@ -3,10 +3,11 @@
         <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             Informações do Funcionario: {{$funcionario->user->name}}
         </h2>
+        <hr class="border-black dark:border-white" style="width: 260px">
 
-        <div class="py-8 ">
+        <div class="py-3">
 
-            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
+            <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400 overflow-hidden">
                 <table class="w-full table-auto">
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
         

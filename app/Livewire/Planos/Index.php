@@ -24,6 +24,8 @@ class Index extends Component
     public ?string $descricao;
     public ?string $preco;
 
+    public string $class = 'overflow-y-auto';
+
     public int $perPage = 10;
     public string $search = '';
     public string $ordena = '';
@@ -38,6 +40,17 @@ class Index extends Component
     public function updatingSearch(): Void
     {
         $this->setPage(1, 'planosPage');
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
     }
 
     public function mount()

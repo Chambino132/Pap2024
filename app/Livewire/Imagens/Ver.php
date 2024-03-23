@@ -17,12 +17,24 @@ class Ver extends Component
     public string $ordena = '';
     public string $arquivado = 'todos';
 
+    public string $class = 'overflow-y-auto';
+
     #[On('pagination::updated')]
     public function updatingSearch(): Void
     {
         $this->resetPage('fotosPage');
     }
 
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function montar()
     {

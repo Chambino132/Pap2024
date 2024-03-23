@@ -2,7 +2,7 @@
     @if ($base == "base")
         <div class="py-12 ">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
+                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg ">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                                 @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
@@ -10,9 +10,9 @@
                                 @else
                                     {{ __('Os seus Planos') }}
                                 @endif
-                                
+                                <hr class="w-36 border-black dark:border-white">
                             </h2>
-                            <div class="flex justify-between">
+                            <div class="md:flex justify-between">
                                 <div>
                                     <x-text-input wire:model.live='search' class="w-96 mt-2 me-3" placeholder="Pesquisa"></x-text-input>
                                     <select wire:model.live='perPage' id="perPage" class="'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40'" wire:change="$dispatch('paginationPlanos::updated')">
@@ -22,7 +22,7 @@
                                     </select>
                                 </div>
                                 @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
-                                    <button class='inline-flex items-center px-4 py-2 mb-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click='adicionar'>Adicionar</button>
+                                    <button class='inline-flex items-center self-center px-4 py-2 my-2  text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click='adicionar'>Adicionar</button>
                                 @endif
                             </div>
                             <hr style="border:1px solid red" class="mb-4 mt-4" >
@@ -30,7 +30,7 @@
 
                     <div>
 
-                        <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg overflow-x-visible">
+                        <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
                             <table class="w-full table-auto">
                                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                     
@@ -86,14 +86,14 @@
                                             <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">{{$plano->nome}}</td>
                                             <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">{{$plano->descricao}}</td>
                                             @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
-                                            <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">
+                                            <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3 flex">
                                                 <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">{{$plano->preco}}€</span>
                                             </td>
                                             
                                             <td class="px-4 py-3 text-center">
                                                 <x-dropdown-table>
                                                     <x-slot name="trigger">
-                                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                        <button wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                                     </x-slot>
                                                     <x-slot name="content">
                                                         <x-dropdown-link-table wire:click="alterar({{$plano->id}})">

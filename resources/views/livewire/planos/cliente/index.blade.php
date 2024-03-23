@@ -1,7 +1,7 @@
 <div>
     <div class="px-10 mt-5">
         <h2 class="text-2xl dark:text-white">Planos Disponiveis</h2>
-        <hr class="w-1/5">
+        <hr class="w-52 border-black dark:border-white">
     </div>
     @foreach ($planos as $plano)
     @if ($loop->first)

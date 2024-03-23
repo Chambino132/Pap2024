@@ -22,7 +22,7 @@
                         
                         <hr style="border:1px solid red" class="mb-4 mt-4" >
                 <div>
-                    <div class="bg-white dark:bg-gray-400 rounded-b-lg shadow-lg">
+                    <div class="bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
                         <table class="w-full table-auto">
                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                     <tr>
@@ -52,19 +52,19 @@
                                             <td class="px-4 py-3 w-48">
                                                 <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">{{$opiniao->name}}</span>
                                             </td>
-                                            <td class="px-4 py-3 w-72 overflow">{{$opiniao->descricao}}</td>
+                                            <td class="px-4 py-3 w-72">{{$opiniao->descricao}}</td>
                                             <td  class="px-4 py-3 w-4">
                                                 @if ($opiniao->arquivado)
-                                                    Não
+                                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">Não</span>
                                                 @else
-                                                    Sim
+                                                <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">Sim</span>
                                                 @endif
                                             </td>
                                             
                                             <td class="px-4 py-3 text-center">
                                                 <x-dropdown-table>
                                                     <x-slot name="trigger">
-                                                        <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                        <button wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                                     </x-slot>
                                                     <x-slot name="content">
                                                         <x-dropdown-link-table  wire:click="$dispatch('openModal', {component:'modals.confirmacao-deletesugestao', arguments: {sugestao:{{$opiniao->id}}}})">

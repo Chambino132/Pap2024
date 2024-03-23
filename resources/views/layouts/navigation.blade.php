@@ -59,11 +59,15 @@
                         </x-nav-link>
                     </div>
                 @endif
-                <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
-                    <x-nav-link :href="route('planos')" :active="request()->routeIs('planos')">
-                        {{ __('Planos de Treino') }}
-                    </x-nav-link>
-                </div>
+
+                @if (Auth::user()->utype != "PorConfirmar")
+                    <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
+                        <x-nav-link :href="route('planos')" :active="request()->routeIs('planos')">
+                            {{ __('Planos de Treino') }}
+                        </x-nav-link>
+                    </div> 
+                @endif
+                
 
             </div>
 
@@ -129,6 +133,55 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+       
+        @if (Auth::user()->utype == "Admin" || Auth::user()->utype == "Funcionario")
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                {{ __('Trabalhadores') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('equipamento')" :active="request()->routeIs('equipamento')">
+                {{ __('Equipamentos') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('entradas')" :active="request()->routeIs('entradas')">
+                {{ __('Clientes') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
+                {{ __('Sugestões') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('mensalidade')" :active="request()->routeIs('mensalidade')">
+                {{ __('Mensalidades') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('customize')" :active="request()->routeIs('customize')">
+                {{ __('Customizar Site') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
+
+        @if (Auth::user()->utype == "Cliente" || Auth::user()->utype == "Personal")
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('marcacoes')" :active="request()->routeIs('marcacoes')">
+                    {{ __('Marcações') }}
+                </x-responsive-nav-link>
+            </div>
+        @endif
+
+        @if (Auth::user()->utype != "PorConfirmar" && Auth::user()->utype != "Personal")
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('planos')" :active="request()->routeIs('planos')">
+                {{ __('Planos de Treino') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

@@ -16,7 +16,7 @@
         
         <livewire:planos.categorias>
         <livewire:planos.exercicios>
-    @else
+    @elseif (Auth::user()->utype == "Cliente")
         <livewire:planos.cliente.index>
     @endif
 

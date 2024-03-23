@@ -17,6 +17,8 @@ class Ver extends Component
     public bool $isEditing = false;
     public bool $isCreating = false;
 
+    public string $class = 'overflow-y-auto';
+
     public ?string $dias;
     public ?string $preco;
     
@@ -24,6 +26,17 @@ class Ver extends Component
         'dias' => 'required|numeric|max:6',
         'preco' => 'required|numeric',
     ];
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
+    }
 
     public function alterar(): void 
     {

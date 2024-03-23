@@ -8,6 +8,7 @@
                             <h2 class="text-xl font-medium text-gray-800 dark:text-gray-100">
                                 {{ __('Lista de Categorias') }}
                             </h2>
+                            <hr class="w-44 border-black dark:border-white">
 
                             <div class="flex justify-between">
                                 <div>
@@ -24,7 +25,7 @@
                             <hr style="border:1px solid red" class="mb-4 mt-4" >
                         <div >
 
-                            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
+                            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
                                 <table class="w-full table-auto">
                                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                             <tr>
@@ -55,7 +56,7 @@
                                                 <td class="px-4 py-3 text-center">
                                                     <x-dropdown-table>
                                                         <x-slot name="trigger">
-                                                            <button class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
+                                                            <button wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                                         </x-slot>
                                                         <x-slot name="content">
                                                             <x-dropdown-link-table wire:click="alterar({{$categoria->id}})">

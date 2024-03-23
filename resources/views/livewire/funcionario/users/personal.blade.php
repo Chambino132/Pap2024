@@ -6,7 +6,7 @@
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('Lista de Personal Trainers') }}
                             </h2>
-                            <hr class="w-60 border-black dark:border-white">
+                            <hr class="border-black dark:border-white" style="width: 234px">
                         </header>
                         <div>
                             <x-text-input wire:model.live='search' class="w-1/2 my-2 me-3" placeholder="Pesquisa"></x-text-input>
@@ -19,7 +19,7 @@
                         
                         <hr style="border:1px solid red" class="mt-1 mb-3">
                         <div>
-                            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg">
+                            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg overflow-hidden">
                                 <table class="w-full table-auto">
                                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                             <tr>

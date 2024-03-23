@@ -21,6 +21,8 @@ class Clientes extends Component
     public string $search = '';
     public bool $ordena = false;
 
+    public string $class = 'overflow-y-auto';
+
     protected $rules = [
         'cliente_id' => 'required',
         'entrada' => 'required',
@@ -42,6 +44,17 @@ class Clientes extends Component
         {
             $this->ordena = true;
         }    
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
     }
 
     public function montar() 
@@ -71,6 +84,7 @@ class Clientes extends Component
 
         return view('livewire.funcionario.users.clientes', compact('usersC'));
     }
+    
 
     public function saveEntrada($id)
     {

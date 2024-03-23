@@ -28,7 +28,7 @@
         @livewireStyles
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="font-sans antialiased ">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-800">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden">
             
             @include('layouts.navigation')
             

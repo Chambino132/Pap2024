@@ -28,6 +28,8 @@ class Exercicios extends Component
     public string $search = '';
     public string $ordena = '';
 
+    public string $class = 'overflow-y-auto';
+
     protected $rules = [
         'nome' => 'required | string',
         'descricao' => 'required | string',
@@ -38,6 +40,17 @@ class Exercicios extends Component
     public function updatingSearch(): Void
     {
         $this->setPage(1,'exerciciosPage');
+    }
+
+    #[On('change::class')]
+    public function changeClassAuto(): void
+    {
+        $this->class = 'overflow-y-auto';
+    }
+    
+    public function changeClass(): void
+    {
+        $this->class = 'overflow-visible';
     }
 
     public function render()
