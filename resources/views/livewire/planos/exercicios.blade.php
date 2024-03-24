@@ -11,7 +11,7 @@
                                 <hr class="border-black dark:border-white" style="width: 170px">
                                 <div class="flex justify-between">
                                     <div>
-                                        <x-text-input wire:model.live='search' class="w-96 mt-2 me-3" placeholder="Pesquisa"></x-text-input>
+                                        <x-text-input wire:model.live='search' class="mt-2 w-96 me-3" placeholder="Pesquisa"></x-text-input>
                                             <select wire:model.live='perPage' id="perPage" class="'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40'" wire:change="$dispatch('paginationExercicios::updated')">
                                                 <option value="10">10 Linhas</option>
                                                 <option value="25">25 Linhas</option>
@@ -20,7 +20,7 @@
                                     </div>
                                     <button class='inline-flex items-center px-4 py-2 mb-1 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 me-3' wire:click="adicionar">Adicionar</button>
                                 </div>
-                                <hr style="border:1px solid red" class="mb-4 mt-4" >
+                                <hr style="border:1px solid red" class="mt-4 mb-4" >
                             <div>
 
                                 <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
@@ -110,7 +110,7 @@
                     @elseif ($base == "adicionar")
                         <header class="flex justify-between">
                             <h2 class="pb-5 text-xl font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Cire um Exercicio novo') }}
+                                {{ __('Crie um Exercicio novo') }}
                             </h2>
                         </header>
                         <form wire:submit='SalvarAdicionar'>
