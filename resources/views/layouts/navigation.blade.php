@@ -60,7 +60,7 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->utype != "PorConfirmar")
+                @if (Auth::user()->utype != "PorConfirmar" && Auth::user()->utype != "Personal")
                     <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
                         <x-nav-link :href="route('planos')" :active="request()->routeIs('planos')">
                             {{ __('Planos de Treino') }}
