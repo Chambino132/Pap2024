@@ -56,6 +56,8 @@ class Ver extends Component
 
     public function novo(): void
     {
+        $this->dias = "";
+        $this->preco = "";
         $this->isCreating = true;
     }
 
