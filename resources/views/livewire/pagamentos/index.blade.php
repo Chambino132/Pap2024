@@ -57,11 +57,11 @@
             @forelse ($clientesAtrasados as $cliente)
                 <div wire:click='$dispatch("openModal", {component: "pagamentos.modal", arguments: {cliente: {{$cliente->id}}}})' class="dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200 bg-gray-100 h-28 rounded-xl py-3 px-5 mb-3">
                     <div class="flex justify-between mb-5">
-                        <h2 class="text-2xl">{{$cliente->user->name}} </h2>
+                        <h2 class="text-2xl  truncate w-52">{{$cliente->user->name}} </h2>
                         <button wire:click='registar({{$cliente->id}})' class="'inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs 
                         text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white 
                         active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 
-                        dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Registar</button>
+                        dark:focus:ring-offset-gray-800 transition ease-in-out duration-150 ">Registar</button>
                     </div>
                     <div class="flex justify-between me-10">
                         <h2 class="text-2xl">{{$cliente->mensalidade->dias}}x Semana</h2>

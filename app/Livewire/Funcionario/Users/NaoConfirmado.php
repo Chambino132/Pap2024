@@ -156,6 +156,8 @@ class NaoConfirmado extends Component
         'telefone',
         'morada',
         'alterar',
+        'imagem',
+        'cargo',
         ]);
 
     }

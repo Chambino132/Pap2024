@@ -70,20 +70,7 @@ Route::middleware('clientePer')->group(function () {
     })->name('marcacoes');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/planos/{cliente?}/{plano?}', Main::class)->name('planos');
-
+Route::get('/planos/{cliente?}/{plano?}', Main::class)->middleware('notPer')->name('planos');
 
 
 require __DIR__ . '/auth.php';

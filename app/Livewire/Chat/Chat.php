@@ -54,7 +54,9 @@ class Chat extends Component
         $this->searching = true;
         $added = false;
         $count = 0;
-        $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')->get();
+        $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')
+                    ->whereNot('utype', 'PorConfirmar')
+                    ->get();
 
         
             foreach($this->chats as $chat)

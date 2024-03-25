@@ -10,62 +10,28 @@
           <p>Conheça a nossa equipa dedicada, que está sempre aqui para zelar pelo seu conforto e bem estar</p>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-xl-10">
-            <div class="row">
-
-              <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="member">
-                  <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+        <div class="row justify-content-end ">
+          <div class="col-xl-10 ">
+            <div class="row me-48">
+              @forelse ($funcionarios as $funcionario)
+              <div class="col-xl-3 col-lg-4 col-md-6 imagem bg-light" style="height: 250px">
+                <div class="member bg-light col-sm-10 border border-dark" style="overflow: hidden; position: relative;">
+                  <img src="{{Storage::url($funcionario->foto)}}" class="img-fluid w-100 bg-light" style="position: absolute;
+                  left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: none; max-height: none; width: auto; height: auto;" alt="">
                   <div class="member-info">
                     <div class="member-info-content">
-                      <h4>Pepa</h4>
-                      <span>Chief Executive Officer</span>
+                      <h4>{{$funcionario->user->name}} </h4>
+                      <span>{{$funcionario->cargo}} </span>
                     </div>
                   </div>
                 </div>
-              </div> <!-- End Member Item -->
-
-              <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.1s">
-                <div class="member">
-                  <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                  <div class="member-info">
-                    <div class="member-info-content">
-                      <h4>Hugo Ferreira</h4>
-                      <span>Product Manager</span>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- End Member Item -->
-
-              <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.2s">
-                <div class="member">
-                  <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                  <div class="member-info">
-                    <div class="member-info-content">
-                      <h4>Joana Ferreira</h4>
-                      <span>CTO</span>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- End Member Item -->
-
-              <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.3s">
-                <div class="member">
-                  <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                  <div class="member-info">
-                    <div class="member-info-content">
-                      <h4>Irina</h4>
-                      <span>Accountant</span>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- End Member Item -->
-
+              </div>
+              @empty
+                  <h2 class="text-center ml-5">Ainda sem Funcionarios</h2>
+              @endforelse
             </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Team Section -->
 
@@ -79,7 +45,7 @@
 
       <div class="container" data-aos="zoom-in" data-aos-delay="100">
 
-        @foreach ($mensalidades as $mensalidade)
+        @forelse($mensalidades as $mensalidade)
         @if ($loop->first)
         <div class="row g-4">
         @endif
@@ -101,7 +67,10 @@
           @elseif ($loop->last)    
             </div>
           @endif
-        @endforeach
+        
+        @empty  
+          <h2 class="text-center ml-5">Ainda sem Mensalidades</h2>
+        @endforelse
 
     </section><!-- End Pricing Section -->
 
