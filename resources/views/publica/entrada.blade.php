@@ -79,7 +79,7 @@
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url('my_images/videoImg.jpg')">
           @endif
           
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a>
+            <a href="https://www.youtube.com/watch?v=EbA9ebvQMCQ" class="mb-4 glightbox play-btn"></a>
           </div>
 
           <div class="py-5 col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
