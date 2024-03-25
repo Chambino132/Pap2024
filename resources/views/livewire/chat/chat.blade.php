@@ -110,19 +110,21 @@
                 </div>
               @endforeach
             @endif
+              <x-input-error wire:poll='resetVAl' style="margin-top: 150px" class="ml-4 bottom-10 self-center" :messages="$errors->get('mensagem')"/>
           </div>
-            <div class="bottom-0 w-11/12 ml-4"> 
+          
+            <div class=" w-11/12 ml-4"> 
               <form  wire:submit='enviar' id="enviar" name="enviar"> 
- 
+                
                   <textarea wire:keydown.enter='enviar' wire:model='mensagem' placeholder="Escreva aqui a sua Mensagem" class="w-full border-gray-300 rounded-md shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="mensagem" id="mensagem"></textarea>
-
+                  
                 <button type="submit" class="flex justify-center w-full h-8 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500 h-9">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="my-auto bi bi-arrow-right-circle" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
                 </svg></button>
+                
               </form>
             </div>
-            
             
         @endif
         

@@ -1,7 +1,8 @@
 @extends('layouts.base')
 @section('content')
 
-<section id="hero">
+<div class="flex-row">
+<section id="hero" class="flex-grow-0">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
@@ -17,7 +18,7 @@
         
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">Bem vindo ao PepaGym</h2>
+              <h2 class="animated fadeInDown" >Bem vindo ao PepaGym</h2>
               <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
@@ -66,7 +67,8 @@
 
     </div>
   </section><!-- End Hero -->
-  
+</div>
+
     <section id="about" class="about">
       <div class="container-fluid">
 

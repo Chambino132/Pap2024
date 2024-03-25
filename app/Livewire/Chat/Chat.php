@@ -36,15 +36,13 @@ class Chat extends Component
     public string $pesquisa = '';
 
     protected $rules = [
-        'pesquisa' => 'sometimes|exists:users,name',
         'mensagem' => 'required|string|max:255',
         'user_id' => 'required',
         'chat_id' => 'required',
     ];
 
     protected $messages = [
-        'pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem',
-        'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos',
+        'mensagem.required' => 'Por favor escreva a sua mensagem antes de enviar'
     ];
 
 
@@ -148,6 +146,10 @@ class Chat extends Component
         $this->OpChat = true;
     }
 
+    public function resetVAl() : void 
+    {
+        $this->resetValidation();
+    }
 
 
     public function checkMens():void
@@ -174,7 +176,7 @@ class Chat extends Component
     public function Criar() : void
     {
 
-        $this->validateOnly('pesquisa');
+        $this->validate(['pesquisa' =>'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], $this->pesquisa);
 
 
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();

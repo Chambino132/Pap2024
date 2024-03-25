@@ -16,6 +16,11 @@ class PlanoAddprob extends ModalComponent
     public string $exercicio_id;
     public string $repeticoes;
 
+    protected $rules = [
+        'exercicio_id' => 'required',
+        'repeticoes' => 'required',
+    ];
+
     public function render()
     {
         return view('livewire.planos.plano-addprob');
@@ -32,6 +37,8 @@ class PlanoAddprob extends ModalComponent
 
     public function salvar()
     {
+        $this->validate();
+
         $this->plano->exercicios()->attach($this->exercicio_id, ['repeticoes' => $this->repeticoes]);
 
         $this->dispatch('closeModal');
