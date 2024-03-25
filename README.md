@@ -26,4 +26,4 @@ sail art migrate:fresh --seed
 
 # Licença 
 
-Este projeto é licenciado sob a Licença MIT.
+Este projeto é licenciado sob a  [Licença MIT](LICENSE).
