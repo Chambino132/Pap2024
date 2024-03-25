@@ -29,6 +29,8 @@ class Chat extends Component
     public bool $OpCon = false;
     public bool $OpNew = false;
     public bool $searching = false;
+    
+    public string $erro;
 
     public ?string $mensagem;
     public ?int $user_id;
@@ -178,16 +180,24 @@ class Chat extends Component
     public function Criar() : void
     {
 
-        $this->validate(['pesquisa' =>'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], $this->pesquisa);
+        $this->validate(['pesquisa' =>'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], [$this->pesquisa]);
 
 
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();
 
         $proceed = true;
+
+        if($this->destinario->utype == "PorConfirmar")
+        {  
+            $proceed = false;
+            $this->erro = 'O nome que selecionou não corresponde com os nossos registos';
+        }
+
         foreach($this->usersiC as $user)
         {
-            if($user->name == $this->destinario->name)
-            {
+            dd('asda');
+            if($user->name == $this->destinario->name )
+            {  
                 $proceed = false;
             }
         }

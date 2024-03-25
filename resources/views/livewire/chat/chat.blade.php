@@ -74,7 +74,7 @@
             </svg></button>
         </div>
         <x-input-error class="px-3 mt-2" :messages="$errors->get('pesquisa')" />
-        
+        <p class="text-sm text-red-600 dark:text-red-400 space-y-1">{{$erro}}</p>
         </form>
         <div wire:click='Back' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-gray-400 to-gray-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-gray-300 hover:to-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="m-auto bi bi-arrow-counterclockwise" viewBox="0 0 16 16">

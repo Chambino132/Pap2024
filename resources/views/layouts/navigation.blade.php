@@ -91,11 +91,6 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Perfil') }}
                         </x-dropdown-link>
-                        @if (Auth::user()->utype == 'Cliente')
-                        <x-dropdown-link :href="route('clieInform')">
-                            {{ __('Detalhes de Cliente') }}
-                        </x-dropdown-link>
-                        @endif
                         
 
                         <!-- Authentication -->
