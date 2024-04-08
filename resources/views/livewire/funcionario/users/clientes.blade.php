@@ -42,7 +42,7 @@
                                         @forelse ($usersC as $userC)
                                         <tr wire:key='{{$userC->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                             <td wire:click="$dispatch('openModal', {component: 'funcionario.users.cliente-modal', arguments:{UCliente: {{$userC->cliente->id}}}})" class="px-4 py-3">
-                                                {{ $userC->id }}
+                                                {{ $userC->cliente->id }}
                                             </td>
                                             <td wire:click="$dispatch('openModal', {component: 'funcionario.users.cliente-modal', arguments:{UCliente: {{$userC->cliente->id}}}})" class="px-4 py-3">{{ $userC->name }}</td>
                                             <td wire:click="$dispatch('openModal', {component: 'funcionario.users.cliente-modal', arguments:{UCliente: {{$userC->cliente->id}}}})" class="px-4 py-3">{{ $userC->email }}</td> 
@@ -52,7 +52,7 @@
                                                   <button wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                                 </x-slot>
                                                 <x-slot name="content">
-                                                  <x-dropdown-link-table wire:click='saveEntrada({{$userC->id}})'>
+                                                  <x-dropdown-link-table wire:click='confirmEntrada({{$userC->cliente->id}})'>
                                                       + Entrada
                                                   </x-dropdown-link-table>
                                                 </x-slot>

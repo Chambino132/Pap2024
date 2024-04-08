@@ -76,6 +76,7 @@ class Ver extends Component
                         ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
                     })
                     ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
                 else
@@ -90,6 +91,7 @@ class Ver extends Component
                         ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
                     })
                     ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
             }
@@ -107,6 +109,7 @@ class Ver extends Component
                     })
                     ->where('estado', $this->est)
                     ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
                 else
@@ -122,6 +125,7 @@ class Ver extends Component
                     })
                     ->where('estado', $this->est)
                     ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
             }

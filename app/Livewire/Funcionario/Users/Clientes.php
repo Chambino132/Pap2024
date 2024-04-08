@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Models\Cliente;
 use App\Models\Presenca;
 use App\Models\User;
 use Carbon\Carbon;
@@ -85,8 +86,23 @@ class Clientes extends Component
         return view('livewire.funcionario.users.clientes', compact('usersC'));
     }
     
+    public function confirmEntrada($id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        $dataPago = Carbon::parse($cliente->ultMes);
 
-    public function saveEntrada($id)
+        if($dataPago->isSameAs('Y-m', Carbon::now()))
+        {
+            $this->saveEntrada($id);
+        }
+        else
+        {
+            $this->dispatch('openModal', 'modals.pag-atr', ['id' => $cliente->id]);
+        }
+    }
+
+    #[On('MarcarEntrada')]
+    public function saveEntrada(int $id)
     {
         $this->cliente_id = $id;
         $this->entrada = Carbon::now();

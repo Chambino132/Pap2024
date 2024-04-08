@@ -1,7 +1,8 @@
 @extends('layouts.base')
 @section('content')
 
-<section id="hero">
+<div class="flex-row">
+<section id="hero" class="flex-grow-0">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
@@ -17,7 +18,7 @@
         
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">Bem vindo ao PepaGym</h2>
+              <h2 class="animated fadeInDown" >Bem vindo ao PepaGym</h2>
               <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
@@ -49,8 +50,8 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
-              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas duvidas e perzervar a sua segurança durante os seus treinos.</p>
-              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradavel que mantemos no nosso espaço que cuidaram de si!</p>
+              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas dúvidas e perservar a sua segurança durante os seus treinos.</p>
+              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradável que mantemos no nosso espaço que cuidará de si!</p>
             </div>
           </div>
         </div>
@@ -66,7 +67,8 @@
 
     </div>
   </section><!-- End Hero -->
-  
+</div>
+
     <section id="about" class="about">
       <div class="container-fluid">
 
@@ -77,7 +79,7 @@
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="background-image: url('my_images/videoImg.jpg')">
           @endif
           
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="mb-4 glightbox play-btn"></a>
+            <a href="https://www.youtube.com/watch?v=EbA9ebvQMCQ" class="mb-4 glightbox play-btn"></a>
           </div>
 
           <div class="py-5 col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
@@ -98,7 +100,7 @@
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
-              <h4 class="title">Estabelicimento</h4>
+              <h4 class="title">Estabelecimento</h4>
               <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
             </div>
 

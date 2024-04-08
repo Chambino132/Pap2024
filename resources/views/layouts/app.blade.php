@@ -79,9 +79,11 @@
                 <x-notifications />
                 {{ $slot }}
             </main>
-            <div class="fixed bottom-0 right-5">
-                <livewire:chat.chat>
-            </div>
+            @if (Auth::user()->utype != "PorConfirmar")    
+                <div class="fixed bottom-0 right-5">
+                    <livewire:chat.chat>
+                </div>
+            @endif
 
 
         </div>

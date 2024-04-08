@@ -26,8 +26,9 @@ class ViewController extends Controller
         $unsorted = Mensalidade::all();
         $mensalidades = $unsorted->sortBy('dias');
         $sugestoes = Reclamacao::where('arquivado', true)->get();
+        $funcionarios = Funcionario::all();
 
-        return view('publica.sobre', compact('mensalidades', 'sugestoes'));
+        return view('publica.sobre', compact('mensalidades', 'sugestoes', 'funcionarios'));
     }
 
     public function index(): View

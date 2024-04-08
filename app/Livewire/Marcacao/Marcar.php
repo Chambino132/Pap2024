@@ -2,14 +2,17 @@
 
 namespace App\Livewire\Marcacao;
 
+use App\Mail\MarcacaoFeita;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use App\Models\Marcacao;
 use App\Models\Personal;
 use App\Models\Atividade;
-use App\Models\Marcacao;
 use Livewire\Attributes\On;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Database\Eloquent\Collection;
 
 class Marcar extends Component
 {
@@ -54,6 +57,12 @@ class Marcar extends Component
     function marcar(): void
     {
         Marcacao::create($this->validate());
+        $pt = Personal::findOrFail($this->personal_id);
+        $email = User::findOrFail($pt->user_id)->email;
+
+        $data = ['nome' => Auth::user()->name];
+
+        Mail::to($email)->send(new MarcacaoFeita($data));
         $this->reset(['dia','hora', 'personal_id']);
         $this->redirectRoute('marcacoes');
     }

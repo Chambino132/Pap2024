@@ -43,7 +43,7 @@
   
 </head>
 
-<body >
+<body style="height:100vh;" class="d-flex flex-column min-vh-100">
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
@@ -62,9 +62,21 @@
           @endif
 
           @if (Route::currentRouteName() == 'sobre')
-             <li><a class="nav-link active" href="{{route('sobre')}}">Sobre</a></li>
+             <li class="dropdown"><a class="nav-link active" href="{{route('sobre')}}">Sobre</a>
+              <ul>
+                <li><a href="#equipa">Equipa</a></li>
+                <li><a href="#mensalidades">Mensalidades</a></li>
+                <li><a href="#testemunhos">Testemunhos</a></li>
+              </ul>
+            </li>
           @else
-             <li><a class="nav-link" href="{{route('sobre')}}">Sobre</a></li>
+             <li class="dropdown"><a class="nav-link" href="{{route('sobre')}}">Sobre</a>
+              <ul>
+                <li><a href="{{route('sobre')}}#equipa">Equipa</a></li>
+                <li><a href="{{route('sobre')}}#mensalidades">Mensalidades</a></li>
+                <li><a href="{{route('sobre')}}#testemunhos">Testemunhos</a></li>
+              </ul>
+            </li>
           @endif
 
           @if (Route::currentRouteName() == 'noticias')
@@ -100,70 +112,72 @@
 
     @yield('content')
 
+ 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-xl-10">
-            <div class="row justify-content-between">
+  <footer id="footer" class="mt-auto">
+      <div class="footer-top">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-xl-10">
+              <div class="row justify-content-between">
 
-              <div class="col-lg-3 col-md-6 footer-links">
-                <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Início</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('sobre')}}">Sobre nós</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Notícias</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeria')}}">Galeria</a></li>
-                </ul>
-              </div>
-
-              
-
-              <div class="col-lg-3 col-md-6 footer-contact">
-                <h4>Morada</h4>
-                <p>
-                  Rua Joana Isabel Matos Lima Dias<br>
-                  Coruche, Santarém<br>
-                  2100-175 <br><br>
-                  <strong>Telefone:</strong> +351 938 603 356<br>
-                </p>
-
-              </div>
-
-              <div class="col-lg-3 col-md-6 footer-info">
-                <h3>Sobre PepaGym</h3>
-                <p>Horario de Funcionamento:<br>
-                Segunda a Sexta: das 09:15 às 21:15 <br>
-                Sabado: das 10:00 às 13:00 <br> </p>
-                Domingo e feriados: Encerrado 
-                <div class="mt-3 social-links">
-                  <a href="https://www.facebook.com/p/PepaGym-100057482319151/?locale=pt_PT" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-                  <a href="https://instagram.com/pepagym_2008?igshid=MXNhZHV3M3kzZzA2cw==" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <div class="col-lg-3 col-md-6 footer-links">
+                  <ul>
+                    <li><i class="bx bx-chevron-right"></i> <a href="{{route('entrada')}}">Início</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="{{route('sobre')}}">Sobre nós</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="{{route('noticias')}}">Notícias</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeria')}}">Galeria</a></li>
+                  </ul>
                 </div>
-              </div>
 
+                
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                  <h4>Morada</h4>
+                  <p>
+                    Rua Joana Isabel Matos Lima Dias<br>
+                    Coruche, Santarém<br>
+                    2100-175 <br><br>
+                    <strong>Telefone:</strong> +351 938 603 356<br>
+                  </p>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-info">
+                  <h3>Sobre PepaGym</h3>
+                  <p>Horario de Funcionamento:<br>
+                  Segunda a Sexta: das 09:15 às 21:15 <br>
+                  Sabado: das 10:00 às 13:00 <br> </p>
+                  Domingo e feriados: Encerrado 
+                  <div class="mt-3 social-links">
+                    <a href="https://www.facebook.com/p/PepaGym-100057482319151/?locale=pt_PT" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://instagram.com/pepagym_2008?igshid=MXNhZHV3M3kzZzA2cw==" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Hidayah</span></strong>. All Rights Reserved
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Hidayah</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/hidayah-free-simple-html-template-for-corporate/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

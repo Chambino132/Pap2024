@@ -29,6 +29,8 @@ class Chat extends Component
     public bool $OpCon = false;
     public bool $OpNew = false;
     public bool $searching = false;
+    
+    public string $erro;
 
     public ?string $mensagem;
     public ?int $user_id;
@@ -36,15 +38,13 @@ class Chat extends Component
     public string $pesquisa = '';
 
     protected $rules = [
-        'pesquisa' => 'sometimes|exists:users,name',
         'mensagem' => 'required|string|max:255',
         'user_id' => 'required',
         'chat_id' => 'required',
     ];
 
     protected $messages = [
-        'pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem',
-        'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos',
+        'mensagem.required' => 'Por favor escreva a sua mensagem antes de enviar'
     ];
 
 
@@ -56,7 +56,9 @@ class Chat extends Component
         $this->searching = true;
         $added = false;
         $count = 0;
-        $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')->get();
+        $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')
+                    ->whereNot('utype', 'PorConfirmar')
+                    ->get();
 
         
             foreach($this->chats as $chat)
@@ -148,6 +150,10 @@ class Chat extends Component
         $this->OpChat = true;
     }
 
+    public function resetVAl() : void 
+    {
+        $this->resetValidation();
+    }
 
 
     public function checkMens():void
@@ -174,16 +180,24 @@ class Chat extends Component
     public function Criar() : void
     {
 
-        $this->validateOnly('pesquisa');
+        $this->validate(['pesquisa' =>'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], [$this->pesquisa]);
 
 
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();
 
         $proceed = true;
+
+        if($this->destinario->utype == "PorConfirmar")
+        {  
+            $proceed = false;
+            $this->erro = 'O nome que selecionou não corresponde com os nossos registos';
+        }
+
         foreach($this->usersiC as $user)
         {
-            if($user->name == $this->destinario->name)
-            {
+            dd('asda');
+            if($user->name == $this->destinario->name )
+            {  
                 $proceed = false;
             }
         }

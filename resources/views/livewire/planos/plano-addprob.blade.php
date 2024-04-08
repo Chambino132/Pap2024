@@ -17,6 +17,7 @@
                             <option value="{{ $exercicio->id }}">{{ $exercicio->nome }}</option>
                         @endforeach
                     </select>
+                    <x-input-error class="mt-2" :messages="$errors->get('exercicio_id')" />
                 </div>
                     <div class="pb-5">
                         <x-input-label for="repeticoes" :value="__('Repetições')" />
