@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- ======= Pricing Section ======= -->
-<section id="pricing" class="pricing justify-content-center">
+<section id="mensalidades" class="pricing justify-content-center">
       <!--  Section Title -->
       <div class="section-title" data-aos="fade-up">
         <h2>Mensalidades</h2>
@@ -69,8 +69,6 @@
         </div>
       </div>
     </section><!-- End Team Section -->
-
-    <section id="pricing" class="pricing justify-content-center">
 
     <section id="testemunhos" class="testimonials section-bg">
       <div class="container-fluid">
