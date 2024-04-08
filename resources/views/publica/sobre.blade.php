@@ -72,42 +72,6 @@
 
     <section id="pricing" class="pricing justify-content-center">
 
-      <!--  Section Title -->
-      <div class="section-title" data-aos="fade-up">
-        <h2>Mensalidades</h2>
-        <h3>Veja aqui as opções de <span>Mensalidades</span></h3>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="zoom-in" data-aos-delay="100">
-
-        @foreach ($mensalidades as $mensalidade)
-        @if ($loop->first)
-        <div class="row g-4">
-        @endif
-        <div class="col-lg-4 ">
-          <div class="mt-3">
-            <div class="pricing-item featured">
-              <h3><span>{{$mensalidade->dias}}</span>x Semana</h3>
-              <div class="icon">
-                <i class="bi bi-{{$mensalidade->dias}}-circle-fill"></i>
-              </div>
-              <h4>{{$mensalidade->preco}}<sup>€</sup><span> / Mês</span></h4>
-              <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
-            </div>
-          </div>
-        </div>
-          @if (fmod($loop->iteration, 3) == 0)
-            </div>
-            <div class="row g-4">
-          @elseif ($loop->last)    
-            </div>
-          @endif
-        @endforeach
-
-    </section><!-- End Pricing Section -->
-
-
-
     <section id="testemunhos" class="testimonials section-bg">
       <div class="container-fluid">
 
