@@ -5,8 +5,7 @@
       <div class="container-fluid">
 
         <div class="section-title">
-          <h2>Equipa</h2>
-          <h3>A nossa <span>Equipa</span> Trabalhadora</h3>
+          <h3 class="pt-3">A nossa <span>Equipa</span> Administrativa</h3>
           <p>Conheça a nossa equipa dedicada, que está sempre aqui para zelar pelo seu conforto e bem estar</p>
         </div>
 

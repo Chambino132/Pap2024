@@ -50,8 +50,8 @@
           <div class="carousel-container">
             <div class="container">
               <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
-              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas duvidas e perzervar a sua segurança durante os seus treinos.</p>
-              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradavel que mantemos no nosso espaço que cuidaram de si!</p>
+              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas dúvidas e perservar a sua segurança durante os seus treinos.</p>
+              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradável que mantemos no nosso espaço que cuidará de si!</p>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
-              <h4 class="title">Estabelicimento</h4>
+              <h4 class="title">Estabelecimento</h4>
               <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
             </div>
 
