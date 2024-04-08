@@ -3,6 +3,7 @@
 namespace App\Livewire\Funcionario\Users;
 
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Cliente;
 use Livewire\Component;
@@ -195,7 +196,19 @@ class NaoConfirmado extends Component
 
         if($this->tipo == "Cliente")
         {
-            Cliente::create($this->validate());
+            $this->validate();
+            
+            $ultMes = Carbon::now();
+
+            Cliente::create([
+                'mensalidade_id' => $this->mensalidade_id,
+                'dtNascimento' => $this->dtNascimento,
+                'NIF' => $this->NIF,
+                'telefone' => $this->telefone,
+                'morada' => $this->morada,
+                'ultMes' => $ultMes,
+                'user_id' => $user->id,
+            ]);
 
             $user->utype = "Cliente";
             $user->save();

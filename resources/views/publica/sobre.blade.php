@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
 <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
+    <section id="equipa" class="team">
       <div class="container-fluid">
 
         <div class="section-title">
@@ -34,7 +34,7 @@
       </div>
     </section><!-- End Team Section -->
 
-    <section id="pricing" class="pricing justify-content-center">
+    <section id="mensalidades" class="pricing justify-content-center">
 
       <!--  Section Title -->
       <div class="section-title" data-aos="fade-up">
@@ -75,7 +75,7 @@
 
 
 
-    <section id="testimonials" class="testimonials section-bg">
+    <section id="testemunhos" class="testimonials section-bg">
       <div class="container-fluid">
 
         <div class="section-title">
