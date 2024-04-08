@@ -12,14 +12,9 @@
         },
         
     }"
-    
     @notify.window="let mid = Date.now(); messages.push({id: mid, msg: $event.detail}); setTimeout(() => { remove(mid) }, 2500)"
     class="fixed inset-0 z-50 flex flex-col items-end justify-center px-4 py-6 space-y-4 pointer-events-none sm:p-6 sm:justify-start"
-
-    
 >
-
-
     <template x-for="(message, messageIndex) in messages" :key="messageIndex" hidden>
         <div
             x-data="{ id: message.id, show: false }"
@@ -58,5 +53,4 @@
             </div>
         </div>
     </template>
-
 </div>

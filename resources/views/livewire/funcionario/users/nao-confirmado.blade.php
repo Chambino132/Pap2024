@@ -3,7 +3,7 @@
         <div>
             <div class="py-2">
                 <div class="mx-auto max-w-7x1 sm:px-6 lg:px-8">
-                    <div class=" bg-white shadow-sm dark:bg-slate-900 sm:rounded-lg">
+                    <div class="bg-white shadow-sm  dark:bg-slate-900 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
                                     {{ __('Lista de Users Não Confirmados') }}
@@ -25,32 +25,32 @@
                                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                                     <tr>
                                                         <th class="px-4 py-3 text-left">#</th>
-                                                        <th wire:click='ordenar' class="pr-10 flex py-3 text-left dark:hover:bg-red-900 hover:bg-red-700">Nome
+                                                        <th wire:click='ordenar' class="flex py-3 pr-10 text-left dark:hover:bg-red-900 hover:bg-red-700">Nome
                                                         @if ($ordena)
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mt-1 bi bi-caret-down-fill ms-2" viewBox="0 0 16 16">
                                                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                                                           </svg>
                                                         @else
-                                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mt-1 ms-2" viewBox="0 0 16 16">
+                                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mt-1 bi bi-caret-right-fill ms-2" viewBox="0 0 16 16">
                                                             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                                           </svg>
                                                         @endif</th>
                                                         <th class="py-3 text-left">Email</th>
-                                                        <th class="w-1/12 pe-4 py-3">Ações</th>
+                                                        <th class="w-1/12 py-3 pe-4">Ações</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="text-gray-900 dark:text-slate-900">
                                                     @forelse ($usersNC as $userNC)
                                                     <div wire:key='{{$userNC->id}}'>
-                                                        <tr class="hover:bg-gray-100  dark:hover:bg-gray-300">
-                                                            <td class=" px-4 py-3 ">
+                                                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
+                                                            <td class="px-4 py-3 ">
                                                                 {{ $userNC->id }}
                                                             </td>
                                                             <td class="px-4 py-3">{{ $userNC->name }}</td>
                                                             <td class="px-4 py-3">{{ $userNC->email }}</td>
                                                             
                                                             
-                                                            <td class="pe-4 py-3 text-center">
+                                                            <td class="py-3 text-center pe-4">
                                                                 <x-dropdown-table>
                                                                     <x-slot name="trigger">
                                                                         <button  wire:click="changeClass" class="p-1 px-2 font-bold rounded-lg hover:bg-gray-400 focus:outline-none">&#8943;</button>
@@ -224,7 +224,6 @@
                         <div class="flex">
                             <x-primary-button wire:click="$dispatch('$refresh')"
                                 type="submit" class="me-3">{{ __('Associar') }}</x-primary-button>
-                                <x-input-error class="mt-2" :messages="$errors->get('dtNascimento')" />  
                     </form>
                     @endif
                     <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button>

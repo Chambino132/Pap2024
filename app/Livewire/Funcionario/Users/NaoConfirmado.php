@@ -51,12 +51,12 @@ class NaoConfirmado extends Component
         'tipo.required' => "O tipo de utilizador é obrigatorio",
         'NIF.required' => "O NIF é obrigatorio",
         'NIF.digits' => "O NIF só pode ter 9 digitos",
-        'NIF.string' => "O NIF tem de ser um conjunto de caracteres",
+        'NIF.numeric' => "O NIF tem de ser um conjunto de numeros",
         'dtNascimento.required' => "A Data de Nascimento é obrigatoria",
         'dtNascimento.date' => "A Data de Nascimento tem de ser uma data",
         'telefone.required' => "O Telefone é obrigatorio",
         'telefone.min' => "O Telefone tem de ter no minimo 9 digitos",
-        'telefone.string' => "O Telefone tem de ser um conjunto de caracteres",
+        'telefone.numeric' => "O Telefone tem de ser um conjunto de numeros",
         'morada.required' => "A Morada é obrigatoria",
         'morada.max' => "A Morada tem de ter no maximo 255 caracters",
         'morada.string' => "A Morada tem de ser um conjunto de caracteres",
@@ -71,9 +71,9 @@ class NaoConfirmado extends Component
             return [
                 'user_id' => 'required ',
                 'mensalidade_id' => 'required',
-                'NIF' => 'required | digits:9 | string',
+                'NIF' => 'required | digits:9 | numeric',
                 'dtNascimento' => 'required | date',
-                'telefone' => 'required | min:9 | string',
+                'telefone' => 'required | min:9 | numeric',
                 'morada' => 'required | max:255 | string',
 
             ];
@@ -83,7 +83,7 @@ class NaoConfirmado extends Component
             return [
                 'user_id' => 'required ',
                 'dtNascimento' => 'required | date',
-                'telefone' => 'required | min:9 | string',
+                'telefone' => 'required | min:9 | numeric',
                 'morada' => 'required | max:255 | string',
                 'atividade_id' => 'required',
 
@@ -93,7 +93,7 @@ class NaoConfirmado extends Component
         {
             return [
                 'user_id' => 'required ',
-                'telefone' => 'required | min:9 | string',
+                'telefone' => 'required | min:9 | numeric',
                 'morada' => 'required | max:255 | string',
                 'cargo' => 'required|string|max:255',
                 'imagem' => 'required|image'
@@ -107,7 +107,6 @@ class NaoConfirmado extends Component
     {
         $this->mensalidades = Mensalidade::all();
         $this->atividades = Atividade::all();
-
     }
 
     #[On('change::class')]
@@ -159,7 +158,6 @@ class NaoConfirmado extends Component
         'imagem',
         'cargo',
         ]);
-
     }
 
     public function montar()
@@ -199,9 +197,7 @@ class NaoConfirmado extends Component
         {
             Cliente::create($this->validate());
 
-
             $user->utype = "Cliente";
-
             $user->save();
             
             $this->dispatch('cliente::created')->to(Clientes::class);
@@ -212,7 +208,6 @@ class NaoConfirmado extends Component
             Personal::create($this->validate());
 
             $user->utype = "Personal";
-
             $user->save();
             
             $this->dispatch('personal::created')->to(UsersPersonal::class);
@@ -220,11 +215,9 @@ class NaoConfirmado extends Component
         }
         else if($this->tipo == 'Funcionario')
         {
-            
             $this->validate();
 
             $nome = $this->imagem->getClientOriginalName();
-
             $foto = $this->imagem->storeAs('images', $nome, 'public');
 
             Funcionario::create([
@@ -241,7 +234,6 @@ class NaoConfirmado extends Component
             $this->dispatch('funcionario::created')->to('funcionario.users.funcionario');
         }
 
-        $this->montar();
         $this->cancelar();   
     }
 }
