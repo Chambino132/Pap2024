@@ -29,7 +29,7 @@ class Chat extends Component
     public bool $OpCon = false;
     public bool $OpNew = false;
     public bool $searching = false;
-    
+
     public string $erro;
 
     public ?string $mensagem;
@@ -47,7 +47,6 @@ class Chat extends Component
         'mensagem.required' => 'Por favor escreva a sua mensagem antes de enviar'
     ];
 
-
     #[On('IsSearching')]
     public function search()
     {
@@ -56,63 +55,51 @@ class Chat extends Component
         $this->searching = true;
         $added = false;
         $count = 0;
-        $Serusers = User::where('name', 'LIKE', '%' .$this->pesquisa. '%')
-                    ->whereNot('utype', 'PorConfirmar')
-                    ->get();
+        $Serusers = User::where('name', 'LIKE', '%' . $this->pesquisa . '%')
+                          ->whereNot('utype', 'PorConfirmar')
+                          ->get();
 
-        
-            foreach($this->chats as $chat)
-            {
-                $chatId = $chat->id;
-
-                $useriC = User::whereHas('chats', function($query) use ($chatId)
-                {
-                    $query->where('chat_id', $chatId)->where('user_id','!=' ,Auth::user()->id);
-                })->get()->first();
-
-                $this->usersiC->add($useriC);
-            }
-        foreach($Serusers as $user)
+        foreach ($this->chats as $chat) 
         {
-            if($user->id != Auth::user()->id)
-            {
+            $chatId = $chat->id;
+
+            $useriC = User::whereHas('chats', function ($query) use ($chatId) {
+                $query->where('chat_id', $chatId)->where('user_id', '!=', Auth::user()->id);
+            })->get()->first();
+
+            $this->usersiC->add($useriC);
+        }
+        foreach ($Serusers as $user) 
+        {
+            if ($user->id != Auth::user()->id) {
                 $this->users->add($user);
             }
         }
 
-        
-        foreach($this->users as $user)
+        foreach ($this->users as $user) 
         {
-
-            foreach($this->usersiC as $InChat)
+            foreach ($this->usersiC as $InChat) 
             {
-                
-                if($user == $InChat)
+                if ($user == $InChat) 
                 {
                     $this->users->forget($count);
                 }
             }
             $count++;
         }
-
-        
     }
 
-    
-    public function abrir() : void 
+    public function abrir(): void
     {
-        if($this->OpChat == true)
+        if ($this->OpChat == true) 
         {
             $this->OpChat = false;
+        } else {
+            $this->OpChat = true;
         }
-        else
-        {
-            $this->OpChat = true;    
-        }
-            
     }
 
-    public function Back() : void
+    public function Back(): void
     {
         $this->OpCon = false;
         $this->OpNew = false;
@@ -121,14 +108,11 @@ class Chat extends Component
         $this->montar();
     }
 
-    public function NovConv() : void
+    public function NovConv(): void
     {
         $this->OpCon = true;
         $this->OpNew = true;
-       
-
     }
-
 
     public function enviar()
     {
@@ -137,35 +121,31 @@ class Chat extends Component
         $this->chat_id = $this->chat->id;
         Mensagem::create($this->validate());
         $this->chat->update(['lastMensagem' => $now]);
-        
+
         $this->reset(['mensagem', 'OpChat']);
-        
 
         $this->dispatch('NewMessage');
     }
 
     #[On('NewMessage')]
-    public function KeepOpen() : void 
+    public function KeepOpen(): void
     {
         $this->OpChat = true;
     }
 
-    public function resetVAl() : void 
+    public function resetVAl(): void
     {
         $this->resetValidation();
     }
 
-
-    public function checkMens():void
+    public function checkMens(): void
     {
-        if($this->OpCon)
-        {
+        if ($this->OpCon) {
             $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
         }
-    } 
+    }
 
-    
-    public function teste() 
+    public function teste()
     {
         dd($this->chat);
     }
@@ -173,40 +153,30 @@ class Chat extends Component
     public function OpenCon(ModelChat $chat): void
     {
         $this->OpCon = true;
-
         $this->chat = $chat;
     }
 
-    public function Criar() : void
+    public function Criar(): void
     {
-
-        $this->validate(['pesquisa' =>'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], [$this->pesquisa]);
-
+        $this->validate(['pesquisa' => 'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], [$this->pesquisa]);
 
         $this->destinario = User::where('name', $this->pesquisa)->get()->first();
 
         $proceed = true;
 
-        if($this->destinario->utype == "PorConfirmar")
-        {  
+        if ($this->destinario->utype == "PorConfirmar") {
             $proceed = false;
             $this->erro = 'O nome que selecionou não corresponde com os nossos registos';
         }
 
-        foreach($this->usersiC as $user)
-        {
+        foreach ($this->usersiC as $user) {
             dd('asda');
-            if($user->name == $this->destinario->name )
-            {  
+            if ($user->name == $this->destinario->name) {
                 $proceed = false;
             }
         }
 
-        if($proceed)
-        {
-
-            
-
+        if ($proceed) {
             $this->chat = new ModelChat();
             $this->chat->save();
             $this->chat->users()->syncWithoutDetaching([$this->destinario->id, Auth::user()->id]);
@@ -215,9 +185,9 @@ class Chat extends Component
             $this->reset(['pesquisa']);
             $this->resetValidation();
         }
-    } 
+    }
 
-    public function montar() : void
+    public function montar(): void
     {
         $hisChat = false;
         $hasOne = false;
@@ -225,36 +195,29 @@ class Chat extends Component
         $this->unsorted = new Collection();
         $this->allChats = ModelChat::all();
 
-        foreach($this->allChats as $chat)
-        {
+        foreach ($this->allChats as $chat) {
             $hisChat = false;
-            foreach($chat->users as $user)
-            {
-                if($user->id == Auth::user()->id)
-                {
+            foreach ($chat->users as $user) {
+                if ($user->id == Auth::user()->id) {
                     $hisChat = true;
                 }
             }
 
-            if($hisChat == true)
-            {
+            if ($hisChat == true) {
                 $this->unsorted->prepend($chat);
             }
         }
-        
+
         $this->chats = $this->unsorted->sortByDesc('lastMensagem');
-        
     }
 
-
-    public function mount() : void
+    public function mount(): void
     {
-       $this->montar();
+        $this->montar();
     }
-    
+
     public function render()
     {
-        
         return view('livewire.chat.chat');
     }
 }

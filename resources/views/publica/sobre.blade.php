@@ -5,7 +5,7 @@
 <section id="mensalidades" class="pricing justify-content-center">
       <!--  Section Title -->
       <div class="section-title" data-aos="fade-up">
-        <h2>Mensalidades</h2>
+        <h2 class="mt-3">Mensalidades</h2>
         <h3>Veja aqui as opções de <span>Mensalidades</span></h3>
       </div><!-- End Section Title -->
 
@@ -41,7 +41,7 @@
       <div class="container-fluid">
 
         <div class="section-title">
-          <h3 class="pt-3">A nossa <span>Equipa</span> Administrativa</h3>
+          <h3>A nossa <span>Equipa</span> Administrativa</h3>
           <p>Conheça a nossa equipa dedicada, que está sempre aqui para zelar pelo seu conforto e bem estar</p>
         </div>
 
