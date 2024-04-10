@@ -2,9 +2,9 @@
     <div class="p-6 text-gray-900 dark:text-gray-100">
         <header>
             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Informações do Personal Trainer: ') }} <strong>{{$UPersonal->user->name}}</strong>
+                {{ __('Informações do Tecnico: ') }} <strong>{{$UPersonal->user->name}}</strong>
             </h2>
-            <hr class="border-black dark:border-white" style="width: 300px">
+            <hr class="border-black dark:border-white" style="width: 220px">
         </header>
         <div class="py-3 ">
             <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg overflow-hidden">
