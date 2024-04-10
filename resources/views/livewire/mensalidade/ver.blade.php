@@ -20,7 +20,6 @@
                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                 
                                     <tr>
-                                        <th class="px-4 py-3 text-left">#</th>
                                         <th class="px-4 py-3 text-left">Dias</th>
                                         <th class="px-4 py-3 text-left">Preço</th>
                                         <th class="px-4 py-3 text-left">Clientes</th>
@@ -31,10 +30,7 @@
                                 <tbody class="text-gray-900 dark:text-slate-900">
                                     @forelse ($mensalidades as $mensalidade)
                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                        <td class="px-4 py-3">
-                                            {{$mensalidade->id}}
-                                        </td>
-                                        <td class="px-4 py-3">{{$mensalidade->dias}}x Por Semana</td>
+                                        <td class="px-4 py-3">{{$mensalidade->dias}}</td>
                                         <td class="px-4 py-3 flex">
                 
                                             <span class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-300 rounded-lg">{{$mensalidade->preco}}€</span>

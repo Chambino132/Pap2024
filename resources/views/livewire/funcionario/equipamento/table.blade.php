@@ -22,7 +22,6 @@
             <table class="w-full table-auto">
                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                     <tr>
-                        <th class="px-4 py-3 text-left">#</th>
                         <th wire:click="ordena('equipamento')" class="px-4 py-3 text-left flex dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer">Equipamento  
                                 @if ($ordenaPor == 'equipamento')
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
@@ -34,7 +33,7 @@
                                   </svg>
                                 @endif
                                 </th>
-                        <th wire:click='ordena("data")' class="px-4 py-3 text-left dark:hover:bg-red-900 hover:bg-red-700"> 
+                        <th wire:click='ordena("data")' class="px-4 py-3 text-left dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer"> 
                             <div class="flex"> Data de Aquisição 
                                 @if ($ordenaPor == 'data')
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
@@ -46,7 +45,7 @@
                                   </svg>
                                 @endif
                                 </div></th>
-                        <th wire:click='ordena("preco")' class="px-4 py-3 text-left flex dark:hover:bg-red-900 hover:bg-red-700">Preço  
+                        <th wire:click='ordena("preco")' class="px-4 py-3 text-left flex dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer">Preço  
                                 @if ($ordenaPor == 'preco')
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
                                     <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -64,8 +63,6 @@
                     @forelse ($equipamentos as $maquina)
                     <div >
                         <tr wire:key='{{$maquina->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                            <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
-                                class="px-4 py-3">{{$maquina->id}}</td>
                             <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"
                                 class="px-4 py-3">{{$maquina->equipamento}}</td>
                             <td wire:click="$dispatch('openModal', {component: 'funcionario.equipamento.problemas-modal', arguments: {maquina: {{$maquina->id}}}})"

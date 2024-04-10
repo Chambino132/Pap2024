@@ -24,7 +24,7 @@
         
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                                 <td class="px-4 py-3">
-                                    {{$UCliente->mensalidade->dias}}x Semana
+                                    {{$UCliente->mensalidade->dias}}
                                 </td>
                                 <td class="px-4 py-3">{{$UCliente->dtNascimento}}</td>
                                 <td class="px-4 py-3">{{$UCliente->NIF}}</td>

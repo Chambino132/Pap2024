@@ -103,24 +103,37 @@ class Index extends Component
         }
         else
         {
+            $cliente_id = Auth::user()->cliente->id;
+
             switch($this->ordena)
             {
                 case 'nome':
-                    $planos = Auth::user()->cliente->planos()
+                    $planos = Plano::whereHas('clientes', function($query) use ($cliente_id) 
+                    {
+                        $query->where('cliente_id', $cliente_id);
+                    })
                     ->where('nome', 'like', '%'. $this->search. '%')
                     ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->orderby('nome')
                     ->paginate($this->perPage, ['*'], 'planosPage');
+                    
                     break;
                 case 'descricao':
-                    $planos = Auth::user()->cliente->planos()
+
+                    $planos = Plano::whereHas('clientes', function($query) use ($cliente_id) 
+                    {
+                        $query->where('cliente_id', $cliente_id);
+                    })
                     ->where('nome', 'like', '%'. $this->search. '%')
                     ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->orderby('descricao')
                     ->paginate($this->perPage, ['*'], 'planosPage');
                     break;
                 default:
-                    $planos = Auth::user()->cliente->planos()
+                $planos = Plano::whereHas('clientes', function($query) use ($cliente_id) 
+                    {
+                        $query->where('cliente_id', $cliente_id);
+                    })
                     ->where('nome', 'like', '%'. $this->search. '%')
                     ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->paginate($this->perPage, ['*'], 'planosPage');

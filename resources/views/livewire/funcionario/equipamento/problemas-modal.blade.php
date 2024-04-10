@@ -10,7 +10,7 @@
                 <table class="w-full table-auto">
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                             <tr>
-                                <th class="px-4 py-3 text-left">#</th>
+
                                 <th class="px-4 py-3 text-left">Problema</th>
                                 <th class="px-4 py-3 text-left">Estado</th>
                                 <th class="w-1/12 px-4 py-3">Ações</th>
@@ -19,9 +19,6 @@
                         <tbody class="text-gray-900 dark:text-slate-900">
                             @forelse ($maquina->problemas as $problema)
                             <tr class="hover:bg-gray-100">  
-                                <td class="px-4 py-3">
-                                    {{$problema->id}}
-                                </td>
                                 <td class="px-4 py-3">{{$problema->problema}}
                                 </td>
                                 <td class="flex px-4 py-3">
@@ -40,7 +37,7 @@
                             </tr>
                             @empty
                                 <tr>                               
-                                    <td colspan="4">Ainda sem Problemas!</td>
+                                    <td class="px-4 py-3" colspan="4">Ainda sem Problemas!</td>
                                 </tr>
                             @endforelse
                             

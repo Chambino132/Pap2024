@@ -8,9 +8,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public string $mes;
     public Collection $porConfirmar;
 
@@ -90,20 +93,20 @@ class Index extends Component
         ->where('ultMes', '<=',$data->year.'-'.$data->month.'-31')
         ->join('users', 'clientes.user_id', 'users.id')
         ->where('users.name', 'like', '%'. $this->searchPagos .'%')
-        ->get();
+        ->paginate(5, ['*'],'Pagospage');
        
         $clientesPorPagar = Cliente::query()
         ->where('ultMes', '>=',$data->year.'-'.$mesPassado.'-1')
         ->where('ultMes', '<=',$data->year.'-'.$mesPassado.'-31')
         ->join('users', 'clientes.user_id', 'users.id')
         ->where('users.name', 'like', '%'. $this->searchPorPagar .'%')
-        ->get();
+        ->paginate(5, ['*'],'PorPagarpage');
 
         $clientesAtrasados = Cliente::query()
         ->where('ultMes', '<',$data->year.'-'.$mesPassado.'-1')
         ->join('users', 'clientes.user_id', 'users.id')
         ->where('users.name', 'like', '%'. $this->searchAtrasados .'%')
-        ->get();
+        ->paginate(5, ['*'],'Atrasadopage');
 
         return view('livewire.pagamentos.index', compact('clientesPagos', 'clientesPorPagar', 'clientesAtrasados'));
     }

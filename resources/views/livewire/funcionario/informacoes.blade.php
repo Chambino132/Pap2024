@@ -3,7 +3,7 @@
     <div class="py-8 ">
         
         @if (!$alt)
-        <div class="bg-white rounded-lg shadow-lg dark:bg-gray-300">
+        <div class="bg-white rounded-lg shadow-lg dark:bg-gray-400">
             <table class="w-full table-auto">
                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
     
@@ -17,16 +17,16 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-900 dark:text-slate-900">
-                        <tr class="hover:bg-gray-100">
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
                             <td class="px-4 py-3">
                                 {{$funcionario->telefone}}
                             </td>
                             <td class="px-4 py-3">{{$funcionario->morada}}</td>
                             <td class="px-4 py-3">{{$funcionario->cargo}}</td>
-                            <td wire:click="$dispatch('openModal', {component: 'modals.show-image', arguments: {funcionario:{{$funcionario->id}}}})" class="px-4 py-3"><img src="{{Storage::url($funcionario->foto)}}"></td>
+                            <td wire:click="$dispatch('openModal', {component: 'modals.show-image', arguments: {funcionario:{{$funcionario->id}}}})" class="px-4 py-3"><img class="w-32 " src="{{Storage::url($funcionario->foto)}}"></td>
                             
                             <td class="px-4 py-3 text-center">
-                                <button wire:click='alterar'>alterar</button>
+                                <button class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" wire:click='alterar'>alterar</button>
                             </td>
                         </tr>
                         

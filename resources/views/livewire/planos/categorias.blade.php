@@ -29,7 +29,6 @@
                                 <table class="w-full table-auto">
                                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                             <tr>
-                                                <th class="px-4 py-3 text-left">#</th>
                                                 <th wire:click='ordenar' class="px-4 py-3 text-left flex dark:hover:bg-red-900 hover:bg-red-700">Nome 
                                                     @if ($ordena == 'nome')
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
@@ -48,9 +47,6 @@
                                         <tbody class="text-gray-900 dark:text-slate-900">
                                             @forelse ($categorias as $categoria)
                                             <tr wire:key='{{$categoria->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                                <td class="px-4 py-3">
-                                                    {{$categoria->id}}
-                                                </td>
                                                 <td class="px-4 py-3">{{$categoria->nome}} </td>
                                                 <td class="px-4 py-3">{{$categoria->exercicios->count()}} </td>
                                                 <td class="px-4 py-3 text-center">
@@ -95,7 +91,7 @@
                                 <x-text-input wire:model='nome' id="nome" name="nome" type="text" class="block w-full mt-1" :value="old('nome')" />
                                 <x-input-error class="mt-2" :messages="$errors->get('nome')" />                                
                             </div>
-                            <div><x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
+                            <div><x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
                         </form>
                         <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>
                     @elseif ($base == "adicionar")

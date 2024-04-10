@@ -42,6 +42,6 @@ class PlanoAddprob extends ModalComponent
         $this->plano->exercicios()->attach($this->exercicio_id, ['repeticoes' => $this->repeticoes]);
 
         $this->dispatch('closeModal');
-        $this->dispatch('notify', 'Problema/s adicionados com sucesso ao Plano!');
+        $this->dispatch('notify', 'Problema adicionados com sucesso ao Plano!');
     }
 }

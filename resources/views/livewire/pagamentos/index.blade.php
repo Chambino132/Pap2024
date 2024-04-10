@@ -25,13 +25,14 @@
                                         <h2 class="text-2xl">{{$cliente->user->name}} </h2>
                                     </div>
                                     <div class="flex justify-between me-10">
-                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}x Semana</h2>
+                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}</h2>
                                         <h2 class="text-2xl">{{$cliente->mensalidade->preco}}€ </h2>
                                     </div>
                                 </div>
                                 @empty
 
                                 @endforelse
+                                {{$clientesPagos->links()}}
                             </div>
                             <div class="w-1/2 p-3 bg-yellow-300 border dark:bg-yellow-400 border-1 border-slate-600">
                                 <div class="flex justify-between">
@@ -49,13 +50,14 @@
                                         dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Registar</button>
                                     </div>
                                     <div class="flex justify-between me-10">
-                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}x Semana</h2>
+                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}</h2>
                                         <h2 class="text-2xl">{{$cliente->mensalidade->preco}}€ </h2>
                                     </div>
                                 </div>
                                 @empty
 
                                 @endforelse
+                                {{$clientesPorPagar->links()}}
                             </div>
                         </div>
                         <div class="w-1/3 p-3 bg-red-300 border dark:bg-red-500 border-1 border-slate-600">
@@ -74,13 +76,14 @@
                                         dark:focus:ring-offset-gray-800 transition ease-in-out duration-150 ">Registar</button>
                                     </div>
                                     <div class="flex justify-between me-10">
-                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}x Semana</h2>
+                                        <h2 class="text-2xl">{{$cliente->mensalidade->dias}}</h2>
                                         <h2 class="text-2xl">{{$cliente->mensalidade->preco}}€ </h2>
                                     </div>
                                 </div>
                             @empty
 
                             @endforelse
+                            {{$clientesAtrasados->links()}}
                         </div>
                     </div>
                 </div>

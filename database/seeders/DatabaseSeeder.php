@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         Mensalidade::factory(4)
             ->create();
 
-        User::factory(5)
+        User::factory(10)
             ->has(Reclamacao::factory())
             ->has(Cliente::factory()
                 ->has(Presenca::factory(3))
@@ -44,10 +44,9 @@ class DatabaseSeeder extends Seeder
 
         User::factory(5)
             ->has(Funcionario::factory())
-            ->has(Reclamacao::factory())
             ->create();
 
-        Atividade::factory(5)
+        Atividade::factory(4)
             ->create();
 
         User::factory(5)
@@ -55,23 +54,18 @@ class DatabaseSeeder extends Seeder
             ->has(Reclamacao::factory())
             ->create();
 
-        Equipamento::factory(100)
+        Equipamento::factory(10)
             ->has(Problema::factory(3))
             ->create();
 
-        //User PorConfirmar
-        User::factory(5)->create();
-
         //User Admin
-        User::factory(5)->create();
+        User::factory(1)->create();
 
         Marcacao::factory(10)->create();
 
+        Categoria::factory(6)->create();
 
-        Categoria::factory(5)->create();
-
-        Plano::factory(5)
-            ->has(Exercicio::factory(3))
+        Plano::factory(3)
             ->create();
     }
 }

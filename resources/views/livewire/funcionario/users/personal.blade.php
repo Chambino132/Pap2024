@@ -4,9 +4,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                         <header>
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Lista de Personal Trainers') }}
+                                {{ __('Lista de Técnicos') }}
                             </h2>
-                            <hr class="border-black dark:border-white" style="width: 234px">
+                            <hr class="border-black dark:border-white" style="width: 155px">
                         </header>
                         <div>
                             <x-text-input wire:model.live='search' class="w-1/2 my-2 me-3" placeholder="Pesquisa"></x-text-input>
@@ -23,8 +23,7 @@
                                 <table class="w-full table-auto">
                                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                             <tr>
-                                                <th class="px-4 py-3 text-left">#</th>
-                                                <th wire:click='ordenar' class="px-4 pr-10 py-3 text-left flex  dark:hover:bg-red-900 hover:bg-red-700">Nome 
+                                                <th wire:click='ordenar' class="px-4 pr-10 py-3 text-left flex  dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer">Nome 
                                                     @if ($ordena)
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
                                                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -40,9 +39,6 @@
                                         <tbody class="text-gray-900 dark:text-slate-900">
                                             @forelse ($personals as $personal)
                                             <tr wire:click="$dispatch('openModal', {component: 'funcionario.users.personal-modal', arguments:{UPersonal: {{$personal->personal->id}}}})" class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                                <td class="px-4 py-3">
-                                                    {{ $personal->personal->id }}
-                                                </td>
                                                 <td class="px-4 py-3">{{ $personal->name }}</td>
                                                 <td class="px-4 py-3">{{ $personal->email }}</td>
                                                 

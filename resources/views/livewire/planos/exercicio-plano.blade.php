@@ -14,7 +14,6 @@
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
         
                             <tr>
-                                <th class="px-4 py-3 text-left">#</th>
                                 <th class="px-4 py-3 text-left">Nome</th>
                                 <th class="px-4 py-3 text-left">Descrição</th>
                                 <th class="px-4 py-3 text-left">Categoria</th>
@@ -26,9 +25,6 @@
                         <tbody class="text-gray-900 dark:text-slate-900">
                             @forelse ($plano->exercicios as $exercicio)
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                <td class="px-4 py-3">
-                                    {{$exercicio->id}}
-                                </td>
                                 <td class="px-4 py-3">{{$exercicio->nome}}</td>
                                 <td class="px-4 py-3">{{$exercicio->descricao}}</td>
                                 <td class="px-4 py-3">{{$exercicio->categoria->nome}}</td>
@@ -54,7 +50,7 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3">Ainda sem Exercicios!</td>
+                                    <td class="px-4 py-3" colspan="3">Ainda sem Exercicios!</td>
                                 </tr>
                             @endforelse
                         </tbody>

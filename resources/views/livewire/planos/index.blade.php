@@ -35,7 +35,6 @@
                                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                     
                                         <tr>
-                                            <th class="px-4 py-3 text-left">#</th>
                                             <th wire:click='ordenar("nome")' class="px-4 py-3 text-left flex dark:hover:bg-red-900 hover:bg-red-700">Nome 
                                                 @if ($ordena == 'nome')
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mt-1 ms-2" viewBox="0 0 16 16">
@@ -80,9 +79,6 @@
                                     <tbody class="text-gray-900 dark:text-slate-900">
                                         @forelse ($planos as $plano)
                                         <tr wire:key='{{$plano->id}}' class="hover:bg-gray-100 dark:hover:bg-gray-300">
-                                            <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">
-                                                {{$plano->id}}
-                                            </td>
                                             <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">{{$plano->nome}}</td>
                                             <td wire:click="$dispatch('openModal', {component: 'planos.exercicio-plano', arguments: {plano: {{$plano->id}}}})" class="px-4 py-3">{{$plano->descricao}}</td>
                                             @if (Auth::user()->utype == "Funcionario" || Auth::user()->utype == "Admin")
@@ -153,7 +149,7 @@
                                 <x-text-input wire:model='preco' id="preco" name="preco" type="text" class="block w-full mt-1" :value="old('preco')" />
                                 <x-input-error class="mt-2" :messages="$errors->get('preco')" />                                
                             </div>
-                            <div><x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
+                            <div><x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
                         </form>
                         <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>                    
                     </div>
@@ -187,7 +183,7 @@
                                 <x-text-input wire:model='preco' id="preco" name="preco" type="text" class="block w-full mt-1" :value="old('preco')" />
                                 <x-input-error class="mt-2" :messages="$errors->get('preco')" />                                
                             </div>
-                            <div><x-primary-button type="submit">{{ __('Associar') }}</x-primary-button>
+                            <div><x-primary-button type="submit">{{ __('Salvar') }}</x-primary-button>
                         </form>
                         <x-secondary-button wire:click="cancelar">{{ __('Cancelar') }}</x-secondary-button></div>                    
                     </div>

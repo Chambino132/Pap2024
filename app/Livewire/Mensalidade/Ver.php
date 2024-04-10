@@ -23,7 +23,7 @@ class Ver extends Component
     public ?string $preco;
     
     protected $rules = [
-        'dias' => 'required|numeric|max:6',
+        'dias' => 'required|string|max:20',
         'preco' => 'required|numeric',
     ];
 

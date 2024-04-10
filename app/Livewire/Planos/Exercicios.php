@@ -32,7 +32,7 @@ class Exercicios extends Component
 
     protected $rules = [
         'nome' => 'required | string',
-        'descricao' => 'required | string',
+        'descricao' => 'required | string| max:255',
         'categoria_id' => 'required | numeric',
     ];
 

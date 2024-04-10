@@ -27,9 +27,9 @@
                                 <table class="w-full table-auto">
                                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                         <tr>
-                                            <th class="px-4 py-3 text-left">#</th>
+                                            <th class="pl-4 py-3 text-left">#</th>
                                             <th wire:click='ordenar'
-                                                class="flex py-3 pr-10 text-left dark:hover:bg-red-900 hover:bg-red-700">
+                                                class="flex pl-4 py-3 pr-10 text-left dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer">
                                                 Nome
                                                 @if ($ordena)
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -47,7 +47,7 @@
                                                     </svg>
                                                 @endif
                                             </th>
-                                            <th class="py-3 text-left">Email</th>
+                                            <th class="px-4 py-3 text-left">Email</th>
                                             <th class="w-1/12 py-3 pe-4">Ações</th>
                                         </tr>
                                     </thead>
@@ -130,9 +130,7 @@
 
                                         <option selected>{{ __('Selecione uma Opção') }}</option>
                                         @foreach ($mensalidades as $mensalidade)
-                                            <option value="{{ $mensalidade->id }}">{{ $mensalidade->dias }}
-                                                Dias/semana
-                                            </option>
+                                            <option value="{{ $mensalidade->id }}">{{ $mensalidade->dias }}</option>
                                         @endforeach
                                     </select>
 

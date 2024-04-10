@@ -10,14 +10,14 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="zoom-in" data-aos-delay="100">
-        @foreach ($mensalidades as $mensalidade)
+        @forelse ($mensalidades as $mensalidade)
         @if ($loop->first)
         <div class="row g-4">
         @endif
         <div class="col-lg-4 ">
           <div class="mt-3">
             <div class="pricing-item featured">
-              <h3><span>{{$mensalidade->dias}}</span>x Semana</h3>
+              <h3><span>{{$mensalidade->dias}}</span></h3>
               <div class="icon">
                 <i class="bi bi-{{$mensalidade->dias}}-circle-fill"></i>
               </div>
@@ -32,7 +32,10 @@
           @elseif ($loop->last)    
             </div>
           @endif
-        @endforeach
+
+        @empty
+          <h2 class="ml-5 text-center">Ainda sem Mensalidades</h2>
+        @endforelse
 
     </section><!-- End Pricing Section -->
     
@@ -45,7 +48,7 @@
           <p>Conheça a nossa equipa dedicada, que está sempre aqui para zelar pelo seu conforto e bem estar</p>
         </div>
 
-        <div class="row justify-content-end ">
+        <div class="row justify-content-center ">
           <div class="col-xl-10 ">
             <div class="row me-48">
               @forelse ($funcionarios as $funcionario)

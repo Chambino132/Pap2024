@@ -10,6 +10,11 @@ class ExercicioPlano extends ModalComponent
 {
     public ?Plano $plano;
 
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
+    }
+
     public function render()
     {
         return view('livewire.planos.exercicio-plano');
