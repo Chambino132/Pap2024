@@ -108,7 +108,7 @@
                                         </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="3">Ainda sem Planos!</td>
+                                                <td class="px-4 py-3" colspan="3">Ainda sem Planos!</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

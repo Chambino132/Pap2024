@@ -19,10 +19,10 @@
             <div class="pricing-item featured">
               <h3><span>{{$mensalidade->dias}}</span></h3>
               <div class="icon">
-                <i class="bi bi-{{$mensalidade->dias}}-circle-fill"></i>
+                <i class="bi bi-{{$classes[$loop->iteration - 1]}}-circle-fill"></i>
               </div>
               <h4>{{$mensalidade->preco}}<sup>€</sup><span> / Mês</span></h4>
-              <div class="text-center"><a href="#" class="buy-btn">Adira</a></div>
+              <div class="text-center"><a href="{{route('register')}}" class="buy-btn">Adira</a></div>
             </div>
           </div>
         </div>

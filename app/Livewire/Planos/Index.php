@@ -113,7 +113,6 @@ class Index extends Component
                         $query->where('cliente_id', $cliente_id);
                     })
                     ->where('nome', 'like', '%'. $this->search. '%')
-                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->orderby('nome')
                     ->paginate($this->perPage, ['*'], 'planosPage');
                     
@@ -122,10 +121,9 @@ class Index extends Component
 
                     $planos = Plano::whereHas('clientes', function($query) use ($cliente_id) 
                     {
-                        $query->where('cliente_id', $cliente_id);
+                        $query->where('cliente_id','=', $cliente_id);
                     })
                     ->where('nome', 'like', '%'. $this->search. '%')
-                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->orderby('descricao')
                     ->paginate($this->perPage, ['*'], 'planosPage');
                     break;
@@ -135,7 +133,6 @@ class Index extends Component
                         $query->where('cliente_id', $cliente_id);
                     })
                     ->where('nome', 'like', '%'. $this->search. '%')
-                    ->Orwhere('descricao', 'like', '%'. $this->search. '%')
                     ->paginate($this->perPage, ['*'], 'planosPage');
                     break;
             }

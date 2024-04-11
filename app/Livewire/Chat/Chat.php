@@ -145,10 +145,6 @@ class Chat extends Component
         }
     }
 
-    public function teste()
-    {
-        dd($this->chat);
-    }
 
     public function OpenCon(ModelChat $chat): void
     {
@@ -170,7 +166,6 @@ class Chat extends Component
         }
 
         foreach ($this->usersiC as $user) {
-            dd('asda');
             if ($user->name == $this->destinario->name) {
                 $proceed = false;
             }

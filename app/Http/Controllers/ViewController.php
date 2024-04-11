@@ -23,12 +23,24 @@ class ViewController extends Controller
 
     public function sobre():View
     {
+        $classes = [];
         $unsorted = Mensalidade::all();
         $mensalidades = $unsorted->sortBy('dias');
         $sugestoes = Reclamacao::where('arquivado', true)->get();
         $funcionarios = Funcionario::all();
 
-        return view('publica.sobre', compact('mensalidades', 'sugestoes', 'funcionarios'));
+        $count = 0;
+        foreach($mensalidades as $mensalidade)
+        {
+
+                $class = [$mensalidade->dias[0]];
+
+                $classes = array_merge($classes, $class);
+
+            
+        }
+
+        return view('publica.sobre', compact('mensalidades', 'sugestoes', 'funcionarios', 'classes'));
     }
 
     public function index(): View

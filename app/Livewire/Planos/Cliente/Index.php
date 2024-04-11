@@ -35,7 +35,7 @@ class Index extends Component
         $admins = User::where('utype', 'Admin')->get();
             
             $data = [
-                'cliente_id' => Auth::user()->id,
+                'cliente_id' => Auth::user()->cliente->id,
                 'nome' => Auth::user()->name,
                 'plano_id' => $plano,
             ];
