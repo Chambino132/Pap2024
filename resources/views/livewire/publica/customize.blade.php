@@ -551,6 +551,9 @@
             </div>
         </div>
     </div>
+    
+    <livewire:publica.edit>
+
     <div class="xl:flex">
         <div class="py-12 xl:w-1/3">
             <div class="mx-auto sm:px-6 lg:px-8 ">

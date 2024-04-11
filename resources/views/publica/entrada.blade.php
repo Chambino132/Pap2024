@@ -18,8 +18,20 @@
         
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown" >Bem vindo ao PepaGym</h2>
-              <p class="animated fadeInUp big">Um ginásio na Vila de Coruche, com maquinas e equipamentos da melhor qualidade para se manter em forma!</p>
+              <h2 class="animated fadeInDown">
+                @foreach($heros as $hero)
+                @if ($hero->id == 1)
+                {{$hero->titulo}}
+                @endif
+                @endforeach
+              </h2>
+              <p class="animated fadeInUp big">
+                @foreach($heros as $hero)
+                @if ($hero->id == 1)
+                {{$hero->subtitulo}}
+                @endif
+                @endforeach
+                </p>
               <a href="{{route('sobre')}}" class="btn-get-started animated fadeInUp scrollto">Saber Mais</a>
             </div>
           </div>
@@ -34,8 +46,20 @@
         
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">O Seu Conforto Em Primeiro Lugar</h2>
-              <p class="mx-5 animated fadeInUp big">O conforto e a saúde dos nossos clientes é a nossa prioridade número 1! Temos uma arquitetura agradável para todos se sentirem o mais confortavel possivel.</p>
+              <h2 class="animated fadeInDown">
+                @foreach($heros as $hero)
+                @if ($hero->id == 2)
+                {{$hero->titulo}}
+                @endif
+                @endforeach
+                </h2>
+              <p class="mx-5 animated fadeInUp big">
+                @foreach($heros as $hero)
+                @if ($hero->id == 2)
+                {{$hero->subtitulo}}
+                @endif
+                @endforeach
+                </p>
             </div>
           </div>
         </div>
@@ -49,9 +73,20 @@
         
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animated fadeInDown">Uma Equipa Sempre Aqui Para Si</h2>
-              <p class="mx-5 animated fadeInUp big">A nossa equipa está sempre disponível para resolver todos os seus problemas, responder às suas dúvidas e perservar a sua segurança durante os seus treinos.</p>
-              <p class="mx-5 animated fadeInUp big"> Não só nós, como a comunidade agradável que mantemos no nosso espaço que cuidará de si!</p>
+              <h2 class="animated fadeInDown">
+                @foreach($heros as $hero)
+                @if ($hero->id == 3)
+                {{$hero->titulo}}
+                @endif
+                @endforeach
+              </h2>
+              <p class="mx-5 animated fadeInUp big">
+                @foreach($heros as $hero)
+                @if ($hero->id == 3)
+                {{$hero->subtitulo}}
+                @endif
+                @endforeach
+                </p>
             </div>
           </div>
         </div>
@@ -83,25 +118,43 @@
           </div>
 
           <div class="py-5 col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
-            <h3>Tudo sobre PepaGym</h3>
-            <p>PepaGym é um ginásio situado em Coruche que apesar de não ter um espaço grande como outros, é perfeito para os seus treinos e saúde, com diversos equipamentos novos e cuidados, colaboradores que adoram o que fazem, uma comunidade amigável. Podemos não ser o maior ginásio, mas somos o ginásio ideal para si!</p>
+            @foreach ($sobres as $sobre)
+              @if ($sobre->id == 1)
+              <h3>{{$sobre->titulo}}</h3>
+              <p>{{$sobre->texto}}</p>    
+              @endif    
+            @endforeach
+            
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-door-open"></i></div>
-              <h4 class="title">Inauguração</h4>
-              <p class="description">PepaGym está desde Maio de 2009 a forncecer um local de treino para os seus clientes</p>
+              @foreach ($sobres as $sobre)
+                @if ($sobre->id == 2)
+                  <h4 class="title">{{$sobre->titulo}}</h4>
+                  <p class="description">{{$sobre->texto}}</p>    
+                @endif    
+            @endforeach
+  
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title">Localização</h4>
-              <p class="description">Localizado na Rua Joana Isabel Matos Lima Dias</p>
+              @foreach ($sobres as $sobre)
+                @if ($sobre->id == 3)
+                  <h4 class="title">{{$sobre->titulo}}</h4>
+                  <p class="description">{{$sobre->texto}}</p>    
+                @endif    
+            @endforeach
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bi bi-building"></i></div>
-              <h4 class="title">Estabelecimento</h4>
-              <p class="description">Temos uma gama variada equipamentos para contribuir no seu treino, acesso a Personal Trainers. Além dos treinos comuns temos a possibilidade de aulas de grupo.</p>
+              @foreach ($sobres as $sobre)
+                @if ($sobre->id == 4)
+                  <h4 class="title">{{$sobre->titulo}}</h4>
+                  <p class="description">{{$sobre->texto}}</p>    
+                @endif    
+            @endforeach
             </div>
 
           </div>

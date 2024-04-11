@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Cliente, Equipamento, Fotos, Funcionario, Mensalidade, Noticia, Personal, Reclamacao};
 use Carbon\Carbon;
+use App\Models\Sobre;
 use Illuminate\View\View as View;
+use App\Models\{Cliente,Hero, Equipamento, Fotos, Funcionario, Mensalidade, Noticia, Personal, Reclamacao};
 
 class ViewController extends Controller
 {
@@ -45,6 +46,8 @@ class ViewController extends Controller
 
     public function index(): View
     {
+        $heros = Hero::all();
+        $sobres = Sobre::all();
         $clientes = Cliente::all()->count();
         $equipamentos = Equipamento::all()->count();
         $anos = Carbon::createFromDate(2009)->age;
@@ -54,6 +57,6 @@ class ViewController extends Controller
         $hero3 = Fotos::where('titulo', 'hero3')->get()->first();
         $videoImg = Fotos::where('titulo', 'videoImg')->get()->first();
 
-        return view('publica.entrada', compact('clientes', 'equipamentos', 'anos', 'colaboradores', 'hero1', 'hero2', 'hero3', 'videoImg'));
+        return view('publica.entrada', compact('sobres', 'clientes', 'equipamentos', 'anos', 'colaboradores', 'hero1', 'hero2', 'hero3', 'videoImg', 'heros'));
     }
 }
