@@ -128,7 +128,12 @@ class Edit extends Component
 
         $hero = Hero::findOrFail($heroID);
 
-        $hero->update($this->validate());
+        $this->validate();
+
+        $hero->update([
+            'titulo' => $this->titulo,
+            'subtitulo' => $this->subtitulo,
+        ]);
         $this->editHero = false;
         $this->dispatch('notify', 'Secção Atualizada com sucesso');
     }
@@ -139,23 +144,19 @@ class Edit extends Component
 
         switch($sobreID)
         {
-            case 0:
+            case 1:
                 $this->titulo = $this->tituloSo1;
                 $this->texto = $this->text1;
                 break;
-            case 1:
+            case 2:
                 $this->titulo = $this->tituloSo2;
                 $this->texto = $this->text2;
                 break;
-            case 2:
-                $this->titulo = $this->tituloSo3;
-                $this->texto = $this->text3;
-                break;
             case 3:
                 $this->titulo = $this->tituloSo3;
                 $this->texto = $this->text3;
                 break;
-            case 3:
+            case 4:
                 $this->titulo = $this->tituloSo4;
                 $this->texto = $this->text4;
                 break;

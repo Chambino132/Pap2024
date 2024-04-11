@@ -11,6 +11,6 @@ class Hero extends Model
 
     protected $fillable = [
         'titulo',
-        'descricao',
+        'subtitulo',
     ];
 }
