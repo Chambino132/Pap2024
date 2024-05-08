@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        $this->call([
+            TextSeeder::class,
+        ]);
+
         Mensalidade::factory(4)
             ->create();
 
