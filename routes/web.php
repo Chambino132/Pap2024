@@ -48,7 +48,7 @@ Route::middleware('adminFun')->group(function () {
     Route::get('/equipamento', function () {
         return view('Funcionario.equipamento.index');
     })->middleware(['auth', 'verified'])->name('equipamento');
-    Route::get('/entradas', function () {
+    Route::get('/entradas/{cliente?}', function () {
         return view('Funcionario.entradas.index');
     })->middleware(['auth', 'verified'])->name('entradas');
     Route::get('/sugestaos', function(){

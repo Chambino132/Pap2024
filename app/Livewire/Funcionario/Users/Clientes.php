@@ -7,6 +7,7 @@ use App\Models\Presenca;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
@@ -59,7 +60,7 @@ class Clientes extends Component
     }
 
     public function montar() 
-    {
+    {   
         if($this->ordena)
         {
             $usersC = User::query()
@@ -82,7 +83,12 @@ class Clientes extends Component
     public function render()
     {
         $usersC = $this->montar();
-
+        
+        if(Route::current()->hasParameter('cliente'))
+        {
+            $this->saveEntrada(Route::current()->parameter('cliente'));
+        }
+        
         return view('livewire.funcionario.users.clientes', compact('usersC'));
     }
     
@@ -108,6 +114,9 @@ class Clientes extends Component
         $this->entrada = Carbon::now();
 
         Presenca::create($this->validate());
-        $this->dispatch('novaEntrada')->to('funcionario.entradas.index');
+        session()->flash('sucesso', 'A Entrada foi registada com sucesso');
+        return redirect(route('entradas'));
     }
+
+    
 }

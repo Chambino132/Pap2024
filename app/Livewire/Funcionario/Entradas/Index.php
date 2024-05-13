@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Routing\Route;
 
 class Index extends Component
 {
@@ -30,12 +31,7 @@ class Index extends Component
         $this->resetPage('entradasPage');
     }
 
-    #[On('novaEntrada')]
-    public function novaEntrada()
-    {
-        session()->flash('sucesso', 'A Entrada foi registada com sucesso');
-        return redirect(request()->header('Referer'));
-    }
+    
 
     public function mount()
     {

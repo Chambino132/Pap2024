@@ -1,7 +1,7 @@
 <div>
 @if ($estEdit == false)
                 <div class="py-8 ">
-                    <div class=" bg-white dark:bg-gray-300 rounded-lg shadow-lg">
+                    <div class="bg-white rounded-lg shadow-lg dark:bg-gray-300">
                         <table class="w-full table-auto">
                                 <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                     <tr>
@@ -31,6 +31,9 @@
                                                 <x-slot name="content">
                                                     <x-dropdown-link-table wire:click="edit">
                                                         Editar
+                                                    </x-dropdown-link-table>
+                                                    <x-dropdown-link-table wire:click="$dispatch('openModal', {component: 'qr-code.qr-modal', arguments: {link: '{{config('app.url')}}/entradas/{{$cliente->id}}'}})">
+                                                        Mostrar QrCode
                                                     </x-dropdown-link-table>
                                                 </x-slot>
                                             </x-dropdown-table>
