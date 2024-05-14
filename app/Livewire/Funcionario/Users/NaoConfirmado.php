@@ -18,7 +18,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Livewire\Funcionario\Users\Personal as UsersPersonal;
-
+use Illuminate\Support\Facades\Hash;
 
 class NaoConfirmado extends Component
 {
@@ -208,6 +208,7 @@ class NaoConfirmado extends Component
                 'morada' => $this->morada,
                 'ultMes' => $ultMes,
                 'user_id' => $user->id,
+                'hash' => Hash::make($user->id),
             ]);
 
             $user->utype = "Cliente";
