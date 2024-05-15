@@ -1,5 +1,6 @@
 <div class="py-12">
     <div class="mx-auto sm:px-6 lg:px-8">
+
         <head>
             <style>
                 #chartdiv {
@@ -159,8 +160,40 @@
                 }); // end am5.ready()
             </script>
         </head>
+
         <body>
-            <div id="chartdiv"></div>
+            <div class="py-12">
+                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
+                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                            <div id="chartdiv"></div>
+                            <div class="grid grid-cols-2 place-content-center">
+                                <select wire:model='mes' class="border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600">
+                                    <option value="01">Janeiro</option>
+                                    <option value="02">Fevereiro</option>
+                                    <option value="03">Março</option>
+                                    <option value="04">Abril</option>
+                                    <option value="05">Maio</option>
+                                    <option value="06">Junho</option>
+                                    <option value="07">Julho</option>
+                                    <option value="08">Agosto</option>
+                                    <option value="09">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                                <select wire:model='ano' class="border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600">
+                                    @foreach ($anos as $item)
+                                        @foreach ($item as $val)    
+                                            <option value="{{$val}}">{{$val}} </option>
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </body>
     </div>
 </div>

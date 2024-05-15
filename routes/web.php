@@ -57,9 +57,6 @@ Route::middleware('adminFun')->group(function () {
     Route::get('/mensalidades', function(){
         return view('mensalidade.index');
     })->name('mensalidade');
-    Route::get('/graficos', function(){
-        return view('graficos.index');
-    })->name('graficos');
     Route::get('/customize', Customize::class)->name('customize');
 });
 
