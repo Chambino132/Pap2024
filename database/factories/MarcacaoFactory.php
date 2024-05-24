@@ -22,7 +22,7 @@ class MarcacaoFactory extends Factory
         $personal = Personal::inRandomOrder()->first();
 
 
-        $estado = ['aceite', 'recusado', 'cancelado', 'pendente'];
+        $estado = ['aceite', 'recusada', 'cancelada', 'pendente'];
 
 
         return [
