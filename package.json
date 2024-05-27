@@ -16,6 +16,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@alpinejs/focus": "^3.14.0",
+        "@alpinejs/persist": "^3.14.0",
         "perfect-scrollbar": "^1.5.5",
         "portal-vue": "^3.0.0"
     }

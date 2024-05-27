@@ -50,7 +50,7 @@ class ViewController extends Controller
         $sobres = Sobre::all();
         $clientes = Cliente::all()->count();
         $equipamentos = Equipamento::all()->count();
-        $anos = Carbon::createFromDate(2009)->age;
+        $anos = Carbon::createFromDate(2009, 05)->age;
         $colaboradores = Personal::all()->count() + Funcionario::all()->count();
         $hero1 = Fotos::where('titulo', 'hero1')->get()->first();
         $hero2 = Fotos::where('titulo', 'hero2')->get()->first();

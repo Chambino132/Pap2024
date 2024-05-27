@@ -1,11 +1,12 @@
 <?php
 
 
-use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
-use App\Livewire\Publica\Customize;
-use App\Livewire\Planos\Main;
-use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
+use App\Livewire\Planos\Main;
+use App\Livewire\Graficos\Index;
+use App\Livewire\Publica\Customize;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,8 @@ Route::middleware('clientePer')->group(function () {
 });
 
 Route::get('/planos/{cliente?}/{plano?}', Main::class)->middleware('notPer')->name('planos');
+
+Route::get('/entradas-data', [Index::class, 'getData'])->name('getEntradas');
 
 
 require __DIR__ . '/auth.php';
