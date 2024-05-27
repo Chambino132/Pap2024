@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Funcionario\Equipamento;
 
+use App\Exports\EquipamentosExport;
+use App\Exports\ProblemaMaquinaExport;
 use Livewire\Component;
 use App\Models\Equipamento;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Table extends Component
 {
@@ -63,6 +66,26 @@ class Table extends Component
     public function changeClass(): void
     {
         $this->class = 'overflow-visible';
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new EquipamentosExport, 'equipamentos.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new EquipamentosExport, 'equpamentos.pdf', \Maatwebsite\Excel\Excel::MPDF);
+    }
+
+    public function exportarProblema(int $id)
+    {
+        $equipamento = Equipamento::findOrFail($id);
+
+        $nome = str_replace(' ', '_', $equipamento->equipamento);
+        $nome = str_replace('.', '', $nome);
+        
+        return Excel::download(new ProblemaMaquinaExport($id), $nome.'_problemas.xlsx');
     }
 
     public function montar() 

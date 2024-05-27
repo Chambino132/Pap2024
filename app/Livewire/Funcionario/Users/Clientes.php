@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Exports\ClientesExport;
 use App\Models\Cliente;
 use App\Models\Presenca;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Clientes extends Component
 {
@@ -78,6 +80,16 @@ class Clientes extends Component
         }
 
         return $usersC;
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ClientesExport, 'clientes.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new ClientesExport, 'clientes.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
    
     public function render()

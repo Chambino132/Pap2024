@@ -2,12 +2,17 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Exports\TecnicosExport;
+use App\Imports\TecnicosImport;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Personal extends Component
 {
@@ -17,6 +22,7 @@ class Personal extends Component
     public int $perPage = 10;
     public string $search = '';
     public bool $ordena = false;
+    public $QExport;
 
     #[On('pagination::updated')]
     public function updatingSearch()
@@ -34,6 +40,16 @@ class Personal extends Component
         {
             $this->ordena = false;
         }
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new TecnicosExport, 'tecnicos.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new TecnicosExport, 'tecnicos.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
 
     public function render()

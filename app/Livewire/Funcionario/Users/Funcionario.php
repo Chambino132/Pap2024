@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Funcionario\Users;
 
+use App\Exports\FuncionariosExport;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Funcionario extends Component
 {
@@ -33,6 +35,17 @@ class Funcionario extends Component
             $this->ordena = true;
         }    
     }
+
+    public function exportar()
+    {
+        return Excel::download(new FuncionariosExport, 'funcionarios.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new FuncionariosExport, 'funcionarios.pdf', \Maatwebsite\Excel\Excel::MPDF);
+    }
+
 
     #[On('funcionario::created')]
     public function montar() 

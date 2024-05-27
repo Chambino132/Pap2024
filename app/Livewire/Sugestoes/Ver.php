@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Sugestoes;
 
+use App\Exports\SugestoesExport;
 use App\Models\Reclamacao;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Redirector;
@@ -10,6 +11,7 @@ use League\Flysystem\MountManager;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\Types\This;
 
 use function Pest\Laravel\swap;
@@ -32,6 +34,16 @@ class Ver extends Component
     {
         session()->flash('sucesso', 'Sugestão deletada!');
         return redirect(request()->header('Referer'));
+    }
+    
+    public function exportar()
+    {
+        return Excel::download(new SugestoesExport, 'sugestoes.xlsx');
+    }
+    
+    public function exportarPDF()
+    {
+        return Excel::download(new SugestoesExport, 'sugestoes.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
 
     public function arquivar(Reclamacao $opiniao) : void 

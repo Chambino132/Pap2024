@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Planos;
 
+use App\Exports\CategoriasExport;
 use Livewire\Component;
 use App\Models\Categoria;
 use Livewire\Attributes\On;
@@ -9,6 +10,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Categorias extends Component
 {
@@ -41,15 +43,15 @@ class Categorias extends Component
         if($this->ordena == 'nome')
         {
             $categorias = Categoria::query()
-                            ->where('nome', 'like', '%'. $this->search. '%')
-                            ->orderby('nome')
-                            ->paginate($this->perPage, ['*'], 'categoriasPage');
+                ->where('nome', 'like', '%'. $this->search. '%')
+                ->orderby('nome')
+                ->paginate($this->perPage, ['*'], 'categoriasPage');
         }
         else
         {
-            $categorias = Categoria::query()
-                            ->where('nome', 'like', '%'. $this->search. '%')
-                            ->paginate($this->perPage, ['*'], 'categoriasPage');
+        $categorias = Categoria::query()
+            ->where('nome', 'like', '%'. $this->search. '%')
+            ->paginate($this->perPage, ['*'], 'categoriasPage');
         }
 
         if(session('sucessoC'))
@@ -58,6 +60,16 @@ class Categorias extends Component
         }
 
         return view('livewire.planos.categorias', compact('categorias'));
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new CategoriasExport, 'categorias.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new CategoriasExport, 'categorias.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
 
     public function rules()

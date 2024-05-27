@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Funcionario\Entradas;
 
+use App\Exports\EntradasExport;
 use Carbon\Carbon;
 use App\Models\Cliente;
 use Livewire\Component;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -31,11 +33,19 @@ class Index extends Component
         $this->resetPage('entradasPage');
     }
 
-    
-
     public function mount()
     {
         $this->montar();
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new EntradasExport, 'entradas.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new EntradasExport, 'entradas.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
 
     public function ordenar($campo)
