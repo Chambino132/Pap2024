@@ -8,6 +8,7 @@ namespace Database\Seeders;
 use App\Models\{Categoria, Exercicio, Fotos, Noticia, Plano, User};
 
 use App\Models\Atividade;
+use App\Models\Best;
 use App\Models\Chat;
 use App\Models\ChatUser;
 use App\Models\Cliente;
@@ -37,6 +38,10 @@ class DatabaseSeeder extends Seeder
             TextSeeder::class,
         ]);
 
+        Equipamento::factory(10)
+            ->has(Problema::factory(3))
+            ->create();
+
         Mensalidade::factory(4)
             ->create();
 
@@ -44,7 +49,8 @@ class DatabaseSeeder extends Seeder
             ->has(Reclamacao::factory())
             ->has(Cliente::factory()
                 ->has(Presenca::factory(3))
-                ->has(Pagamento::factory(3)))
+                ->has(Pagamento::factory(3))
+                ->has(Best::factory(5)))
             ->create();
 
         User::factory(5)
@@ -57,10 +63,6 @@ class DatabaseSeeder extends Seeder
         User::factory(5)
             ->has(Personal::factory())
             ->has(Reclamacao::factory())
-            ->create();
-
-        Equipamento::factory(10)
-            ->has(Problema::factory(3))
             ->create();
 
         //User Admin

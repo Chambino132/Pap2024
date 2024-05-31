@@ -51,4 +51,9 @@ class Cliente extends Model
         return $this->belongsToMany(Plano::class);
     }
 
+    public function bests() : HasMany 
+    {
+        return $this->hasMany(Best::class);    
+    }
+
 }

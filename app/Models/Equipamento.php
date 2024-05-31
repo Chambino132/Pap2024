@@ -16,8 +16,14 @@ class Equipamento extends Model
         'equipamento',
     ];
 
-    function problemas(): HasMany {
+    public function problemas(): HasMany 
+    {
         return $this->hasMany(Problema::class);
+    }
+
+    public function bests(): HasMany 
+    {
+        return $this->hasMany(Best::class);    
     }
 
 }
