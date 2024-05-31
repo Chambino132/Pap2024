@@ -1,5 +1,4 @@
 <div>
-
         <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             {{ __('As suas Marcações') }}
         </h2>
