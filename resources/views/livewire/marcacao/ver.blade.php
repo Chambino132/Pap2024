@@ -1,5 +1,4 @@
 <div>
-
         <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
             {{ __('As suas Marcações') }}
         </h2>
@@ -10,7 +9,7 @@
                 <option value="25">25 Linhas</option>
                 <option value="50">50 Linhas</option>
             </select>
-            <select wire:model.live='est' class='ms-3 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40' wire:change="$dispatch('pagination::updated')">
+            <select wire:model.live='est' class='w-40 border-gray-300 rounded-md shadow-sm ms-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600' wire:change="$dispatch('pagination::updated')">
                 <option value="todos">Todos</option>
                 <option value="pendente">Pedentes</option>
                 <option value="aceite">Aceites</option>
@@ -18,7 +17,7 @@
                 <option value="cancelado">Cancelados</option>
             </select>
         </div>
-        <hr style="border:1px solid red" class="mb-4 mt-4" >
+        <hr style="border:1px solid red" class="mt-4 mb-4" >
     <div>
         <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
             <table class="w-full table-auto">
@@ -48,16 +47,16 @@
                             @if ($EstadoChan == false)
                                 @if ($marcacao->estado == "aceite")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">Aceite</span>
-                                @elseif ($marcacao->estado == "recusado")
+                                    class="px-4 py-2 text-gray-600 bg-green-200 rounded-lg dark:text-gray-800 dark:bg-green-400">Aceite</span>
+                                @elseif ($marcacao->estado == "recusada")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">Recusado</span>
-                                @elseif ($marcacao->estado == "cancelado")
+                                    class="px-4 py-2 text-gray-600 bg-red-200 rounded-lg dark:text-gray-800 dark:bg-red-400">Recusado</span>
+                                @elseif ($marcacao->estado == "cancelada")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">Cancelado</span>
+                                    class="px-4 py-2 text-gray-600 bg-yellow-200 rounded-lg dark:text-gray-800 dark:bg-yellow-400">Cancelado</span>
                                 @else
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">Pendente</span>
+                                    class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-500">Pendente</span>
                                 @endif
 
 
@@ -66,42 +65,42 @@
                             <div class="flex">
                                 <select wire:model='estado' id="estado" name="estado"
                                     wire:change="StoreEstado({{$marcacao->id}})"
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg border-0 h-10">
+                                    class="h-10 px-4 py-2 text-gray-600 bg-gray-200 border-0 rounded-lg dark:text-gray-800 dark:bg-gray-500">
                                     <option selected value="pendente">pendente</option>
                                     <option value="aceite">aceitar</option>
-                                    <option value="recusado">recusar</option>
+                                    <option value="recusada">recusar</option>
                                 </select>
                                 <button wire:click='CanMud'
-                                    class="ms-2 px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg"><svg
+                                    class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg ms-2 dark:text-gray-800 dark:bg-gray-400"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
                                         <path
                                             d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
-                                    </svg></button>
+                                    </svg></button> 
                             </div>
                             @else
                             @if ($marcacao->estado == "aceite")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-green-200 rounded-lg dark:text-gray-800 dark:bg-green-400">{{
                                 $marcacao->estado}}</span>
-                            @elseif ($marcacao->estado == "recusado")
+                            @elseif ($marcacao->estado == "recusada")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-red-200 rounded-lg dark:text-gray-800 dark:bg-red-400">{{
                                 $marcacao->estado}}</span>
-                            @elseif ($marcacao->estado == "cancelado")
+                            @elseif ($marcacao->estado == "cancelada")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-yellow-200 rounded-lg dark:text-gray-800 dark:bg-yellow-400">{{
                                 $marcacao->estado}}</span>
                             @else
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-400">{{
                                 $marcacao->estado}}</span>
                             @endif
                             @endif
                         </td>
-                        @if ($marcacao->estado != "cancelado")
+                        
                             <td class="px-4 py-3 text-center">
                                 <x-dropdown-table>
                                     <x-slot name="trigger">
@@ -109,18 +108,22 @@
                                             class="p-1 px-2 font-bold rounded-lg hover:bg-gray-300 focus:outline-none">&#8943;</button>
                                     </x-slot>
                                     <x-slot name="content">
-                                        <x-dropdown-link-table wire:click='Cancelar({{$marcacao->id}})'>
-                                            Cancelar
+                                    @if ($marcacao->estado == "cancelada" || $marcacao->estado == "recusada")
+                                        <x-dropdown-link-table wire:click="$dispatch('openModal', {component: 'marcacao.modal-motivo' , arguments: {marcacao: {{$marcacao->id}}}})">
+                                            Ver Motivo
                                         </x-dropdown-link-table>
-                                        @if ($marcacao->estado == "pendente" && Auth::user()->utype == "Personal")
+                                    @elseif ($marcacao->estado == "pendente" && Auth::user()->utype == "Personal")
                                         <x-dropdown-link-table wire:click='MudEstado({{$loop->iteration}})'>
                                             Mudar Estado
                                         </x-dropdown-link-table>
-                                        @endif
+                                    @else
+                                        <x-dropdown-link-table wire:click='Cancelar({{$marcacao->id}})'>
+                                            Cancelar
+                                        </x-dropdown-link-table>
+                                   @endif
                                     </x-slot>
                                 </x-dropdown-table>
                             </td>
-                        @endif
                     </tr>
                     @empty
                     <tr>

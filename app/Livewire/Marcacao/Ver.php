@@ -49,13 +49,27 @@ class Ver extends Component
         $marcacao->estado = $this->estado;
         $marcacao->save();
         $this->EstadoChan = false;
+
+        if($this->estado == "recusada")
+        {
+            $this->dispatch("openModal", 'marcacao.modal-motivo', ['marcacao' => $marcacao->id, 'adding' => true]);
+        }
+    }
+
+    #[On('closeModal')]
+    public function refresh()
+    {
+        return redirect(route('marcacoes'));
     }
 
 
     public function Cancelar(Marcacao $marcacao)
     {
-        $marcacao->estado = 'cancelado';
+        $marcacao->estado = 'cancelada';
         $marcacao->save();
+
+        $this->dispatch("openModal", 'marcacao.modal-motivo', ['marcacao' => $marcacao->id, 'adding' => true]);
+        
     }
 
 

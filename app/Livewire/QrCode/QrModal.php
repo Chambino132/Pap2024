@@ -17,6 +17,7 @@ class QrModal extends ModalComponent
 
     public function render()
     {
+       
         $QrCode = QrCode::size(300)->generate($this->link);
 
         return view('livewire.qr-code.qr-modal', compact('QrCode'));

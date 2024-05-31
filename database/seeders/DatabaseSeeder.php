@@ -18,6 +18,7 @@ use App\Models\Marcacao;
 use App\Models\Mensagem;
 use App\Models\Mensalidade;
 use App\Models\Pagamento;
+use App\Models\Perdidos;
 use App\Models\Personal;
 use App\Models\Presenca;
 use App\Models\Problema;
@@ -73,5 +74,7 @@ class DatabaseSeeder extends Seeder
 
         Plano::factory(3)
             ->create();
+
+        Perdidos::factory(5)->create();
     }
 }

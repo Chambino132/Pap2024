@@ -2,15 +2,16 @@
 
 namespace App\Livewire\Funcionario\Users;
 
-use App\Models\Cliente;
-use App\Models\Presenca;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Cliente;
 use Livewire\Component;
+use App\Models\Presenca;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Collection;
 
 class Clientes extends Component
 {
@@ -86,7 +87,9 @@ class Clientes extends Component
         
         if(Route::current()->hasParameter('cliente'))
         {
-            $this->saveEntrada(Route::current()->parameter('cliente'));
+            $id = Cliente::select('id')
+                        ->where('hash', Route::current()->parameter('cliente'))->get()->first();
+            $this->saveEntrada($id->id);
         }
         
         return view('livewire.funcionario.users.clientes', compact('usersC'));
@@ -95,15 +98,26 @@ class Clientes extends Component
     public function confirmEntrada($id)
     {
         $cliente = Cliente::findOrFail($id);
+ 
         $dataPago = Carbon::parse($cliente->ultMes);
+        $dias = $cliente->mensalidade->dias[0];
 
-        if($dataPago->isSameAs('Y-m', Carbon::now()))
+        $entradas = Presenca::whereBetween('entrada', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+
+        if($entradas >= $dias)
         {
-            $this->saveEntrada($id);
+            $this->dispatch('notify', 'O cliente já foi '. $dias.' vez(es) esta semana');
         }
         else
-        {
-            $this->dispatch('openModal', 'modals.pag-atr', ['id' => $cliente->id]);
+        { 
+            if($dataPago->isSameAs('Y-m', Carbon::now()))
+            {
+                $this->saveEntrada($id);
+            }
+            else
+            {
+                $this->dispatch('openModal', 'modals.pag-atr', ['id' => $cliente->id, 'texto' => 'ainda não pagou este mês']);
+            }
         }
     }
 

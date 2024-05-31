@@ -12,8 +12,9 @@ class Nota extends Model
 
     protected $fillable = [
         'titulo',
-        'descrição',
-        'arquivado'
+        'descricao',
+        'arquivado',
+        'funcionario_id'
     ];
     
     function funcionario(): BelongsTo

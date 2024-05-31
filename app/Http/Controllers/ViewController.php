@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Sobre;
 use Illuminate\View\View as View;
-use App\Models\{Cliente,Hero, Equipamento, Fotos, Funcionario, Mensalidade, Noticia, Personal, Reclamacao};
+use App\Models\{Cliente,Hero, Equipamento, Fotos, Funcionario, Mensalidade, Noticia, Perdidos, Personal, Reclamacao};
 
 class ViewController extends Controller
 {
@@ -29,6 +29,7 @@ class ViewController extends Controller
         $mensalidades = $unsorted->sortBy('dias');
         $sugestoes = Reclamacao::where('arquivado', true)->get();
         $funcionarios = Funcionario::all();
+        $perdidos = Perdidos::where('estado', 'encontrado')->get();
 
         $count = 0;
         foreach($mensalidades as $mensalidade)
@@ -41,7 +42,7 @@ class ViewController extends Controller
             
         }
 
-        return view('publica.sobre', compact('mensalidades', 'sugestoes', 'funcionarios', 'classes'));
+        return view('publica.sobre', compact('mensalidades', 'sugestoes', 'funcionarios', 'classes', 'perdidos'));
     }
 
     public function index(): View
@@ -50,7 +51,7 @@ class ViewController extends Controller
         $sobres = Sobre::all();
         $clientes = Cliente::all()->count();
         $equipamentos = Equipamento::all()->count();
-        $anos = Carbon::createFromDate(2009)->age;
+        $anos = Carbon::createFromDate(2009, 05)->age;
         $colaboradores = Personal::all()->count() + Funcionario::all()->count();
         $hero1 = Fotos::where('titulo', 'hero1')->get()->first();
         $hero2 = Fotos::where('titulo', 'hero2')->get()->first();

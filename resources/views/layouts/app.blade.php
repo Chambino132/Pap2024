@@ -9,6 +9,15 @@
 
         <link href="my_images/PepaGym.svg" rel="icon">
 
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Responsive.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Dark.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Micro.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -29,7 +38,7 @@
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="font-sans antialiased ">
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-800 overflow-x-hidden">
+        <div class="min-h-screen overflow-x-hidden bg-gray-100 dark:bg-gray-800">
 
             
             @include('layouts.navigation')
@@ -42,7 +51,7 @@
                 <header class="bg-white shadow dark:bg-slate-900">
                     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div class="flex justify-between">
-                            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                                 {{ $pageTitle }}
                             </h2>
                             <x-theme-toggle></x-theme-toggle>
@@ -57,7 +66,7 @@
             <main>
                 @if (session('failed'))
                         <div class="grid place-content-end me-10">
-                            <div class="overflow-hidden border rounded-lg shadow-lg w-96 bg-gray-100">
+                            <div class="overflow-hidden bg-gray-100 border rounded-lg shadow-lg w-96">
                                 <div class="p-4">
                                     <div class="flex items-start">
                                         <div class="flex-shrink-0">
