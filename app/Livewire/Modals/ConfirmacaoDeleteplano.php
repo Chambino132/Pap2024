@@ -29,4 +29,9 @@ class ConfirmacaoDeleteplano extends ModalComponent
             $this->dispatch('notify', 'Não pode deletar um plano que ainda tenha exercicios!');
         }
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'xl';
+    }
 }

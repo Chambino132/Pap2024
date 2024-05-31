@@ -2,25 +2,24 @@
 
 namespace App\Livewire\Modals;
 
-use App\Models\Reclamacao;
-use Livewire\Attributes\On;
+use App\Models\Nota;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class ConfirmacaoDeletesugestao extends ModalComponent
+class ConfirmacaoDeletenota extends ModalComponent
 {
-    public ?Reclamacao $sugestao;
+    public ?Nota $notaID;
 
     public function render()
     {
-        return view('livewire.modals.confirmacao-deletesugestao');
+        return view('livewire.modals.confirmacao-deletenota');
     }
 
     public function delConfirm()
     {
-        $this->sugestao->delete();
+        $this->notaID->delete();
         $this->closeModal();
-        $this->dispatch('sugestao::delete');
+        $this->dispatch('nota::delete');
     }
 
     public static function modalMaxWidth(): string
