@@ -7,7 +7,7 @@
                     @foreach ($fotos as $foto)
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
-                        <img src="{{Storage::url($foto->imagem)}}" class="img-fluid" alt="">
+                        <img wire:click="$dispatch('openModal', {component: 'modals.show-image', arguments: {funcionario:{{$foto->id}}}})" src="{{Storage::url($foto->imagem)}}" class="img-fluid" alt="">
                         <div class="portfolio-info p-2">
                             <h4>{{$foto->titulo}}</h4>
                         </div>

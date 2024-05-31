@@ -19,8 +19,7 @@
                 <div class="flex items-center justify-center">
                     <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                         <div class="flex flex-col items-center justify-center h-5 text-center">
-                            <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                    as imagens até aqui</span><br /> ou <a class="text-blue-600 hover:underline">clique
+                            <p class="text-gray-500 pointer-none "><span class=""><a class="text-blue-600 hover:underline">Clique
                                     aqui</a> para
                                 escolher uma imagem</p>
                         </div>
@@ -37,8 +36,7 @@
                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                imagens até aqui</span><br /> ou <a class="text-blue-600 hover:underline">clique
+                        <p class="text-gray-500 pointer-none "><span class=""><a class="text-blue-600 hover:underline">Clique
                                 aqui</a> para escolher
                             uma imagem</p>
                     </div>
