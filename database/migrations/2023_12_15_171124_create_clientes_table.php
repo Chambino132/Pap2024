@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->string('telefone');
             $table->string('morada');
             $table->date('ultMes')->nullable();
+            $table->string('hash')->nullable();
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });
