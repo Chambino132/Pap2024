@@ -64,9 +64,6 @@
           @if (Route::currentRouteName() == 'sobre')
              <li class="dropdown"><a class="nav-link active" href="{{route('sobre')}}">Sobre</a>
               <ul>
-                @auth
-                <li><a href="#perdidos">Perdidos e Achados</a></li>
-                @endauth
                 <li><a href="#mensalidades">Mensalidades</a></li>
                 <li><a href="#equipa">Equipa</a></li>
                 <li><a href="#testemunhos">Testemunhos</a></li>
@@ -75,9 +72,6 @@
           @else
              <li class="dropdown"><a class="nav-link" href="{{route('sobre')}}">Sobre</a>
               <ul>
-                @auth
-                <li><a href="{{route('sobre')}}#perdidos">Perdidos e Achados</a></li>
-                @endauth
                 <li><a href="{{route('sobre')}}#mensalidades">Mensalidades</a></li>
                 <li><a href="{{route('sobre')}}#equipa">Equipa</a></li>
                 <li><a href="{{route('sobre')}}#testemunhos">Testemunhos</a></li>

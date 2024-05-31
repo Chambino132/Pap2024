@@ -1,12 +1,6 @@
 @extends('layouts.base')
 @section('content')
 
-@auth
-<section id="perdidos">
-  wdjkfghdfgdkjgdgdg
-</section>
-@endauth
-
 <!-- ======= Pricing Section ======= -->
 <section id="mensalidades" class="pricing justify-content-center">
       <!--  Section Title -->

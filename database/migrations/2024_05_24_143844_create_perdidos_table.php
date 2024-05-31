@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('item');
             $table->string('localizacao');
             $table->string('imagem')->nullable();
-            $table->enum('estado', ['porEncontrar', 'encontrado', 'devolvido']);
+            $table->enum('estado', ['encontrado', 'devolvido'])->default('encontrado');
             $table->timestamps();
         });
     }

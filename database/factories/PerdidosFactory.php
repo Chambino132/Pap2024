@@ -17,12 +17,12 @@ class PerdidosFactory extends Factory
     public function definition(): array
     {
 
-        $estado = ['porEncontrar', 'devolvido', 'encontrado'];
+        $estado = ['devolvido', 'encontrado'];
 
         return [
             'item' => fake()->word(),
             'localizacao' => fake()->sentence(),
-            'estado' => $estado[fake()->numberBetween(0 , 2)],
+            'estado' => $estado[fake()->numberBetween(0 , 1)],
         ];
     }
 }
