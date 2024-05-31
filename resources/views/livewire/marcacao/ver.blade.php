@@ -9,7 +9,7 @@
                 <option value="25">25 Linhas</option>
                 <option value="50">50 Linhas</option>
             </select>
-            <select wire:model.live='est' class='ms-3 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-40' wire:change="$dispatch('pagination::updated')">
+            <select wire:model.live='est' class='w-40 border-gray-300 rounded-md shadow-sm ms-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600' wire:change="$dispatch('pagination::updated')">
                 <option value="todos">Todos</option>
                 <option value="pendente">Pedentes</option>
                 <option value="aceite">Aceites</option>
@@ -17,7 +17,7 @@
                 <option value="cancelado">Cancelados</option>
             </select>
         </div>
-        <hr style="border:1px solid red" class="mb-4 mt-4" >
+        <hr style="border:1px solid red" class="mt-4 mb-4" >
     <div>
         <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg {{$class}}">
             <table class="w-full table-auto">
@@ -47,16 +47,16 @@
                             @if ($EstadoChan == false)
                                 @if ($marcacao->estado == "aceite")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">Aceite</span>
+                                    class="px-4 py-2 text-gray-600 bg-green-200 rounded-lg dark:text-gray-800 dark:bg-green-400">Aceite</span>
                                 @elseif ($marcacao->estado == "recusada")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">Recusado</span>
+                                    class="px-4 py-2 text-gray-600 bg-red-200 rounded-lg dark:text-gray-800 dark:bg-red-400">Recusado</span>
                                 @elseif ($marcacao->estado == "cancelada")
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">Cancelado</span>
+                                    class="px-4 py-2 text-gray-600 bg-yellow-200 rounded-lg dark:text-gray-800 dark:bg-yellow-400">Cancelado</span>
                                 @else
                                 <span
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg">Pendente</span>
+                                    class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-500">Pendente</span>
                                 @endif
 
 
@@ -65,13 +65,13 @@
                             <div class="flex">
                                 <select wire:model='estado' id="estado" name="estado"
                                     wire:change="StoreEstado({{$marcacao->id}})"
-                                    class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-500 rounded-lg border-0 h-10">
+                                    class="h-10 px-4 py-2 text-gray-600 bg-gray-200 border-0 rounded-lg dark:text-gray-800 dark:bg-gray-500">
                                     <option selected value="pendente">pendente</option>
                                     <option value="aceite">aceitar</option>
                                     <option value="recusada">recusar</option>
                                 </select>
                                 <button wire:click='CanMud'
-                                    class="ms-2 px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg"><svg
+                                    class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg ms-2 dark:text-gray-800 dark:bg-gray-400"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -83,19 +83,19 @@
                             @else
                             @if ($marcacao->estado == "aceite")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-green-200 dark:bg-green-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-green-200 rounded-lg dark:text-gray-800 dark:bg-green-400">{{
                                 $marcacao->estado}}</span>
                             @elseif ($marcacao->estado == "recusada")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-red-200 dark:bg-red-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-red-200 rounded-lg dark:text-gray-800 dark:bg-red-400">{{
                                 $marcacao->estado}}</span>
                             @elseif ($marcacao->estado == "cancelada")
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-yellow-200 dark:bg-yellow-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-yellow-200 rounded-lg dark:text-gray-800 dark:bg-yellow-400">{{
                                 $marcacao->estado}}</span>
                             @else
                             <span
-                                class="px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg">{{
+                                class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg dark:text-gray-800 dark:bg-gray-400">{{
                                 $marcacao->estado}}</span>
                             @endif
                             @endif

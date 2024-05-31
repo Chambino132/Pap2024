@@ -65,13 +65,11 @@ class Ver extends Component
 
     public function Cancelar(Marcacao $marcacao)
     {
-        $marcacao->estado = 'cancelado';
+        $marcacao->estado = 'cancelada';
         $marcacao->save();
 
-        if($this->estado == "recusada")
-        {
-            $this->dispatch("openModal", 'marcacao.modal-motivo', ['marcacao' => $marcacao->id, 'adding' => true]);
-        }
+        $this->dispatch("openModal", 'marcacao.modal-motivo', ['marcacao' => $marcacao->id, 'adding' => true]);
+        
     }
 
 
