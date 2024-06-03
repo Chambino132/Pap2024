@@ -3,11 +3,15 @@
 namespace App\Livewire\Funcionario\Users;
 
 use App\Exports\FuncionariosExport;
+use App\Exports\funcionarioTempExport;
 use App\Models\User;
+use Illuminate\Contracts\Cache\Store;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Funcionario extends Component
@@ -44,6 +48,11 @@ class Funcionario extends Component
     public function exportarPDF()
     {
         return Excel::download(new FuncionariosExport, 'funcionarios.pdf', \Maatwebsite\Excel\Excel::MPDF);
+    }
+
+    public function print()
+    {
+       
     }
 
 
