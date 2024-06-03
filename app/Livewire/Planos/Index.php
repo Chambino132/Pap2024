@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Planos;
 
+use App\Exports\ExerciciosPlanoExport;
+use App\Exports\PlanosExport;
 use App\Models\Exercicio;
 use App\Models\Plano;
 use Illuminate\Database\Eloquent\Collection;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -51,6 +54,27 @@ class Index extends Component
     public function changeClass(): void
     {
         $this->class = 'overflow-visible';
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new PlanosExport, 'planos.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new PlanosExport, 'planos.pdf', \Maatwebsite\Excel\Excel::MPDF);
+    }
+
+
+    public function exportarExercicios($id)
+    {
+        $plano = Plano::findOrFail($id);
+
+        $nome = str_replace(' ', '_', $plano->nome);
+        $nome = str_replace('.', '', $nome);
+
+        return Excel::download(new ExerciciosPlanoExport($id), $nome.'_exercicios.xlsx');
     }
 
     public function mount()

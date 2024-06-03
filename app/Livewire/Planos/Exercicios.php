@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Planos;
 
+use App\Exports\ExerciciosExport;
 use App\Models\Categoria;
 use App\Models\Exercicio;
 use Livewire\Component;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Exercicios extends Component
 {
@@ -89,6 +91,16 @@ class Exercicios extends Component
         {
             $this->dispatch('notify', Session::get('sucessoE'));
         }
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ExerciciosExport, 'exercicios.xlsx');
+    }
+
+    public function exportarPDF()
+    {
+        return Excel::download(new ExerciciosExport, 'exercicios.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
 
     public function refresh()

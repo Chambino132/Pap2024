@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Graficos;
 
+
 use Carbon\Carbon;
 use App\Models\Cliente;
 use Livewire\Component;
@@ -23,7 +24,7 @@ class Index extends Component
     {
         $this->mes = Carbon::now()->format('m');
         $this->ano = Carbon::now()->format('Y');
-        
+
         switch($this->mes)
         {
             case "01":
@@ -64,6 +65,7 @@ class Index extends Component
                 break;
         }
 
+
         $this->anos = DB::select('
             SELECT
                 YEAR(entrada) AS ano
@@ -77,6 +79,7 @@ class Index extends Component
 
     }
 
+
     #[On("dataUpdate")]
     public function getData()
     {
@@ -84,8 +87,6 @@ class Index extends Component
         $temp = array();
         $graftData = array();
         $lastWeek = '';
-
-        
 
         $entradas = DB::select('
             SELECT

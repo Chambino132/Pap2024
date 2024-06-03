@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Mensalidade;
 
+use App\Exports\MensalidadesExport;
 use Livewire\Component;
 use App\Models\Mensalidade;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Ver extends Component
 {
@@ -31,6 +33,16 @@ class Ver extends Component
     public function changeClassAuto(): void
     {
         $this->class = 'overflow-y-auto';
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new MensalidadesExport, 'mensalidades.xlsx');
+    }
+    
+    public function exportarPDF()
+    {
+        return Excel::download(new MensalidadesExport, 'mensalidades.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
     
     public function changeClass(): void
