@@ -9,6 +9,7 @@ use LivewireUI\Modal\ModalComponent;
 class PagAtr extends ModalComponent
 {
     public int $id;
+    public string $texto;
 
     public function confirmada()
     {

@@ -17,7 +17,8 @@ return new class () extends Migration {
             $table->time('hora');
             $table->foreignIdFor(Personal::class)->constrained();
             $table->foreignIdFor(Cliente::class)->constrained();
-            $table->enum('estado', ['aceite', 'recusado', 'cancelado', 'pendente'])->default('pendente');
+            $table->enum('estado', ['aceite', 'recusada', 'cancelada', 'pendente'])->default('pendente');
+            $table->string('motivo')->nullable();
             $table->timestamps();
         });
     }

@@ -29,4 +29,9 @@ class ConfirmacaoDeletecategoria extends ModalComponent
             $this->dispatch('notify', 'Não pode deletar uma categoria que ainda tenha exercicios!');
         }
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'xl';
+    }
 }

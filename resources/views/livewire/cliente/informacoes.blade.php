@@ -32,7 +32,7 @@
                                                     <x-dropdown-link-table wire:click="edit">
                                                         Editar
                                                     </x-dropdown-link-table>
-                                                    <x-dropdown-link-table wire:click="$dispatch('openModal', {component: 'qr-code.qr-modal', arguments: {link: '{{config('app.url')}}/entradas/{{$cliente->id}}'}})">
+                                                    <x-dropdown-link-table wire:click="QrCode">
                                                         Mostrar QrCode
                                                     </x-dropdown-link-table>
                                                 </x-slot>

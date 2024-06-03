@@ -5,6 +5,7 @@ namespace App\Livewire\Cliente;
 use App\Models\Cliente;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Informacoes extends Component
@@ -40,6 +41,15 @@ class Informacoes extends Component
 
         $this->cliente = Cliente::where('user_id', Auth::user()->id)->get()->first();
 
+    }
+
+    public function QrCode(): void
+    {
+        $hash = $this->cliente->hash;
+
+        $app = config('app.url');
+
+        $this->dispatch('openModal',  'qr-code.qr-modal', ['link' => "$app/entradas/$hash"]);
     }
 
     public function edit(): void

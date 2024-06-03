@@ -4,18 +4,18 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="mx-auto sm:px-6 lg:px-8 xl:flex grid grid-rows-2 place-content-center">
+        <div class="grid grid-rows-2 mx-auto sm:px-6 lg:px-8 xl:flex place-content-center">
             <div class="lg:flex">
-                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
-                    <div class="p-6 text-gray-900 dark:text-gray-100  ">
-                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Primeira Imagem da Pagina
+                <div class="mb-5 bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80">
+                    <div class="p-6 text-gray-900 dark:text-gray-100 ">
+                            <label class="block mb-4 font-medium text-gray-700 dark:text-gray-300">Primeira Imagem da Pagina
                                 Principal
                                 <hr class="border-black dark:border-white">
                             </label>
                                 
                             @if (!$alt1)
                                 @if ($hero1)
-                                <img class="w-96 h-40" src="{{Storage::url($hero1->imagem)}}">
+                                <img class="h-40 w-96" src="{{Storage::url($hero1->imagem)}}">
                                 <x-secondary-button wire:click='alterar1' class="mt-12">Alterar</x-secondary-button>
                                 @else
                                 <form wire:submit="guardar('hero1')">
@@ -24,14 +24,13 @@
                                             @if ($foto1 && getimagesize($foto1->getRealPath()))
 
                                             @if(in_array($foto1->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'webp']))
-                                            <img class="rounded-md h-28 w-64" src="{{ $foto1->temporaryUrl() }}">
+                                            <img class="w-64 rounded-md h-28" src="{{ $foto1->temporaryUrl() }}">
                                             @else
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto1" type="file" name="file" class="hidden">
@@ -41,12 +40,11 @@
                                             @endif
 
                                             @else
-                                            <label class="flex flex-col p-10 text-center border-4 border-double border-current rounded-lg h-30 group">
+                                            <label class="flex flex-col p-10 text-center border-4 border-current border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -86,9 +84,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto1" type="file" name="file" class="hidden">
@@ -104,9 +101,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -137,10 +133,10 @@
                             @endif
                     </div>
                 </div>
-                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
+                <div class="mb-5 bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80">
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         
-                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Segunda Imagem da Pagina
+                            <label class="block mb-4 font-medium text-gray-700 dark:text-gray-300">Segunda Imagem da Pagina
                                 Principal
                                 <hr class="border-black dark:border-white">
                             </label>
@@ -160,9 +156,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-current border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto2" type="file" name="file" class="hidden">
@@ -178,9 +173,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-current border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -220,9 +214,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto2" type="file" name="file" class="hidden">
@@ -238,9 +231,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -276,10 +268,10 @@
                 </div>
             </div>
             <div class="lg:flex">
-                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
+                <div class="mb-5 bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80">
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         <div>
-                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-4">Terceira Imagem da Pagina
+                            <label class="block mb-4 font-medium text-gray-700 dark:text-gray-300">Terceira Imagem da Pagina
                                 Principal
                                 <hr class="border-black dark:border-white">
                             </label>
@@ -300,8 +292,7 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
                                                                 class="text-blue-600 hover:underline">clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
@@ -318,9 +309,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -358,9 +348,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto3" type="file" name="file" class="hidden">
@@ -376,9 +365,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -412,11 +400,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80 mb-5">
+                <div class="mb-5 bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg me-10 h-96 lg:h-80 w-96 lg:w-80">
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
                         <div>
-                            <label class="block font-medium text-gray-700 dark:text-gray-300 mb-3">Imagem de capa do video
-                                <hr class="border-black dark:border-white w-48">
+                            <label class="block mb-3 font-medium text-gray-700 dark:text-gray-300">Imagem de capa do video
+                                <hr class="w-48 border-black dark:border-white">
                             </label>
                             @if (!$alt4)
                                 @if ($videoImg)
@@ -434,9 +422,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto4" type="file" name="file" class="hidden">
@@ -452,9 +439,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -494,9 +480,8 @@
                                             <div class="flex items-center justify-center">
                                                 <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
                                                     <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                        <p class="text-gray-500 pointer-none "><span class="">Arraste e largue
-                                                                as imagens até aqui</span><br /> ou <a
-                                                                class="text-blue-600 hover:underline">clique aqui</a> para
+                                                        <p class="text-gray-500 pointer-none "><span class=""><a
+                                                                class="text-blue-600 hover:underline">Clique aqui</a> para
                                                             escolher uma imagem</p>
                                                     </div>
                                                     <input wire:model="foto4" type="file" name="file" class="hidden">
@@ -512,9 +497,8 @@
                                             <label class="flex flex-col p-10 text-center border-4 border-double rounded-lg h-30 group">
 
                                                 <div class="flex flex-col items-center justify-center h-5 text-center">
-                                                    <p class="text-gray-500 pointer-none "><span class="">Arraste e largue as
-                                                            imagens até aqui</span><br /> ou <a
-                                                            class="text-blue-600 hover:underline">clique aqui</a> para escolher
+                                                    <p class="text-gray-500 pointer-none "><span class=""><a
+                                                            class="text-blue-600 hover:underline">Clique aqui</a> para escolher
                                                         uma imagem</p>
                                                 </div>
 
@@ -574,6 +558,15 @@
             </div>
         </div>
     </div>
+    <div class="py-12">
+        <div class="mx-auto sm:px-6 lg:px-8 ">
+            <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <livewire:p-achados.add>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="py-12">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
@@ -588,6 +581,15 @@
                 <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <livewire:noticias.ver>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-12">
+            <div class="mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <livewire:p-achados.ver>
                     </div>
                 </div>
             </div>

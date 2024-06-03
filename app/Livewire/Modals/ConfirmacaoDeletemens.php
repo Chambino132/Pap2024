@@ -30,4 +30,9 @@ class ConfirmacaoDeletemens extends ModalComponent
             $this->dispatch('notify', 'Não pode eliminar uma mensalidade que ainda tenha clientes!');
         }
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'xl';
+    }
 }

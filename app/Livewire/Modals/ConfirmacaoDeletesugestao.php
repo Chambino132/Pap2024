@@ -22,4 +22,9 @@ class ConfirmacaoDeletesugestao extends ModalComponent
         $this->closeModal();
         $this->dispatch('sugestao::delete');
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'xl';
+    }
 }
