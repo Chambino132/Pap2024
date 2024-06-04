@@ -15,6 +15,7 @@
         "maatwebsite/excel": "^3.1",
         "mpdf/mpdf": "^8.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-backup": "^8.8",
         "tecnickcom/tc-lib-pdf": "^8.0",
         "wire-elements/modal": "^2.0"
     },
