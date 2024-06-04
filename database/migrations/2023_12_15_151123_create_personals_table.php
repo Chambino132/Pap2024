@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('telefone');
             $table->string('morada');
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Atividade::class)->constrained();
             $table->timestamps();
         });
     }

@@ -35,6 +35,11 @@
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
+                    <x-nav-link :href="route('atividades')" :active="request()->routeIs('atividades')">
+                        {{ __('Atividades') }}
+                    </x-nav-link>
+                </div>
                     <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
                         <x-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
                             {{ __('Sugestões')}}
@@ -143,6 +148,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('entradas')" :active="request()->routeIs('entradas')">
                 {{ __('Clientes') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('atividades')" :active="request()->routeIs('ativdiades')">
+                {{ __('Atividades') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">

@@ -7,7 +7,7 @@
 
     <form wire:submit='marcar'>
         <div class="flex justify-between pb-5 mt-3 ml-10 mr-28 mpt-2">
-            <select wire:model='selAtividade' id="atividade" name="atividade_id" wire:change="$dispatch('atividade::changed')"
+            <select wire:model='atividade_id' id="atividade" name="atividade_id" wire:change="$dispatch('atividade::changed')"
                 class="block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-96" >
                 <option selected>{{ __('Selecione uma atividade') }}</option>
                 @foreach ($atividades as $atividade)
@@ -23,8 +23,8 @@
                 @endif>
                 @if ($responsaveis != null)
                 <option selected>{{ __('Selecione um Responsável') }}</option>
-                    @foreach ($responsaveis as $responsavel)
-                        <option value="{{$responsavel->id}}">{{$responsavel->user->name}}</option>
+                    @foreach ($responsaveis as $key => $responsavel)
+                        <option value="{{$key}}">{{$responsavel['nome']}}</option>
                     @endforeach
                 @endif
             </select>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Personal extends Model
@@ -29,8 +30,8 @@ class Personal extends Model
         return $this->hasMany(Marcacao::class);    
     }
 
-    function atividade(): BelongsTo
+    function atividades(): HasMany
     {
-        return $this->belongsTo(Atividade::class);
+        return $this->hasMany(AtividadePersonal::class);
     }
 }

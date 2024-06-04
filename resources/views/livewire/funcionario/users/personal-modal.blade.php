@@ -7,7 +7,7 @@
             <hr class="border-black dark:border-white" style="width: 220px">
         </header>
         <div class="py-3 ">
-            <div class=" bg-white dark:bg-gray-400 rounded-lg shadow-lg overflow-hidden">
+            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-400">
                 <table class="w-full table-auto">
                         <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                             <tr>
@@ -25,7 +25,13 @@
                                 <td class="px-4 py-3">{{$UPersonal->telefone}}</td>
                                 <td class="px-4 py-3">{{$UPersonal->morada}}</td>
                                 <td class="px-4 py-3">
-                                    {{$UPersonal->atividade->atividade}}
+                                    @foreach ($UPersonal->atividades as $item)
+                                    @if ($loop->iteration != 1)
+                                        /
+                                    @endif
+                                    {{$item->atividade}} 
+                                    @endforeach
+                                    {{-- {{$UPersonal->atividade->atividade}} --}}
                                 </td>
                             </tr>
                         </tbody>
