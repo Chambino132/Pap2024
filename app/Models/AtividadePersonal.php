@@ -15,14 +15,4 @@ class AtividadePersonal extends Model
     {
         return $this->hasMany(Marcacao::class);
     }
-
-    public function personal(): BelongsTo
-    {
-        return $this->belongsTo(Personal::class);
-    }
-
-    public function atividade(): BelongsTo
-    {
-        return $this->belongsTo(Atividade::class);
-    }
 }

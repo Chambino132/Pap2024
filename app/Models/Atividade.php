@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Atividade extends Model
 {
@@ -15,8 +16,8 @@ class Atividade extends Model
         'atividade',
     ];
 
-    function personals(): HasMany 
+    function personals(): BelongsToMany 
     {
-        return $this->hasMany(AtividadePersonal::class);
+        return $this->BelongsToMany(Personal::class, AtividadePersonal::class);
     }
 }

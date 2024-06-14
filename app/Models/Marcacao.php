@@ -14,7 +14,7 @@ class Marcacao extends Model
         'dia',
         'hora',
         'cliente_id',
-        'personal_id',
+        'atividade_personal_id',
         'estado',
     ];
 
