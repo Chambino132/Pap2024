@@ -13,6 +13,7 @@ class Chat extends Model
 
     protected $fillable = [
         'lastMensagem',
+        'estado',
     ];
 
     function users(): BelongsToMany
