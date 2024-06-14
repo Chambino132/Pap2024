@@ -1,4 +1,5 @@
 <div class="dark:text-white">
+  
     <div wire:click="abrir" class="flex justify-between h-8 rounded-t-lg bg-gradient-to-r from-red-400 to-red-600 w-96 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
         <h3 class="m-1 ml-2"><strong>{{__('Suporte')}}</strong></h3>
         @if($OpChat == false)
@@ -24,10 +25,10 @@
           <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
         </svg></div>
       @endif
-      <div id="conversas" class="overflow-y-scroll h-96 scrolls">
-      @if (Auth::user()->utype == 'Funcionario')    
+      <div wire:poll='getChats' id="conversas" class="overflow-y-scroll h-96 scrolls">
+      @if (Auth::user()->utype == 'Funcionario' || Auth::user()->utype == 'Admin')    
         <div>
-          <h1 class="text-xl text-center py-5">Chats Não Atendidos</h1>
+          <h1 class="py-5 text-xl text-center">Chats Não Atendidos</h1>
           <hr>
           @forelse ($chatsNA as $chat)
             <div wire:click='OpenCon({{$chat->id}})' class="hover:bg-slate-200 dark:hover:bg-gray-900">
@@ -54,9 +55,9 @@
         </div>
       @endif
       
-        @if (Auth::user()->utype == 'Funcionario')    
+        @if (Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin')    
         <div>
-          <h1 class="text-xl text-center py-5">Chats Atendidos</h1>
+          <h1 class="py-5 text-xl text-center">Chats Atendidos</h1>
           <hr>
         </div>
       @endif
@@ -96,7 +97,7 @@
                   @if ($chat->mensagems->last()->estado == 'Entrege')
                   <div class="flex justify-between">
                     <p class="truncate"><strong>{{$chat->mensagems->last()->mensagem}}</strong></p>
-                    <div class="bg-red-600 w-6 px-2 rounded-full">
+                    <div class="w-6 px-2 bg-red-600 rounded-full">
                       <p ><strong>{{$count}}</strong> </p>
                     </div>
                   </div>
@@ -159,20 +160,33 @@
             @if ($chat->mensagems)
               @foreach ($chat->mensagems as $mensagem)
                   @if ($mensagem->user->utype == Auth::user()->utype)
-                      <div class="w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white ">
+                      <div class="relative flex justify-between w-8/12 h-auto p-2 my-2 ml-auto bg-red-500 border border-red-300 rounded-lg shadow-sm resize-none dark:border-red-700 dark:bg-red-900 dark:text-white">
+                        {{$mensagem->mensagem}}
+                        @if ($mensagem->estado == 'Lida')
+                        <div class="absolute text-teal-400 bottom-1 right-2">
+                        
+                        @else
+                        <div class="pt-4 text-gray-600">
+                        @endif
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+                            <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                          </svg>
+                        </div>
+                      </div>
                   @else
                   <div class="w-8/12 h-auto p-2 my-2 border border-gray-300 rounded-lg shadow-sm resize-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
-                  @endif
-                  {{$mensagem->mensagem}}
+                    {{$mensagem->mensagem}}
                 </div>
+                  @endif
+                  
               @endforeach
             @endif
-              <x-input-error wire:poll='resetVAl' style="margin-top: 150px" class="ml-4 bottom-10 self-center" :messages="$errors->get('mensagem')"/>
+              <x-input-error wire:poll='resetVAl' style="margin-top: 150px" class="self-center ml-4 bottom-10" :messages="$errors->get('mensagem')"/>
           </div>
           
-            <div class=" w-11/12 ml-4"> 
-              @if (Auth::user()->utype == 'Funcionario' && $chat->estado == 'naoAtendido')
-              <button wire:click="Atender" class="mt-5 py-5 flex justify-center w-full h-16 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500"><strong>Atender Cliente</strong></button>
+            <div class="w-11/12 ml-4 "> 
+              @if (Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin' && $chat->estado == 'naoAtendido')
+              <button wire:click="Atender" class="flex justify-center w-full h-16 py-5 mt-5 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500"><strong>Atender Cliente</strong></button>
               @else
                 <form  wire:submit='enviar' id="enviar" name="enviar"> 
                   

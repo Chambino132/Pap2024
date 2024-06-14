@@ -143,7 +143,21 @@ class Chat extends Component
     {
         if ($this->OpCon) {
             $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
+
+            foreach($this->chat->mensagems as $mensagem)
+            {
+                if ($mensagem->user_id != Auth::user()->id) 
+                {
+                    $mensagem->estado = 'Lida';
+                    $mensagem->save();
+                }
+            }
         }
+    }
+    public function getChats()
+    {
+        $this->montar();
+        $this->OpChat = true;
     }
 
 
@@ -200,7 +214,7 @@ class Chat extends Component
 
         $this->chats = $this->unsorted->sortByDesc('lastMensagem');
 
-        if(Auth::user()->utype == 'Funcionario')
+        if(Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin')
         {
             $this->chatsNA = ModelChat::where('estado', '=', 'naoAtendido')->get();
         }
