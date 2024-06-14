@@ -35,6 +35,11 @@
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
+                    <x-nav-link :href="route('atividades')" :active="request()->routeIs('atividades')">
+                        {{ __('Atividades') }}
+                    </x-nav-link>
+                </div>
                     <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
                         <x-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
                             {{ __('Sugestões')}}
@@ -45,9 +50,9 @@
                             {{ __('Mensalidades')}}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
+                    <div class="hidden space-x-8 text-center xl:-my-px xl:ml-8 xl:flex">
                         <x-nav-link :href="route('customize')" :active="request()->routeIs('customize')">
-                            {{ __('Customizar Site')}}
+                            {{ __('Customizar Website')}}
                         </x-nav-link>
                     </div>
                 @endif
@@ -61,7 +66,7 @@
                 @endif
 
                 @if (Auth::user()->utype != "PorConfirmar" && Auth::user()->utype != "Personal")
-                    <div class="hidden space-x-8 xl:-my-px xl:ml-8 xl:flex">
+                    <div class="hidden space-x-8 text-center xl:-my-px xl:ml-8 xl:flex">
                         <x-nav-link :href="route('planos')" :active="request()->routeIs('planos')">
                             {{ __('Planos de Treino') }}
                         </x-nav-link>
@@ -146,6 +151,11 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('atividades')" :active="request()->routeIs('ativdiades')">
+                {{ __('Atividades') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('sugestao')" :active="request()->routeIs('sugestao')">
                 {{ __('Sugestões') }}
             </x-responsive-nav-link>
@@ -157,7 +167,7 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('customize')" :active="request()->routeIs('customize')">
-                {{ __('Customizar Site') }}
+                {{ __('Customizar Website') }}
             </x-responsive-nav-link>
         </div>
         @endif

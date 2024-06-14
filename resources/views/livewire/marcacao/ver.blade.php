@@ -13,8 +13,8 @@
                 <option value="todos">Todos</option>
                 <option value="pendente">Pedentes</option>
                 <option value="aceite">Aceites</option>
-                <option value="recusado">Recusados</option>
-                <option value="cancelado">Cancelados</option>
+                <option value="recusada">Recusados</option>
+                <option value="cancelada">Cancelados</option>
             </select>
         </div>
         <hr style="border:1px solid red" class="mt-4 mb-4" >

@@ -14,7 +14,7 @@ class Marcacao extends Model
         'dia',
         'hora',
         'cliente_id',
-        'personal_id',
+        'atividade_personal_id',
         'estado',
     ];
 
@@ -23,9 +23,9 @@ class Marcacao extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function personal(): BelongsTo
+    public function atividadePersonal(): BelongsTo
     {
-        return $this->belongsTo(Personal::class);
+        return $this->belongsTo(AtividadePersonal::class);
     }
 
     

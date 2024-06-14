@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Cliente, Personal};
+use App\Models\{Atividade, AtividadePersonal, Cliente, Personal};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +15,8 @@ return new class () extends Migration {
             $table->id();
             $table->date('dia');
             $table->time('hora');
-            $table->foreignIdFor(Personal::class)->constrained();
             $table->foreignIdFor(Cliente::class)->constrained();
+            $table->foreignIdFor(AtividadePersonal::class)->nullable()->constrained();
             $table->enum('estado', ['aceite', 'recusada', 'cancelada', 'pendente'])->default('pendente');
             $table->string('motivo')->nullable();
             $table->timestamps();

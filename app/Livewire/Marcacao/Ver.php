@@ -82,31 +82,34 @@ class Ver extends Component
                 if(Auth::user()->utype == "Cliente")
                 {
                     $marcacoes = Auth::user()->cliente->marcacaos()
-                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
-                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('atividade_personals', 'marcacaos.atividade_personal_id', 'atividade_personals.id')
+                    ->join('atividades', 'atividade_personals.atividade_id', 'atividades.id')
+                    ->join('personals', 'atividade_personals.personal_id', 'personals.id')
                     ->join('users', 'personals.user_id', 'users.id')
                     ->where(function($query){
                         $query->where('users.name', 'like', '%' .$this->search. '%')
-                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                        ->orWhere('atividades.atividade', 'like', '%'. $this->search .'%');
                     })
-                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado','atividades.atividade as atividade')
                     ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
                 else
                 {
-                    $marcacoes = Auth::user()->personal->marcacaos()
-                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
-                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    $marcacoes = Marcacao::select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade as atividade')
+                    ->join('atividade_personals', 'marcacaos.atividade_personal_id', 'atividade_personals.id')
+                    ->join('atividades', 'atividade_personals.atividade_id', 'atividades.id')
+                    ->join('personals', 'atividade_personals.personal_id', 'personals.id')
                     ->join('clientes', 'marcacaos.cliente_id', 'clientes.id')
                     ->join('users', 'clientes.user_id', 'users.id')
+                    ->where('personals.id', '=', Auth::user()->personal->id)
                     ->where(function($query){
                         $query->where('users.name', 'like', '%' .$this->search. '%')
-                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                        ->orWhere('atividades.atividade', 'like', '%'. $this->search .'%');
                     })
-                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
                     ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
+                    
                 }
             }
             else
@@ -114,31 +117,33 @@ class Ver extends Component
                 if(Auth::user()->utype == "Cliente")
                 {
                     $marcacoes = Auth::user()->cliente->marcacaos()
-                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
-                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    ->join('atividade_personals', 'marcacaos.atividade_personal_id', 'atividade_personals.id')
+                    ->join('atividades', 'atividade_personals.atividade_id', 'atividades.id')
+                    ->join('personals', 'atividade_personals.personal_id', 'personals.id')
                     ->join('users', 'personals.user_id', 'users.id')
                     ->where(function($query){
                         $query->where('users.name', 'like', '%' .$this->search. '%')
-                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                        ->orWhere('atividades.atividade', 'like', '%'. $this->search .'%');
                     })
                     ->where('estado', $this->est)
-                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado','atividades.atividade as atividade')
                     ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
                 else
                 {
-                    $marcacoes = Auth::user()->personal->marcacaos()
-                    ->join('personals', 'marcacaos.personal_id', 'personals.id')
-                    ->join('atividades', 'personals.atividade_id', 'atividades.id')
+                    $marcacoes = Marcacao::select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade as atividade')
+                    ->join('atividade_personals', 'marcacaos.atividade_personal_id', 'atividade_personals.id')
+                    ->join('atividades', 'atividade_personals.atividade_id', 'atividades.id')
                     ->join('clientes', 'marcacaos.cliente_id', 'clientes.id')
+                    ->join('personals', 'atividade_personals.personal_id', 'personals.id')
                     ->join('users', 'clientes.user_id', 'users.id')
+                    ->where('personals.id', '=', Auth::user()->personal->id)
                     ->where(function($query){
                         $query->where('users.name', 'like', '%' .$this->search. '%')
-                        ->orWhere('atividades.atividade','like', '%' .$this->search. '%');
+                        ->orWhere('atividades.atividade', 'like', '%'. $this->search .'%');
                     })
                     ->where('estado', $this->est)
-                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'users.name as name', 'marcacaos.estado as estado', 'atividades.atividade')
                     ->orderby('dia', 'DESC')
                     ->paginate($this->perPage, ['*'], 'marcacoesPage');
                 }
