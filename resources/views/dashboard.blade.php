@@ -6,7 +6,7 @@
 
     @if (Auth::user()->utype == 'Cliente')
         <div class="grid grid-cols-2">
-            <div class="py-12 row-span-2">
+            <div class="row-span-2 py-12">
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-900 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -59,6 +59,8 @@
             <livewire:cliente.entradas>
         @endif
     @elseif (Auth::user()->utype == 'Funcionario' || Auth::user()->utype == 'Admin')
+    <livewire:pagamentos.index>
+
         <div class="grid-cols-6 md:grid gap-x-0">
             <div class="col-span-4">
                 <livewire:graficos.index>
@@ -79,7 +81,6 @@
         </div>
         
 
-        <livewire:pagamentos.index>
         @else
             <div class="py-12">
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
