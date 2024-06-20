@@ -19,8 +19,6 @@ class MarcacaoFactory extends Factory
     {
         
         $cliente   = Cliente::inRandomOrder()->first();
-        $personal = Personal::inRandomOrder()->first();
-
 
         $estado = ['aceite', 'recusada', 'cancelada', 'pendente'];
 
@@ -28,7 +26,6 @@ class MarcacaoFactory extends Factory
         return [
             'dia'          => fake()->date(),
             'hora'         => fake()->time(),
-            'personal_id' => $personal->id,
             'cliente_id'   => $cliente->id,
             'estado'       => $estado[fake()->numberBetween(0, 3)],
         ];

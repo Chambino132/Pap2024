@@ -8,6 +8,7 @@ use App\Livewire\Publica\Customize;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{ClienteController, ProfileController, ViewController};
 use App\Livewire\Calendario\Index as CalendarioIndex;
+use App\Livewire\Atividades\Index as AtividadesIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ Route::middleware('adminFun')->group(function () {
         return view('mensalidade.index');
     })->name('mensalidade');
     Route::get('/customize', Customize::class)->name('customize');
+    Route::get('/atividades', AtividadesIndex::class)->name('atividades');
 });
 
 Route::get('/calendario', CalendarioIndex::class)->name('calendario');

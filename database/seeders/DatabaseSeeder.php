@@ -76,5 +76,7 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Perdidos::factory(5)->create();
+
+        
     }
 }

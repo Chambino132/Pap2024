@@ -18,6 +18,7 @@ class Chat extends Component
 {
     public Collection $allChats;
     public Collection $chats;
+    public Collection $chatsNA;
     public ModelChat $chat;
     public Collection $users;
     public Collection $usersiC;
@@ -47,47 +48,47 @@ class Chat extends Component
         'mensagem.required' => 'Por favor escreva a sua mensagem antes de enviar'
     ];
 
-    #[On('IsSearching')]
-    public function search()
-    {
-        $this->users = new Collection();
-        $this->usersiC = new Collection();
-        $this->searching = true;
-        $added = false;
-        $count = 0;
-        $Serusers = User::where('name', 'LIKE', '%' . $this->pesquisa . '%')
-                          ->whereNot('utype', 'PorConfirmar')
-                          ->get();
+    // #[On('IsSearching')]
+    // public function search()
+    // {
+    //     $this->users = new Collection();
+    //     $this->usersiC = new Collection();
+    //     $this->searching = true;
+    //     $added = false;
+    //     $count = 0;
+    //     $Serusers = User::where('name', 'LIKE', '%' . $this->pesquisa . '%')
+    //                       ->whereNot('utype', 'PorConfirmar')
+    //                       ->get();
 
-        foreach ($this->chats as $chat) 
-        {
-            $chatId = $chat->id;
+    //     foreach ($this->chats as $chat) 
+    //     {
+    //         $chatId = $chat->id;
 
-            $useriC = User::whereHas('chats', function ($query) use ($chatId) {
-                $query->where('chat_id', $chatId)->where('user_id', '!=', Auth::user()->id);
-            })->get()->first();
+    //         $useriC = User::whereHas('chats', function ($query) use ($chatId) {
+    //             $query->where('chat_id', $chatId)->where('user_id', '!=', Auth::user()->id);
+    //         })->get()->first();
 
-            $this->usersiC->add($useriC);
-        }
-        foreach ($Serusers as $user) 
-        {
-            if ($user->id != Auth::user()->id) {
-                $this->users->add($user);
-            }
-        }
+    //         $this->usersiC->add($useriC);
+    //     }
+    //     foreach ($Serusers as $user) 
+    //     {
+    //         if ($user->id != Auth::user()->id) {
+    //             $this->users->add($user);
+    //         }
+    //     }
 
-        foreach ($this->users as $user) 
-        {
-            foreach ($this->usersiC as $InChat) 
-            {
-                if ($user == $InChat) 
-                {
-                    $this->users->forget($count);
-                }
-            }
-            $count++;
-        }
-    }
+    //     foreach ($this->users as $user) 
+    //     {
+    //         foreach ($this->usersiC as $InChat) 
+    //         {
+    //             if ($user == $InChat) 
+    //             {
+    //                 $this->users->forget($count);
+    //             }
+    //         }
+    //         $count++;
+    //     }
+    // }
 
     public function abrir(): void
     {
@@ -142,7 +143,21 @@ class Chat extends Component
     {
         if ($this->OpCon) {
             $this->chat = ModelChat::where('id', $this->chat->id)->get()->first();
+
+            foreach($this->chat->mensagems as $mensagem)
+            {
+                if ($mensagem->user_id != Auth::user()->id) 
+                {
+                    $mensagem->estado = 'Lida';
+                    $mensagem->save();
+                }
+            }
         }
+    }
+    public function getChats()
+    {
+        $this->montar();
+        $this->OpChat = true;
     }
 
 
@@ -150,36 +165,30 @@ class Chat extends Component
     {
         $this->OpCon = true;
         $this->chat = $chat;
+
+        foreach($this->chat->mensagems as $mensagem)
+        {
+            if ($mensagem->user_id != Auth::user()->id) 
+            {
+                $mensagem->estado = 'Lida';
+                $mensagem->save();
+            }
+        }
     }
 
     public function Criar(): void
     {
-        $this->validate(['pesquisa' => 'required|exists:users,name'], ['pesquisa.required' => 'Por favor selecione para quem deseja mandar mensagem', 'pesquisa.exists' => 'O nome que selecionou não corresponde com os nossos registos'], [$this->pesquisa]);
+        $this->chat = new ModelChat();
+        $this->chat->save();
+        $this->chat->users()->syncWithoutDetaching([Auth::user()->id]);
+        $this->OpCon = true;
+    }
 
-        $this->destinario = User::where('name', $this->pesquisa)->get()->first();
-
-        $proceed = true;
-
-        if ($this->destinario->utype == "PorConfirmar") {
-            $proceed = false;
-            $this->erro = 'O nome que selecionou não corresponde com os nossos registos';
-        }
-
-        foreach ($this->usersiC as $user) {
-            if ($user->name == $this->destinario->name) {
-                $proceed = false;
-            }
-        }
-
-        if ($proceed) {
-            $this->chat = new ModelChat();
-            $this->chat->save();
-            $this->chat->users()->syncWithoutDetaching([$this->destinario->id, Auth::user()->id]);
-
-            $this->OpNew = false;
-            $this->reset(['pesquisa']);
-            $this->resetValidation();
-        }
+    public function Atender()
+    {
+        $this->chat->estado = 'Atendido';
+        $this->chat->users()->syncWithoutDetaching([Auth::user()->id]);
+        $this->chat->save();
     }
 
     public function montar(): void
@@ -204,7 +213,13 @@ class Chat extends Component
         }
 
         $this->chats = $this->unsorted->sortByDesc('lastMensagem');
+
+        if(Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin')
+        {
+            $this->chatsNA = ModelChat::where('estado', '=', 'naoAtendido')->get();
+        }
     }
+
 
     public function mount(): void
     {
