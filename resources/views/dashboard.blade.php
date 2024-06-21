@@ -59,7 +59,6 @@
             <livewire:cliente.entradas>
         @endif
     @elseif (Auth::user()->utype == 'Funcionario' || Auth::user()->utype == 'Admin')
-    <livewire:pagamentos.index>
 
         <div class="grid-cols-6 md:grid gap-x-0">
             <div class="col-span-4">
@@ -79,6 +78,7 @@
                 <livewire:graficos.entradas>
             </div>
         </div>
+    <livewire:pagamentos.index>
         
 
         @else

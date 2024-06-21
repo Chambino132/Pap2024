@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'notConf'          => \App\Http\Middleware\UserIsPorConfirmar::class,
         'notPer'           => \App\Http\Middleware\UserIsNotPersonal::class,
         'clientePer'       => \App\Http\Middleware\UserIsClienteOrPersonal::class,
         'adminFun'         => \App\Http\Middleware\UserIsFuncionarioOrAdmin::class,

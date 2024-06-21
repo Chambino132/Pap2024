@@ -60,11 +60,10 @@ class Marcar extends Component
        $atividade = Atividade::findOrFail($this->atividade_id);
 
         $TEMPresponsaveis = $atividade->personals;
-
         foreach($TEMPresponsaveis as $responsavel)
         {
-            $personal = Personal::findOrFail($responsavel->personal_id);
-
+            
+            $personal = Personal::findOrFail($responsavel->id);
             $this->responsaveis[$personal->id] = [
                 'nome' => $personal->user->name,
             ];

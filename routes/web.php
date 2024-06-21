@@ -35,6 +35,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('notConf')->group(function () {
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -64,7 +66,6 @@ Route::middleware('adminFun')->group(function () {
     Route::get('/atividades', AtividadesIndex::class)->name('atividades');
 });
 
-Route::get('/calendario', CalendarioIndex::class)->name('calendario');
 
 
 // Routes das dashboards
@@ -75,9 +76,10 @@ Route::middleware('clientePer')->group(function () {
     })->name('marcacoes');
 });
 
+
 Route::get('/planos/{cliente?}/{plano?}', Main::class)->middleware('notPer')->name('planos');
+Route::get('/calendario', CalendarioIndex::class)->name('calendario');
 
-Route::get('/entradas-data', [Index::class, 'getData'])->name('getEntradas');
-
+});
 
 require __DIR__ . '/auth.php';

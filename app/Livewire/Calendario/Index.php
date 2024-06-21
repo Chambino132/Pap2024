@@ -3,13 +3,14 @@
 namespace App\Livewire\Calendario;
 
 use App\Models\Event;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use App\Models\Marcacao;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Livewire\Attributes\On;
-use Livewire\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class Index extends Component
 {
@@ -48,6 +49,7 @@ class Index extends Component
 
     public function updateEvent($id, $name, $startDate, $endDate)
     {
+        
         if (Auth::user()->utype != 'Cliente' && Auth::user()->utype != 'Personal')
         {
             $validated = Validator::make(
@@ -96,30 +98,33 @@ class Index extends Component
     {
         if (Auth::user()->utype == 'Cliente')
         {
+            DB::enableQueryLog();
+            $marcacoes = Auth::user()->cliente->marcacaos()
+                    ->select('marcacaos.id as id', 'marcacaos.dia as dia', 'marcacaos.hora as hora', 'atividades.atividade as atividade')
+                    ->join('atividade_personals', 'marcacaos.atividade_personal_id', '=', 'atividade_personals.id')
+                    ->join('atividades', 'atividade_personals.atividade_id', '=', 'atividades.id')
+                    ->where('marcacaos.estado', "=", 'aceite')
+                    ->get();
+            
+        }
+        else if (Auth::user()->utype == 'Personal')
+        {
             $marcacoes = DB::select('
                 SELECT
-                    CONCAT(dia, " ", hora) as data
+                    CONCAT(dia, " ", hora) as data,
+                    atividades.atividade as atividade
                 FROM
-                    marcacaos
+                    marcacoes
+                INNER JOIN atividade_personals ON atividades_personals.id = atividades_personal_id
+                INNER JOIN atividades ON atividade.id = atividade_personals.atividade_id
+                INNER JOIN personals ON personals.id = atividade_personals.personal_id
                 WHERE
-                    cliente_id = '. Auth::user()->id .'
-                    AND estado = "aceite";
+                    personals.id = '.Auth::user()->id.',
+                    AND
+                    estado = "aceite";
+
             ');
         }
-        // else if (Auth::user()->utype == 'Personal')
-        // {
-        //     $marcacoes = DB::select('
-        //         SELECT
-        //             dia,
-        //             hora,
-        //             cliente_id,
-        //             personal_id,
-        //         FROM
-        //             marcacoes
-        //         WHERE
-
-        //     ');
-        // }
 
         // dd($marcacoes);
 
@@ -132,13 +137,18 @@ class Index extends Component
                 'start' => $event->start_time,
                 'end' => $event->end_time,
             ];
+
         }
-        foreach($marcacoes as $marcacao)
+        if(Auth::user()->utype == 'Cliente' || Auth::user()->utype == 'Personal')
         {
-            $events[] = [
-                'title' => "POG",
-                'start' => $marcacao->data,
-            ];
+            foreach($marcacoes as $marcacao)
+            {
+                $events[] = [
+                    'id' => $marcacao->id,
+                    'title' => $marcacao->atividade,
+                    'start' => $marcacao->dia . " ". $marcacao->hora,
+                ];
+            }
         }
 
         if(session('sucessoE'))

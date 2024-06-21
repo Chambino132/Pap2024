@@ -16,11 +16,11 @@ class UserIsPorConfirmar
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->utype === "PorConfirmar")
+        if(Auth::check() && Auth::user()->utype != "PorConfirmar")
         {
             return $next($request);
         }
-
+        session()->flash("failed", "Não tem permissão para aceder a esta pagina");
         return redirect()->route('login');
     }
 }
