@@ -6,9 +6,9 @@
                     <div class="bg-white shadow-sm dark:bg-slate-900 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h2 class="text-xl font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Lista de Users Não Confirmados') }}
+                                {{ __('Lista de Utilizadores Não Confirmados') }}
                             </h2>
-                            <hr class="border-black dark:border-white" style="width: 294px">
+                            <hr class="border-black dark:border-white" style="width: 350px">
                             <div>
                                 <x-text-input wire:model.live='search' class="w-1/2 mt-2 me-3"
                                     placeholder="Pesquisa"></x-text-input>
@@ -27,9 +27,9 @@
                                 <table class="w-full table-auto">
                                     <thead class="text-white bg-red-500 shadow-lg dark:bg-red-700">
                                         <tr>
-                                            <th class="pl-4 py-3 text-left">#</th>
+                                            <th class="py-3 pl-4 text-left">#</th>
                                             <th wire:click='ordenar'
-                                                class="flex pl-4 py-3 pr-10 text-left dark:hover:bg-red-900 hover:bg-red-700 cursor-pointer">
+                                                class="flex py-3 pl-4 pr-10 text-left cursor-pointer dark:hover:bg-red-900 hover:bg-red-700">
                                                 Nome
                                                 @if ($ordena)
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -81,7 +81,7 @@
                                             </div>
                                         @empty
                                             <tr>
-                                                <td class="px-4 py-3" colspan="3">Sem users por confirmar!</td>
+                                                <td class="px-4 py-3" colspan="3">Sem Utilizadores por confirmar!</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

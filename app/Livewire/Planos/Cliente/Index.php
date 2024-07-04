@@ -22,7 +22,7 @@ class Index extends Component
 
     public function mount()
     {
-        $clienteID = Auth::user()->id;
+        $clienteID = Auth::user()->cliente->id;
 
         $this->planos = Plano::whereDoesntHave('clientes', function($query) use ($clienteID)
         {

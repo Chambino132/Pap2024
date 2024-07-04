@@ -5,7 +5,7 @@
             <style>
                 #Pagdiv {
                     width: 100%;
-                    height: 500px;
+                    height: 550px;
                 }
             </style>
 

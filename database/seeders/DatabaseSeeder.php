@@ -45,17 +45,17 @@ class DatabaseSeeder extends Seeder
         Mensalidade::factory(4)
             ->create();
 
-        User::factory(10)
+        User::factory(20)
             ->has(Reclamacao::factory())
             ->has(Cliente::factory()
                 ->has(Presenca::factory(3))
                 ->has(Pagamento::factory(3))
                 ->has(Best::factory(5)))
-            ->create();
+            ->create(['utype' => 'Cliente']);
 
         User::factory(5)
             ->has(Funcionario::factory())
-            ->create();
+            ->create(['utype' => 'Funcionario']);
 
         Atividade::factory(4)
             ->create();
@@ -63,10 +63,10 @@ class DatabaseSeeder extends Seeder
         User::factory(5)
             ->has(Personal::factory())
             ->has(Reclamacao::factory())
-            ->create();
+            ->create(['utype' => 'Personal']);
 
         //User Admin
-        User::factory(1)->create();
+        User::factory(1)->create(['utype' => 'Admin']);
 
         Marcacao::factory(10)->create();
 

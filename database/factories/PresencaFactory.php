@@ -19,7 +19,7 @@ class PresencaFactory extends Factory
     {
         
         return [
-            'entrada' => fake()->dateTimeThisMonth(),
+            'entrada' => fake()->dateTimeBetween('-1 week'),
         ];
     }
 }

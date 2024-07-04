@@ -19,14 +19,14 @@
         
       @if ($OpCon == false)
       @if (Auth::user()->utype == 'Cliente') 
-        <div wire:click='NovConv' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-red-400 to-red-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
+        <div wire:click='Criar' class="fixed flex items-start rounded-full bottom-2 bg-gradient-to-r from-red-400 to-red-600 w-14 h-14 right-10 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-auto bi bi-chat-right-text " viewBox="0 0 16 16">
           <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
           <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
         </svg></div>
       @endif
       <div wire:poll='getChats' id="conversas" class="overflow-y-scroll h-96 scrolls">
-      @if (Auth::user()->utype == 'Funcionario' || Auth::user()->utype == 'Admin')    
+      @if ($adFun)    
         <div>
           <h1 class="py-5 text-xl text-center">Chats Não Atendidos</h1>
           <hr>
@@ -55,7 +55,7 @@
         </div>
       @endif
       
-        @if (Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin')    
+        @if ($adFun)    
         <div>
           <h1 class="py-5 text-xl text-center">Chats Atendidos</h1>
           <hr>
@@ -185,7 +185,7 @@
           </div>
           
             <div class="w-11/12 ml-4 "> 
-              @if (Auth::user()->utype == 'Funcionario' ||  Auth::user()->utype == 'Admin' && $chat->estado == 'naoAtendido')
+              @if ($adFun && $chat->estado == 'naoAtendido')
               <button wire:click="Atender" class="flex justify-center w-full h-16 py-5 mt-5 rounded-lg abs bg-gradient-to-r from-red-400 to-red-600 w-60 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-500"><strong>Atender Cliente</strong></button>
               @else
                 <form  wire:submit='enviar' id="enviar" name="enviar"> 

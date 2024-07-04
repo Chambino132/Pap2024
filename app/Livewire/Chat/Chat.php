@@ -30,6 +30,7 @@ class Chat extends Component
     public bool $OpCon = false;
     public bool $OpNew = false;
     public bool $searching = false;
+    public bool $adFun = false;
 
     public string $erro;
 
@@ -193,6 +194,11 @@ class Chat extends Component
 
     public function montar(): void
     {
+        if(Auth::user()->utype == 'Funcionario' || Auth::user()->utype == 'Admin')
+        {
+            $this->adFun = true;
+        }
+
         $hisChat = false;
         $hasOne = false;
         $this->chats = new Collection();

@@ -1,6 +1,6 @@
 <div>
     <h1 class="text-2xl">Os Seus Pbs</h1>
-    <hr class="w-36 border-black dark:border-white">
+    <hr class="border-black w-36 dark:border-white">
     <div class="py-8 ">
 
         <div class=" bg-white overflow-hidden dark:bg-gray-300 rounded-lg shadow-lg {{$class}}">
@@ -14,7 +14,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-900 dark:text-slate-900">
-                        @foreach ($pbs as $pb)
+                        @forelse ($pbs as $pb)
                             
                         <tr wire:key="{{$pb->id}}" class="hover:bg-gray-100">
                             <td class="px-4 py-3">{{$pb->equipamento->equipamento}} </td>
@@ -23,7 +23,7 @@
                                     <div class="flex">
                                         <x-text-input wire:model="newPB" wire:change="update" class="w-20"></x-text-input>
                                         <button wire:click='CanMud'
-                                        class="ms-2 px-4 py-2 text-gray-600 dark:text-gray-800 bg-gray-200 dark:bg-gray-400 rounded-lg"><svg
+                                        class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg ms-2 dark:text-gray-800 dark:bg-gray-400"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
@@ -33,7 +33,7 @@
                                         </svg></button>
                                     </div>
                                 @else
-                                <span class="px-4 py-2 text-gray-800 dark:text-gray-800 bg-gray-400 rounded-lg">{{$pb->pb}} </span>              
+                                <span class="px-4 py-2 text-gray-800 bg-gray-400 rounded-lg dark:text-gray-800">{{$pb->pb}} </span>              
                                 @endif
                             </td>
                             <td class="px-4 py-3 text-center">
@@ -50,7 +50,9 @@
                             </td>
                             
                         </tr>
-                        @endforeach
+                        @empty
+                        <td class="px-4 py-3">Ainda Sem Recordes Pessoais!</td>
+                        @endforelse
                         
                     </tbody>
             </table>

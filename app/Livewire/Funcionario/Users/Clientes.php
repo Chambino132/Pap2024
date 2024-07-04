@@ -116,7 +116,9 @@ class Clientes extends Component
         $dataPago = Carbon::parse($cliente->ultMes);
         $dias = $cliente->mensalidade->dias[0];
 
-        $entradas = Presenca::whereBetween('entrada', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+        $entradas = Presenca::whereBetween('entrada', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->where('cliente_id','=', $id)
+        ->count();
 
         if($entradas >= $dias)
         {

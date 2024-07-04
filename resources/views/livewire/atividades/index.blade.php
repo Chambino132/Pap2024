@@ -1,6 +1,6 @@
 <div>
     <x-slot name="pageTitle">
-        Mensalidades
+        Atividades
     </x-slot>
     <div class="grid grid-cols-3">
         <div class="col-span-2 py-12">
@@ -104,9 +104,13 @@
                         </h2>
                         <hr class="border-black dark:border-white" style="width: 190px">
                         <form wire:submit='Criar'>
-                            <textarea wire:model='atividade' class="mt-5 text-xl rounded-md shadow-sm bord-er-gray-400 dark:border-gray-500 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" placeholder="Escreva aqui a Atividade" cols="30" rows="10"></textarea>
-                            <x-input-error class="mt-2" :messages="$errors->get('atividade')" />
-                            <x-primary-button class="mt-2">Criar</x-primary-button>
+                            <div class="grid grid-cols-1-row-2">
+                                <div>
+                                    <textarea wire:model='atividade' class="w-full mt-5 text-xl rounded-md shadow-sm bord-er-gray-400 dark:border-gray-500 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" placeholder="Escreva aqui a Atividade" rows="10"></textarea>
+                                    <x-input-error class="mt-2" :messages="$errors->get('atividade')" />
+                                </div>
+                                <x-primary-button class="mt-2"><p class="w-full text-center"></p>Criar</x-primary-button>
+                            </div>
                         </form>
                     </div>
                 </div>
