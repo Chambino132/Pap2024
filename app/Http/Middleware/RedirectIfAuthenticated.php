@@ -21,6 +21,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if(session('failed'))
+                {
+                    session()->flash('failed', 'Não tem permissão para aceder a esta pagina');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
